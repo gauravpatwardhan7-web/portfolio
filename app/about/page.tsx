@@ -36,13 +36,15 @@ const timeline = [
     points: [
       "Launched 2 products with $3M in sales",
       "Filed 2 patent applications",
-      "Project Manager and NPD Engineer",
     ],
   },
   {
     role: "Mechanical Engineering — WCE Sangli",
-    period: "1996 – 2018",
-    points: ["Born and raised in CSN", "Teacher parents"],
+    period: "2014 – 2018",
+    points: [
+      "Where the builder instinct started",
+      "Born and raised in CSN, teacher parents",
+    ],
   },
 ];
 
@@ -72,45 +74,41 @@ export default function About() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--background)", color: "var(--foreground)" }}>
+    <div style={{ background: "var(--background)", color: "var(--foreground)", minHeight: "100vh" }}>
+
       {/* Header */}
-      <header className="border-b" style={{ borderColor: "var(--border)" }}>
+      <header style={{ borderBottom: "1px solid var(--border)" }}>
         <div className="max-w-5xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
           <a
             href="/"
-            className="font-mono text-sm transition-colors"
-            style={{ color: "var(--muted)" }}
+            className="text-sm transition-colors px-0 py-2"
+            style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}
             onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
             onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
           >
             ← Work
           </a>
-          <nav className="flex gap-4 md:gap-6">
-            <a
-              href="https://github.com/gauravpatwardhan7-web"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm transition-colors"
-              style={{ color: "var(--muted)" }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
-            >
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/patwardhangaurav/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm transition-colors"
-              style={{ color: "var(--muted)" }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
-            >
-              LinkedIn
-            </a>
+          <nav className="flex items-center gap-1 md:gap-2">
+            {[
+              { label: "GitHub", href: "https://github.com/gauravpatwardhan7-web" },
+              { label: "LinkedIn", href: "https://www.linkedin.com/in/patwardhangaurav/" },
+            ].map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm transition-colors px-3 py-2"
+                style={{ color: "var(--muted)" }}
+                onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+                onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+              >
+                {item.label}
+              </a>
+            ))}
             <a
               href="mailto:gauravpatwardhan7@gmail.com"
-              className="text-sm transition-colors"
+              className="text-sm transition-colors px-3 py-2"
               style={{ color: "var(--muted)" }}
               onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
@@ -122,82 +120,88 @@ export default function About() {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-4 md:px-6">
+      <div className="max-w-5xl mx-auto px-4 md:px-6">
+
         {/* Hero */}
-        <section className="pt-20 md:pt-28 pb-16 md:pb-20">
-          <p className="font-mono text-sm mb-6" style={{ color: "var(--accent)" }}>
+        <section className="pt-14 md:pt-20 pb-12 md:pb-16">
+          <p className="font-mono text-sm mb-4" style={{ color: "var(--accent)" }}>
             — Bengaluru, India
           </p>
-          <h1 className="text-5xl md:text-7xl font-semibold tracking-tight leading-tight mb-6">
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight mb-6">
             Gaurav Patwardhan
           </h1>
-          <p className="text-xl md:text-2xl max-w-2xl" style={{ color: "var(--muted)" }}>
-            Emerging Architect, SSW · Product Manager / Builder
+          <p className="text-lg md:text-xl max-w-2xl leading-relaxed" style={{ color: "var(--muted)" }}>
+            I started as an engineer, moved into corporate product work at Eaton, did an MBA,
+            joined two startups, and now build AI products at Shell. At every stage I&apos;ve
+            found myself wanting to actually make the thing — not just define it. That&apos;s
+            what the projects on this site are.
           </p>
         </section>
 
         <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
         {/* Career Timeline */}
-        <section className="py-14 md:py-20">
-          <p className="font-mono text-xs uppercase tracking-widest mb-10" style={{ color: "var(--muted)" }}>
+        <section className="py-12 md:py-16">
+          <p className="font-mono text-xs uppercase tracking-widest mb-8" style={{ color: "var(--muted)" }}>
             Career
           </p>
-          <div>
-            {timeline.map((item, i) => (
-              <div
-                key={i}
-                className="py-6"
-                style={{ borderTop: "1px solid var(--border)" }}
-              >
-                {/* Mobile: stacked. Desktop: 4-col grid */}
-                <div className="flex flex-col md:grid md:grid-cols-4 gap-2 md:gap-8">
-                  <div className="md:col-span-2">
-                    <p className="font-semibold text-base leading-snug">{item.role}</p>
-                  </div>
-                  <div>
-                    <p className="font-mono text-sm mt-1 md:mt-0" style={{ color: "var(--accent)" }}>
-                      {item.period}
-                    </p>
-                  </div>
-                  <div className="mt-2 md:mt-0">
-                    <ul className="space-y-1">
-                      {item.points.map((pt, j) => (
-                        <li key={j} className="flex gap-2 text-sm" style={{ color: "var(--muted)" }}>
-                          <span style={{ color: "var(--accent)" }} className="flex-shrink-0">—</span>
-                          {pt}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+          {timeline.map((item, i) => (
+            <div
+              key={i}
+              className="py-5"
+              style={{ borderTop: "1px solid var(--border)" }}
+            >
+              <div className="flex flex-col md:grid md:grid-cols-4 gap-1 md:gap-8">
+                <div className="md:col-span-2">
+                  <p className="font-semibold text-base leading-snug">{item.role}</p>
+                </div>
+                <div>
+                  <p className="font-mono text-sm mt-1 md:mt-0.5" style={{ color: "var(--accent)" }}>
+                    {item.period}
+                  </p>
+                </div>
+                <div className="mt-2 md:mt-0">
+                  <ul className="space-y-1">
+                    {item.points.map((pt, j) => (
+                      <li key={j} className="flex gap-2 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                        <span style={{ color: "var(--accent)", flexShrink: 0 }}>—</span>
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-            ))}
-            <div style={{ borderTop: "1px solid var(--border)" }} />
-          </div>
+            </div>
+          ))}
+          <div style={{ borderTop: "1px solid var(--border)" }} />
         </section>
 
         <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
         {/* Three-column block */}
-        <section className="py-14 md:py-20">
+        <section className="py-12 md:py-16">
           <div
-            className="grid grid-cols-1 md:grid-cols-3 gap-px"
-            style={{ background: "var(--border)" }}
+            className="grid grid-cols-1 md:grid-cols-3"
+            style={{ border: "1px solid var(--border)" }}
           >
-            {threeCol.map((col) => (
-              <div key={col.label} className="p-6 md:p-8" style={{ background: "var(--surface)" }}>
-                <p
-                  className="font-mono text-xs uppercase tracking-widest mb-5"
-                  style={{ color: "var(--accent)" }}
-                >
+            {threeCol.map((col, i) => (
+              <div
+                key={col.label}
+                className="p-6 md:p-8"
+                style={{
+                  background: "var(--surface)",
+                  borderRight: i < 2 ? "1px solid var(--border)" : "none",
+                  borderBottom: "1px solid var(--border)",
+                }}
+              >
+                <p className="font-mono text-xs uppercase tracking-widest mb-5" style={{ color: "var(--accent)" }}>
                   {col.label}
                 </p>
                 <ul className="space-y-3">
                   {col.items.map((item) => (
-                    <li key={item} className="flex gap-2 text-sm" style={{ color: "var(--muted)" }}>
-                      <span style={{ color: "var(--accent)" }} className="flex-shrink-0">—</span>
-                      {item}
+                    <li key={item} className="flex gap-2 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                      <span style={{ color: "var(--accent)", flexShrink: 0 }}>—</span>
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -205,38 +209,47 @@ export default function About() {
             ))}
           </div>
         </section>
-      </main>
+
+        {/* CTA */}
+        <section className="pb-16 md:pb-20">
+          <p className="text-base" style={{ color: "var(--muted)" }}>
+            Want to build something together?{" "}
+            <a
+              href="mailto:gauravpatwardhan7@gmail.com"
+              className="font-mono text-sm transition-colors"
+              style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
+              onClick={handleEmailClick}
+            >
+              {emailCopied ? "Copied!" : "gauravpatwardhan7@gmail.com"}
+            </a>
+          </p>
+        </section>
+
+      </div>
 
       {/* Footer */}
-      <footer className="border-t" style={{ borderColor: "var(--border)" }}>
-        <div className="max-w-5xl mx-auto px-4 md:px-6 py-8 flex flex-col md:flex-row justify-between gap-4">
+      <footer style={{ borderTop: "1px solid var(--border)" }}>
+        <div className="max-w-5xl mx-auto px-4 md:px-6 py-6 flex flex-col md:flex-row justify-between gap-3">
           <span className="font-mono text-xs" style={{ color: "var(--muted)" }}>
             Gaurav Patwardhan · {new Date().getFullYear()}
           </span>
-          <div className="flex gap-6">
+          <div className="flex gap-4">
             <a href="/" className="font-mono text-xs transition-colors" style={{ color: "var(--muted)" }}
               onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
-            >
-              Work
-            </a>
-            <a
-              href="https://www.linkedin.com/in/patwardhangaurav/"
-              target="_blank" rel="noopener noreferrer"
+            >Work</a>
+            <a href="https://www.linkedin.com/in/patwardhangaurav/" target="_blank" rel="noopener noreferrer"
               className="font-mono text-xs transition-colors" style={{ color: "var(--muted)" }}
               onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
-            >
-              LinkedIn
-            </a>
-            <a
-              href="mailto:gauravpatwardhan7@gmail.com"
+            >LinkedIn</a>
+            <a href="https://github.com/gauravpatwardhan7-web" target="_blank" rel="noopener noreferrer"
               className="font-mono text-xs transition-colors" style={{ color: "var(--muted)" }}
               onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
-            >
-              gauravpatwardhan7@gmail.com
-            </a>
+            >GitHub</a>
           </div>
         </div>
       </footer>

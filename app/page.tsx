@@ -5,6 +5,11 @@ import { projects } from "@/lib/projects";
 
 export default function Home() {
   const revealRefs = useRef<HTMLElement[]>([]);
+
+  // Always start at top on load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [emailCopied, setEmailCopied] = useState(false);
 
   const handleEmailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -48,41 +53,28 @@ export default function Home() {
           <span className="font-mono text-sm hidden md:block" style={{ color: "var(--muted)" }}>
             gauravpatwardhan7
           </span>
-          <nav className="flex gap-4 md:gap-6">
-            <a
-              href="/about"
-              className="text-sm transition-colors"
-              style={{ color: "var(--muted)" }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
-            >
-              About
-            </a>
-            <a
-              href="https://github.com/gauravpatwardhan7-web"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm transition-colors"
-              style={{ color: "var(--muted)" }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
-            >
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/patwardhangaurav/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm transition-colors"
-              style={{ color: "var(--muted)" }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
-            >
-              LinkedIn
-            </a>
+          <nav className="flex items-center gap-1 md:gap-2">
+            {[
+              { label: "About", href: "/about" },
+              { label: "GitHub", href: "https://github.com/gauravpatwardhan7-web", external: true },
+              { label: "LinkedIn", href: "https://www.linkedin.com/in/patwardhangaurav/", external: true },
+            ].map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+                className="text-sm transition-colors px-3 py-2"
+                style={{ color: "var(--muted)" }}
+                onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+                onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+              >
+                {item.label}
+              </a>
+            ))}
             <a
               href="mailto:gauravpatwardhan7@gmail.com"
-              className="text-sm transition-colors relative"
+              className="text-sm transition-colors px-3 py-2"
               style={{ color: "var(--muted)" }}
               onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
