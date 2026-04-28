@@ -18,6 +18,7 @@ export type Project = {
   links: { label: string; href: string; primary?: boolean }[];
   videoId?: string;
   image?: string;
+  images?: string[];
 };
 
 export const projects: Project[] = [
@@ -123,6 +124,7 @@ export const projects: Project[] = [
         primary: true,
       },
     ],
+    images: ["/AI-gym-coach-1.PNG", "/AI-gym-coach-2.PNG", "/AI-gym-coach-3.PNG"],
   },
   {
     id: "job-hunt",

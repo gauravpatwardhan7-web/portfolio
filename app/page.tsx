@@ -299,6 +299,24 @@ export default function Home() {
                     />
                   </div>
                 )}
+                {/* Sequential images */}
+                {project.images && (
+                  <div className="reveal flex items-center gap-2" ref={addRevealRef}>
+                    {project.images.map((src, i) => (
+                      <div key={src} className="flex items-center gap-2 min-w-0">
+                        <img
+                          src={src}
+                          alt={`${project.title} step ${i + 1}`}
+                          className="flex-1 min-w-0 rounded"
+                          style={{ border: "1px solid var(--border)", width: "calc(33.333% - 12px)" }}
+                        />
+                        {i < project.images!.length - 1 && (
+                          <span className="flex-shrink-0 text-sm" style={{ color: "var(--muted)" }}>→</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
                 {/* Stats */}
                 <div className="reveal inline-flex flex-wrap gap-px" ref={addRevealRef} style={{ background: "var(--border)" }}>
                   {project.stats.map((stat) => (
