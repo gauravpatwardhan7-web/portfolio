@@ -11,6 +11,7 @@ export type Project = {
   stats: { value: string; label: string }[];
   collaborationSignals: string[];
   links: { label: string; href: string; primary?: boolean }[];
+  videoId?: string;
 };
 
 export const projects: Project[] = [
@@ -61,6 +62,7 @@ Overpass (OSM) ┘     (nightly cron)     (PostgreSQL)   (REST)      (frontend)`
         href: "https://github.com/gauravpatwardhan7-web/blr-neighborhood-explorer",
       },
     ],
+    videoId: "DxLrKuRraxM",
   },
   {
     id: "gym-coach",

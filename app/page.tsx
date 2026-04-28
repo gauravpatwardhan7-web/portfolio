@@ -229,6 +229,23 @@ export default function Home() {
 
               {/* Right column */}
               <div className="space-y-8">
+                {/* Video embed */}
+                {project.videoId && (
+                  <div className="reveal" ref={addRevealRef}>
+                    <div
+                      className="relative w-full"
+                      style={{ paddingBottom: "56.25%" /* 16:9 */ }}
+                    >
+                      <iframe
+                        className="absolute inset-0 w-full h-full"
+                        src={`https://www.youtube.com/embed/${project.videoId}?autoplay=1&mute=1&loop=1&playlist=${project.videoId}&controls=1&rel=0&modestbranding=1`}
+                        allow="autoplay; encrypted-media"
+                        allowFullScreen
+                        style={{ border: "none" }}
+                      />
+                    </div>
+                  </div>
+                )}
                 {/* Stats */}
                 <div className="reveal" ref={addRevealRef}>
                   <div
