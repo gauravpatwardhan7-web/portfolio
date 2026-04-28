@@ -1,65 +1,399 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useRef } from "react";
+import { projects } from "@/lib/projects";
 
 export default function Home() {
+  const revealRefs = useRef<HTMLElement[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    revealRefs.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const addRevealRef = (el: HTMLElement | null) => {
+    if (el && !revealRefs.current.includes(el)) {
+      revealRefs.current.push(el);
+    }
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+    <div className="min-h-screen" style={{ background: "var(--background)", color: "var(--foreground)" }}>
+      {/* Header */}
+      <header className="border-b" style={{ borderColor: "var(--border)" }}>
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+          <span className="font-mono text-sm" style={{ color: "var(--muted)" }}>
+            gauravpatwardhan7
+          </span>
+          <nav className="flex gap-6">
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="https://github.com/gauravpatwardhan7-web"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm transition-colors"
+              style={{ color: "var(--muted)" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
+              GitHub
+            </a>
             <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="mailto:gauravpatwardhan7@gmail.com"
+              className="text-sm transition-colors"
+              style={{ color: "var(--muted)" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              Email
+            </a>
+          </nav>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </header>
+
+      {/* Hero */}
+      <section className="max-w-5xl mx-auto px-6 pt-20 pb-24">
+        <p
+          className="font-mono text-sm mb-6 reveal"
+          ref={addRevealRef}
+          style={{ color: "var(--accent)" }}
+        >
+          — Bengaluru, India
+        </p>
+        <h1
+          className="text-5xl md:text-7xl font-semibold tracking-tight leading-tight mb-6 reveal"
+          ref={addRevealRef}
+          style={{ animationDelay: "0.1s" }}
+        >
+          Gaurav Patwardhan
+        </h1>
+        <p
+          className="text-xl md:text-2xl max-w-2xl reveal"
+          ref={addRevealRef}
+          style={{ color: "var(--muted)", animationDelay: "0.2s" }}
+        >
+          Full-stack PM/builder. I identify real problems and ship working
+          products — from data pipelines to consumer apps. Three projects below.
+        </p>
+
+        <div
+          className="flex flex-wrap gap-3 mt-10 reveal"
+          ref={addRevealRef}
+          style={{ animationDelay: "0.3s" }}
+        >
+          {[
+            { label: "Consumer product", highlight: true },
+            { label: "Automation" },
+            { label: "Developer tooling" },
+          ].map((tag) => (
+            <span
+              key={tag.label}
+              className="font-mono text-xs uppercase tracking-widest px-3 py-1 border"
+              style={{
+                borderColor: tag.highlight ? "var(--accent)" : "var(--border)",
+                color: tag.highlight ? "var(--accent)" : "var(--muted)",
+              }}
+            >
+              {tag.label}
+            </span>
+          ))}
         </div>
+      </section>
+
+      <hr style={{ borderColor: "var(--border)", border: "none", borderTop: "1px solid var(--border)" }} />
+
+      {/* Projects */}
+      <main className="max-w-5xl mx-auto px-6">
+        {projects.map((project, idx) => (
+          <section
+            key={project.id}
+            className="py-20"
+            style={idx < projects.length - 1 ? { borderBottom: "1px solid var(--border)" } : {}}
+          >
+            {/* Tier label */}
+            <div className="mb-10 reveal" ref={addRevealRef}>
+              <span
+                className="font-mono text-xs uppercase tracking-widest px-2 py-0.5 border"
+                style={{
+                  borderColor: project.tier === 1 ? "var(--accent)" : "var(--border)",
+                  color: project.tier === 1 ? "var(--accent)" : "var(--muted)",
+                }}
+              >
+                {project.label}
+              </span>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+              {/* Left column */}
+              <div>
+                <h2
+                  className="text-3xl md:text-4xl font-semibold tracking-tight mb-3 reveal"
+                  ref={addRevealRef}
+                >
+                  {project.title}
+                </h2>
+                <p
+                  className="text-sm mb-8 reveal"
+                  ref={addRevealRef}
+                  style={{ color: "var(--muted)" }}
+                >
+                  {project.subtitle}
+                </p>
+
+                {/* Problem */}
+                <div
+                  className="mb-8 reveal"
+                  ref={addRevealRef}
+                  style={{ borderLeft: "3px solid var(--accent)", paddingLeft: "1rem" }}
+                >
+                  <p
+                    className="font-mono text-xs uppercase tracking-widest mb-2"
+                    style={{ color: "var(--accent)" }}
+                  >
+                    The problem
+                  </p>
+                  <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+                    {project.problem}
+                  </p>
+                </div>
+
+                {/* How it works */}
+                <div className="mb-8 reveal" ref={addRevealRef}>
+                  <p
+                    className="font-mono text-xs uppercase tracking-widest mb-4"
+                    style={{ color: "var(--muted)" }}
+                  >
+                    How it works
+                  </p>
+                  <ul className="space-y-3">
+                    {project.howItWorks.map((item, i) => (
+                      <li key={i} className="flex gap-3 text-sm leading-relaxed">
+                        <span style={{ color: "var(--accent)" }} className="mt-0.5 flex-shrink-0">
+                          —
+                        </span>
+                        <span style={{ color: "var(--muted)" }}>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Links */}
+                <div className="flex flex-wrap gap-4 reveal" ref={addRevealRef}>
+                  {project.links.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-mono transition-colors"
+                      style={{
+                        color: link.primary ? "var(--accent)" : "var(--muted)",
+                        textDecoration: "underline",
+                        textUnderlineOffset: "4px",
+                      }}
+                      onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+                      onMouseOut={(e) =>
+                        (e.currentTarget.style.color = link.primary ? "var(--accent)" : "var(--muted)")
+                      }
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right column */}
+              <div className="space-y-8">
+                {/* Stats */}
+                <div className="reveal" ref={addRevealRef}>
+                  <div
+                    className="grid grid-cols-2 gap-px"
+                    style={{ background: "var(--border)" }}
+                  >
+                    {project.stats.map((stat) => (
+                      <div
+                        key={stat.label}
+                        className="p-5"
+                        style={{ background: "var(--surface)" }}
+                      >
+                        <p
+                          className="text-2xl font-semibold tracking-tight"
+                          style={{ color: "var(--accent)", fontFamily: "var(--font-mono), monospace" }}
+                        >
+                          {stat.value}
+                        </p>
+                        <p className="text-xs mt-1" style={{ color: "var(--muted)" }}>
+                          {stat.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Architecture diagram */}
+                <div className="reveal" ref={addRevealRef}>
+                  <p
+                    className="font-mono text-xs uppercase tracking-widest mb-3"
+                    style={{ color: "var(--muted)" }}
+                  >
+                    Architecture
+                  </p>
+                  <pre
+                    className="text-xs overflow-x-auto p-4 leading-relaxed"
+                    style={{
+                      background: "var(--code-bg)",
+                      color: "#a3a3a3",
+                      fontFamily: "var(--font-mono), 'SF Mono', monospace",
+                    }}
+                  >
+                    {project.diagram}
+                  </pre>
+                </div>
+
+                {/* Stack */}
+                <div className="reveal" ref={addRevealRef}>
+                  <p
+                    className="font-mono text-xs uppercase tracking-widest mb-3"
+                    style={{ color: "var(--muted)" }}
+                  >
+                    Stack
+                  </p>
+                  <div className="space-y-2">
+                    {project.stack.map((item) => (
+                      <div key={item.category} className="flex gap-4 text-sm">
+                        <span
+                          className="font-mono w-24 flex-shrink-0 text-xs"
+                          style={{ color: "var(--muted)" }}
+                        >
+                          {item.category}
+                        </span>
+                        <span style={{ color: "var(--foreground)" }}>{item.items}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Collaboration signals */}
+                <div className="reveal" ref={addRevealRef}>
+                  <p
+                    className="font-mono text-xs uppercase tracking-widest mb-3"
+                    style={{ color: "var(--muted)" }}
+                  >
+                    What this shows
+                  </p>
+                  <ul className="space-y-2">
+                    {project.collaborationSignals.map((signal, i) => (
+                      <li key={i} className="flex gap-2 text-sm">
+                        <span style={{ color: "var(--accent)" }} className="flex-shrink-0">
+                          ✓
+                        </span>
+                        <span style={{ color: "var(--muted)" }}>{signal}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+        ))}
       </main>
+
+      <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
+
+      {/* About */}
+      <section className="max-w-5xl mx-auto px-6 py-20">
+        <div className="grid md:grid-cols-3 gap-12">
+          <div>
+            <p
+              className="font-mono text-xs uppercase tracking-widest mb-4"
+              style={{ color: "var(--accent)" }}
+            >
+              About
+            </p>
+            <h2 className="text-2xl font-semibold tracking-tight">
+              Why I build this way
+            </h2>
+          </div>
+          <div className="md:col-span-2 space-y-4 text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+            <p>
+              I&apos;m a product manager who builds the things I spec. Not because I have to — because
+              shipping something end-to-end is the fastest way to learn what actually matters. The
+              judgment calls you make at 2 AM debugging a data pipeline are different from the ones
+              you make in a document.
+            </p>
+            <p>
+              The projects above aren&apos;t portfolio pieces. They solve problems I ran into, tools I
+              wanted to use, data I wanted to see. BLR was me trying to find a flat. For Job Hunt was
+              me drowning in browser tabs. Token Efficiency was me wondering if I was using Claude
+              Code well.
+            </p>
+            <p>
+              I&apos;m most useful to founders who need someone who can both think about a product and
+              build pieces of it — someone who understands that a great feature and a broken data
+              pipeline are the same problem.
+            </p>
+            <p className="pt-2">
+              <a
+                href="mailto:gauravpatwardhan7@gmail.com"
+                className="font-mono text-sm transition-colors"
+                style={{
+                  color: "var(--accent)",
+                  textDecoration: "underline",
+                  textUnderlineOffset: "4px",
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+                onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
+              >
+                Get in touch →
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t" style={{ borderColor: "var(--border)" }}>
+        <div className="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between gap-4">
+          <span className="font-mono text-xs" style={{ color: "var(--muted)" }}>
+            Gaurav Patwardhan · {new Date().getFullYear()}
+          </span>
+          <div className="flex gap-6">
+            <a
+              href="https://github.com/gauravpatwardhan7-web"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs transition-colors"
+              style={{ color: "var(--muted)" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+            >
+              GitHub
+            </a>
+            <a
+              href="mailto:gauravpatwardhan7@gmail.com"
+              className="font-mono text-xs transition-colors"
+              style={{ color: "var(--muted)" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+            >
+              gauravpatwardhan7@gmail.com
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
