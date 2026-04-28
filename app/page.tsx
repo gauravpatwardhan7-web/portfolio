@@ -6,9 +6,12 @@ import { projects } from "@/lib/projects";
 export default function Home() {
   const revealRefs = useRef<HTMLElement[]>([]);
 
-  // Always start at top on load
+  // Always start at top on load — disable browser scroll restoration
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (history.scrollRestoration) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
   const [emailCopied, setEmailCopied] = useState(false);
 

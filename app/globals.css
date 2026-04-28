@@ -49,6 +49,19 @@ p, li, h1, h2, h3, h4 {
   word-break: break-word;
 }
 
+/* On mobile, grids with no explicit column template use auto-sized tracks
+   that expand to fit content — blowing past the viewport.
+   Set a constrained default single column. grid-cols-2/3 overrides this. */
+.grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Grid items also need min-width: 0 to shrink below content size */
+.grid > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
 /* Architecture diagrams scroll horizontally within their block */
 pre {
   white-space: pre;
