@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { projects } from "@/lib/projects";
+import FlowDiagram from "@/app/components/FlowDiagram";
 
 export default function Home() {
   const revealRefs = useRef<HTMLElement[]>([]);
@@ -108,7 +109,7 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-4 md:px-6 pt-20 md:pt-28 pb-16 md:pb-24">
+      <section className="max-w-5xl mx-auto px-4 md:px-6 pt-14 md:pt-20 pb-10 md:pb-16">
         <p
           className="font-mono text-sm mb-6 reveal"
           ref={addRevealRef}
@@ -124,7 +125,7 @@ export default function Home() {
           Gaurav Patwardhan
         </h1>
         <p
-          className="text-xl md:text-2xl max-w-2xl reveal"
+          className="text-lg md:text-xl max-w-2xl reveal"
           ref={addRevealRef}
           style={{ color: "var(--muted)", animationDelay: "0.2s" }}
         >
@@ -175,7 +176,7 @@ export default function Home() {
           <section
             key={project.id}
             id={project.id}
-            className="py-20"
+            className="py-12 md:py-16"
             style={idx < projects.length - 1 ? { borderBottom: "1px solid var(--border)" } : {}}
           >
             {/* Tier label */}
@@ -233,12 +234,10 @@ export default function Home() {
                   >
                     How it works
                   </p>
-                  <ul className="space-y-3">
-                    {project.howItWorks.map((item, i) => (
+                  <ul className="space-y-2">
+                    {project.howItWorks.slice(0, 3).map((item, i) => (
                       <li key={i} className="flex gap-3 text-sm leading-relaxed">
-                        <span style={{ color: "var(--accent)" }} className="mt-0.5 flex-shrink-0">
-                          —
-                        </span>
+                        <span style={{ color: "var(--accent)" }} className="mt-0.5 flex-shrink-0">—</span>
                         <span style={{ color: "var(--muted)" }}>{item}</span>
                       </li>
                     ))}
@@ -323,20 +322,7 @@ export default function Home() {
                   >
                     Architecture
                   </p>
-                  <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" as const, maxWidth: "100%" }}>
-                    <pre
-                      className="text-xs p-4 leading-relaxed"
-                      style={{
-                        background: "var(--code-bg)",
-                        color: "#a3a3a3",
-                        fontFamily: "var(--font-mono), 'SF Mono', monospace",
-                        display: "inline-block",
-                        minWidth: "100%",
-                      }}
-                    >
-                      {project.diagram}
-                    </pre>
-                  </div>
+                  <FlowDiagram stages={project.flow} />
                 </div>
 
                 {/* Stack */}
@@ -362,25 +348,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Collaboration signals */}
-                <div className="reveal" ref={addRevealRef}>
-                  <p
-                    className="font-mono text-xs uppercase tracking-widest mb-3"
-                    style={{ color: "var(--muted)" }}
-                  >
-                    What this shows
-                  </p>
-                  <ul className="space-y-2">
-                    {project.collaborationSignals.map((signal, i) => (
-                      <li key={i} className="flex gap-2 text-sm">
-                        <span style={{ color: "var(--accent)" }} className="flex-shrink-0">
-                          ✓
-                        </span>
-                        <span style={{ color: "var(--muted)" }}>{signal}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
             </div>
           </section>
@@ -390,7 +357,7 @@ export default function Home() {
       <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
       {/* About */}
-      <section className="max-w-5xl mx-auto px-4 md:px-6 py-14 md:py-20">
+      <section className="max-w-5xl mx-auto px-4 md:px-6 py-10 md:py-14">
         <div className="grid md:grid-cols-3 gap-12">
           <div>
             <p className="font-mono text-xs uppercase tracking-widest mb-4" style={{ color: "var(--accent)" }}>

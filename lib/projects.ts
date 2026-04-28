@@ -1,3 +1,8 @@
+export type FlowStage = {
+  items: string[];   // one item = single node, multiple = stacked grouped inputs
+  sub?: string;      // small label shown below
+};
+
 export type Project = {
   id: string;
   tier: 1 | 2 | 3 | 4;
@@ -6,7 +11,7 @@ export type Project = {
   subtitle: string;
   problem: string;
   howItWorks: string[];
-  diagram: string;
+  flow: FlowStage[];
   stack: { category: string; items: string }[];
   stats: { value: string; label: string }[];
   collaborationSignals: string[];
@@ -29,9 +34,13 @@ export const projects: Project[] = [
       "Renders interactive maps with MapLibre GL — click any neighborhood to drill into rental listings and scores",
       "Refreshes nightly via scheduled GitHub Actions data pipeline",
     ],
-    diagram: `NoBroker      ┐
-OpenWeatherMap ├─► Python pipeline ─► Supabase ─► Next.js API ─► MapLibre
-Overpass (OSM) ┘     (nightly cron)     (PostgreSQL)   (REST)      (frontend)`,
+    flow: [
+      { items: ["NoBroker", "OpenWeatherMap", "Overpass (OSM)"], sub: "live sources" },
+      { items: ["Python pipeline"], sub: "nightly cron" },
+      { items: ["Supabase"], sub: "PostgreSQL" },
+      { items: ["Next.js API"], sub: "REST" },
+      { items: ["MapLibre"], sub: "frontend" },
+    ],
     stack: [
       { category: "Frontend", items: "Next.js, React, MapLibre GL, Tailwind CSS" },
       { category: "Backend", items: "Node.js API routes, Supabase PostgreSQL" },
@@ -79,15 +88,14 @@ Overpass (OSM) ┘     (nightly cron)     (PostgreSQL)   (REST)      (frontend)`
       "Anti-hallucination architecture: session counts and plateau/trend detection flags are computed in code nodes before the LLM sees the data — the model can only reference what it's explicitly given",
       "3-workflow n8n architecture: Router (webhook + switch), Template Sender, and Log & Coach — each workflow is independently maintainable",
     ],
-    diagram: `Telegram msg → Router Workflow → Switch
-  keyword (chest/legs/…) → Template Sender → Telegram reply
-  workout log            → Log & Coach Workflow
-                              ↓
-                         OpenAI parse → Google Sheets (log)
-                              ↓
-                         Sheets (fetch history) → format + flags
-                              ↓
-                         OpenAI "Marcus" coach → Telegram reply`,
+    flow: [
+      { items: ["Telegram"], sub: "trigger" },
+      { items: ["Router"], sub: "webhook + switch" },
+      { items: ["Template Sender", "Log & Coach"], sub: "keyword / workout" },
+      { items: ["OpenAI parse", "Google Sheets"], sub: "extract + log" },
+      { items: ['"Marcus" Coach'], sub: "GPT-4o-mini" },
+      { items: ["Telegram reply"], sub: "feedback" },
+    ],
     stack: [
       { category: "Automation", items: "n8n (3-workflow agent architecture)" },
       { category: "AI", items: "OpenAI GPT-4o-mini (parse + coaching)" },
@@ -130,11 +138,13 @@ Overpass (OSM) ┘     (nightly cron)     (PostgreSQL)   (REST)      (frontend)`
       "Sends curated HTML email alerts at 9 AM and 6 PM IST, color-coded by relevance",
       "Deduplicates across a 3-day rolling window — no spam",
     ],
-    diagram: `Naukri      ┐                        ┌─► Top Matches (email)
-LinkedIn    ├─► Selenium/BS4 ─► Filter ─┤
-Indeed      │   + dedup (Supabase)       └─► Other Openings (email)
-Workday     ┘
-                                GPT-3.5 semantic re-ranking (optional)`,
+    flow: [
+      { items: ["Naukri", "LinkedIn", "Indeed", "Workday"], sub: "job boards" },
+      { items: ["Selenium / BS4"], sub: "scraping" },
+      { items: ["Dedup + Filter"], sub: "Supabase + GPT-3.5" },
+      { items: ["Top Matches", "Other Openings"], sub: "ranked by relevance" },
+      { items: ["Email alert"], sub: "9 AM + 6 PM IST" },
+    ],
     stack: [
       { category: "Scraping", items: "Selenium, BeautifulSoup4, LXML" },
       { category: "Intelligence", items: "OpenAI GPT-3.5 (semantic re-ranking)" },
@@ -177,10 +187,11 @@ Workday     ┘
       "Surfaces session statistics: average tokens, productivity patterns, activity heatmaps",
       "Distributes as both a Claude Code skill (/token-efficiency) and standalone CLI",
     ],
-    diagram: `~/.claude/sessions/*.json ─► Python analyzer ─► Console report
-                                  (zero deps)       cache rate
-                                                    context % used
-                                                    session stats`,
+    flow: [
+      { items: ["~/.claude/sessions/"], sub: "local JSON files" },
+      { items: ["Python analyzer"], sub: "zero dependencies" },
+      { items: ["Cache hit rate", "Context % used", "Session stats"], sub: "console report" },
+    ],
     stack: [
       { category: "Language", items: "Pure Python 3.7+ (zero external dependencies)" },
       { category: "Data source", items: "Local ~/.claude/ JSON session files" },
