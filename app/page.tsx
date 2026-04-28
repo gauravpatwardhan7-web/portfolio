@@ -1,10 +1,19 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { projects } from "@/lib/projects";
 
 export default function Home() {
   const revealRefs = useRef<HTMLElement[]>([]);
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleEmailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Try mailto first — if it opens, great. Also copy to clipboard as fallback.
+    navigator.clipboard?.writeText("gauravpatwardhan7@gmail.com").then(() => {
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    });
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,12 +73,13 @@ export default function Home() {
             </a>
             <a
               href="mailto:gauravpatwardhan7@gmail.com"
-              className="text-sm transition-colors"
+              className="text-sm transition-colors relative"
               style={{ color: "var(--muted)" }}
               onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+              onClick={handleEmailClick}
             >
-              Email
+              {emailCopied ? "Copied!" : "Email"}
             </a>
           </nav>
         </div>
@@ -106,21 +116,31 @@ export default function Home() {
           style={{ animationDelay: "0.3s" }}
         >
           {[
-            { label: "Consumer product", highlight: true },
-            { label: "AI Agent" },
-            { label: "Automation" },
-            { label: "Developer tooling" },
+            { label: "Consumer product", highlight: true, anchor: "blr-neighborhood" },
+            { label: "AI Agent", anchor: "gym-coach" },
+            { label: "Automation", anchor: "job-hunt" },
+            { label: "Developer tooling", anchor: "token-efficiency" },
           ].map((tag) => (
-            <span
+            <a
               key={tag.label}
-              className="font-mono text-xs uppercase tracking-widest px-3 py-1 border"
+              href={`#${tag.anchor}`}
+              className="font-mono text-xs uppercase tracking-widest px-3 py-1 border transition-colors cursor-pointer"
               style={{
                 borderColor: tag.highlight ? "var(--accent)" : "var(--border)",
                 color: tag.highlight ? "var(--accent)" : "var(--muted)",
+                textDecoration: "none",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.borderColor = "var(--accent)";
+                e.currentTarget.style.color = "var(--accent)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.borderColor = tag.highlight ? "var(--accent)" : "var(--border)";
+                e.currentTarget.style.color = tag.highlight ? "var(--accent)" : "var(--muted)";
               }}
             >
               {tag.label}
-            </span>
+            </a>
           ))}
         </div>
       </section>
@@ -132,6 +152,7 @@ export default function Home() {
         {projects.map((project, idx) => (
           <section
             key={project.id}
+            id={project.id}
             className="py-20"
             style={idx < projects.length - 1 ? { borderBottom: "1px solid var(--border)" } : {}}
           >
