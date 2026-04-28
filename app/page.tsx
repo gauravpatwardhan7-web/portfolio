@@ -294,7 +294,7 @@ export default function Home() {
                     <img
                       src={project.image}
                       alt={project.title}
-                      style={{ border: "1px solid var(--border)", maxWidth: project.imageNarrow ? "420px" : "100%", width: "100%" }}
+                      style={{ border: "1px solid var(--border)", maxWidth: project.imageNarrow ? "560px" : "100%", width: "100%" }}
                     />
                   </div>
                 )}
