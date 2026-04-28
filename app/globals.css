@@ -24,12 +24,11 @@
 
 * {
   box-sizing: border-box;
-  max-width: 100%;
 }
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -39,22 +38,27 @@ body {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  width: 100%;
+  overflow-x: clip;
+  min-width: 0;
 }
 
-/* Prevent long words / URLs / code from blowing out mobile layout */
-p, li, span, a {
+/* Prevent long words / URLs from blowing out mobile layout */
+p, li, h1, h2, h3, h4 {
   overflow-wrap: break-word;
   word-break: break-word;
 }
 
-/* Architecture diagrams scroll horizontally, never break page */
+/* Architecture diagrams scroll horizontally within their block */
 pre {
   white-space: pre;
   overflow-x: auto;
-  max-width: 100%;
   -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+/* Ensure images and embeds never exceed container */
+img, iframe, video {
+  max-width: 100%;
 }
 
 ::selection {

@@ -50,6 +50,15 @@ export default function Home() {
           </span>
           <nav className="flex gap-4 md:gap-6">
             <a
+              href="/about"
+              className="text-sm transition-colors"
+              style={{ color: "var(--muted)" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+            >
+              About
+            </a>
+            <a
               href="https://github.com/gauravpatwardhan7-web"
               target="_blank"
               rel="noopener noreferrer"
@@ -371,15 +380,10 @@ export default function Home() {
       <section className="max-w-5xl mx-auto px-4 md:px-6 py-14 md:py-20">
         <div className="grid md:grid-cols-3 gap-12">
           <div>
-            <p
-              className="font-mono text-xs uppercase tracking-widest mb-4"
-              style={{ color: "var(--accent)" }}
-            >
+            <p className="font-mono text-xs uppercase tracking-widest mb-4" style={{ color: "var(--accent)" }}>
               About
             </p>
-            <h2 className="text-2xl font-semibold tracking-tight">
-              Why I build this way
-            </h2>
+            <h2 className="text-2xl font-semibold tracking-tight">Why I build this way</h2>
           </div>
           <div className="md:col-span-2 space-y-4 text-base leading-relaxed" style={{ color: "var(--muted)" }}>
             <p>
@@ -399,21 +403,26 @@ export default function Home() {
               build pieces of it — someone who understands that a great feature and a broken data
               pipeline are the same problem.
             </p>
-            <p className="pt-2">
+            <div className="flex flex-wrap gap-6 pt-2">
               <a
-                href="mailto:gauravpatwardhan7@gmail.com"
+                href="/about"
                 className="font-mono text-sm transition-colors"
-                style={{
-                  color: "var(--accent)",
-                  textDecoration: "underline",
-                  textUnderlineOffset: "4px",
-                }}
+                style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
                 onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
                 onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
               >
+                Full background →
+              </a>
+              <a
+                href="mailto:gauravpatwardhan7@gmail.com"
+                className="font-mono text-sm transition-colors"
+                style={{ color: "var(--muted)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+                onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+                onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+              >
                 Get in touch →
               </a>
-            </p>
+            </div>
           </div>
         </div>
       </section>
