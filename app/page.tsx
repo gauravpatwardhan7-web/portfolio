@@ -318,7 +318,7 @@ export default function Home() {
                   </div>
                 )}
                 {/* Stats */}
-                <div className="reveal inline-flex flex-wrap gap-px" ref={addRevealRef} style={{ background: "var(--border)" }}>
+                <div className="reveal grid grid-cols-2 md:grid-cols-4 gap-px" ref={addRevealRef} style={{ background: "var(--border)" }}>
                   {project.stats.map((stat) => (
                     <div key={stat.label} className="flex items-baseline gap-2 px-4 py-2" style={{ background: "var(--surface)" }}>
                       <span
