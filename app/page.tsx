@@ -52,6 +52,17 @@ export default function Home() {
               GitHub
             </a>
             <a
+              href="https://www.linkedin.com/in/patwardhangaurav/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm transition-colors"
+              style={{ color: "var(--muted)" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+            >
+              LinkedIn
+            </a>
+            <a
               href="mailto:gauravpatwardhan7@gmail.com"
               className="text-sm transition-colors"
               style={{ color: "var(--muted)" }}
@@ -382,6 +393,17 @@ export default function Home() {
               onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
             >
               GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/patwardhangaurav/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs transition-colors"
+              style={{ color: "var(--muted)" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+            >
+              LinkedIn
             </a>
             <a
               href="mailto:gauravpatwardhan7@gmail.com"
