@@ -86,7 +86,7 @@ export default function Home() {
           style={{ color: "var(--muted)", animationDelay: "0.2s" }}
         >
           Full-stack PM/builder. I identify real problems and ship working
-          products — from data pipelines to consumer apps. Three projects below.
+          products — from data pipelines to AI agents. Four projects below.
         </p>
 
         <div
