@@ -221,5 +221,6 @@ export const projects: Project[] = [
         primary: true,
       },
     ],
+    image: "/How-efficient.png",
   },
 ];
