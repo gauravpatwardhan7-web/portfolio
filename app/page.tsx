@@ -35,11 +35,11 @@ export default function Home() {
     <div className="min-h-screen" style={{ background: "var(--background)", color: "var(--foreground)" }}>
       {/* Header */}
       <header className="border-b" style={{ borderColor: "var(--border)" }}>
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <span className="font-mono text-sm" style={{ color: "var(--muted)" }}>
+        <div className="max-w-5xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+          <span className="font-mono text-sm hidden md:block" style={{ color: "var(--muted)" }}>
             gauravpatwardhan7
           </span>
-          <nav className="flex gap-6">
+          <nav className="flex gap-4 md:gap-6">
             <a
               href="https://github.com/gauravpatwardhan7-web"
               target="_blank"
@@ -76,7 +76,7 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-6 pt-20 pb-24">
+      <section className="max-w-5xl mx-auto px-4 md:px-6 pt-12 md:pt-20 pb-16 md:pb-24">
         <p
           className="font-mono text-sm mb-6 reveal"
           ref={addRevealRef}
@@ -128,7 +128,7 @@ export default function Home() {
       <hr style={{ borderColor: "var(--border)", border: "none", borderTop: "1px solid var(--border)" }} />
 
       {/* Projects */}
-      <main className="max-w-5xl mx-auto px-6">
+      <main className="max-w-5xl mx-auto px-4 md:px-6">
         {projects.map((project, idx) => (
           <section
             key={project.id}
@@ -280,16 +280,19 @@ export default function Home() {
                   >
                     Architecture
                   </p>
-                  <pre
-                    className="text-xs overflow-x-auto p-4 leading-relaxed"
-                    style={{
-                      background: "var(--code-bg)",
-                      color: "#a3a3a3",
-                      fontFamily: "var(--font-mono), 'SF Mono', monospace",
-                    }}
-                  >
-                    {project.diagram}
-                  </pre>
+                  <div className="overflow-x-auto max-w-full">
+                    <pre
+                      className="text-xs p-4 leading-relaxed"
+                      style={{
+                        background: "var(--code-bg)",
+                        color: "#a3a3a3",
+                        fontFamily: "var(--font-mono), 'SF Mono', monospace",
+                        minWidth: "max-content",
+                      }}
+                    >
+                      {project.diagram}
+                    </pre>
+                  </div>
                 </div>
 
                 {/* Stack */}
@@ -304,7 +307,7 @@ export default function Home() {
                     {project.stack.map((item) => (
                       <div key={item.category} className="flex gap-4 text-sm">
                         <span
-                          className="font-mono w-24 flex-shrink-0 text-xs"
+                          className="font-mono w-20 md:w-24 flex-shrink-0 text-xs"
                           style={{ color: "var(--muted)" }}
                         >
                           {item.category}
@@ -343,7 +346,7 @@ export default function Home() {
       <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
       {/* About */}
-      <section className="max-w-5xl mx-auto px-6 py-20">
+      <section className="max-w-5xl mx-auto px-4 md:px-6 py-14 md:py-20">
         <div className="grid md:grid-cols-3 gap-12">
           <div>
             <p
@@ -395,7 +398,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t" style={{ borderColor: "var(--border)" }}>
-        <div className="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between gap-4">
+        <div className="max-w-5xl mx-auto px-4 md:px-6 py-8 flex flex-col md:flex-row justify-between gap-4">
           <span className="font-mono text-xs" style={{ color: "var(--muted)" }}>
             Gaurav Patwardhan · {new Date().getFullYear()}
           </span>
