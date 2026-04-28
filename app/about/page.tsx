@@ -138,6 +138,15 @@ export default function About() {
           </p>
         </section>
 
+        {/* 2x2 photo grid */}
+        <div className="grid grid-cols-2 gap-1 mb-8">
+          {["/About-me-1.jpg", "/About-me-2.jpg", "/About-me-3.jpg", "/About-me-4.jpg"].map((src, i) => (
+            <div key={i} className="overflow-hidden aspect-square">
+              <img src={src} alt="" className="w-full h-full object-cover" />
+            </div>
+          ))}
+        </div>
+
         <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
         {/* Career Timeline */}
