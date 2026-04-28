@@ -109,7 +109,7 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-4 md:px-6 pt-14 md:pt-20 pb-10 md:pb-16">
+      <section className="max-w-5xl mx-auto px-4 md:px-6 pt-8 md:pt-12 pb-6 md:pb-8">
         <p
           className="font-mono text-sm mb-6 reveal"
           ref={addRevealRef}
@@ -176,11 +176,11 @@ export default function Home() {
           <section
             key={project.id}
             id={project.id}
-            className="py-12 md:py-16"
+            className="py-8 md:py-10"
             style={idx < projects.length - 1 ? { borderBottom: "1px solid var(--border)" } : {}}
           >
             {/* Tier label */}
-            <div className="mb-10 reveal" ref={addRevealRef}>
+            <div className="mb-5 reveal" ref={addRevealRef}>
               <span
                 className="font-mono text-xs uppercase tracking-widest px-2 py-0.5 border"
                 style={{
@@ -211,7 +211,7 @@ export default function Home() {
 
                 {/* Problem */}
                 <div
-                  className="mb-8 reveal"
+                  className="mb-5 reveal"
                   ref={addRevealRef}
                   style={{ borderLeft: "3px solid var(--accent)", paddingLeft: "1rem" }}
                 >
@@ -227,7 +227,7 @@ export default function Home() {
                 </div>
 
                 {/* How it works */}
-                <div className="mb-8 reveal" ref={addRevealRef}>
+                <div className="mb-5 reveal" ref={addRevealRef}>
                   <p
                     className="font-mono text-xs uppercase tracking-widest mb-4"
                     style={{ color: "var(--muted)" }}
@@ -297,7 +297,7 @@ export default function Home() {
                     {project.stats.map((stat) => (
                       <div
                         key={stat.label}
-                        className="p-5"
+                        className="p-3"
                         style={{ background: "var(--surface)" }}
                       >
                         <p

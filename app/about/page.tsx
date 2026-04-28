@@ -123,7 +123,7 @@ export default function About() {
       <div className="max-w-5xl mx-auto px-4 md:px-6">
 
         {/* Hero */}
-        <section className="pt-14 md:pt-20 pb-12 md:pb-16">
+        <section className="pt-8 md:pt-12 pb-8">
           <p className="font-mono text-sm mb-4" style={{ color: "var(--accent)" }}>
             — Bengaluru, India
           </p>
@@ -141,14 +141,14 @@ export default function About() {
         <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
         {/* Career Timeline */}
-        <section className="py-12 md:py-16">
+        <section className="py-8 md:py-10">
           <p className="font-mono text-xs uppercase tracking-widest mb-8" style={{ color: "var(--muted)" }}>
             Career
           </p>
           {timeline.map((item, i) => (
             <div
               key={i}
-              className="py-5"
+              className="py-3"
               style={{ borderTop: "1px solid var(--border)" }}
             >
               <div className="flex flex-col md:grid md:grid-cols-4 gap-1 md:gap-8">
@@ -179,7 +179,7 @@ export default function About() {
         <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
         {/* Three-column block */}
-        <section className="py-12 md:py-16">
+        <section className="py-8 md:py-10">
           <div
             className="grid grid-cols-1 md:grid-cols-3"
             style={{ border: "1px solid var(--border)" }}
