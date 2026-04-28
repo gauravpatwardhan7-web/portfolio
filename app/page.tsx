@@ -289,29 +289,20 @@ export default function Home() {
                   </div>
                 )}
                 {/* Stats */}
-                <div className="reveal" ref={addRevealRef}>
-                  <div
-                    className="grid grid-cols-2 gap-px"
-                    style={{ background: "var(--border)" }}
-                  >
-                    {project.stats.map((stat) => (
-                      <div
-                        key={stat.label}
-                        className="p-3"
-                        style={{ background: "var(--surface)" }}
+                <div className="reveal flex flex-wrap gap-x-8 gap-y-2" ref={addRevealRef}>
+                  {project.stats.map((stat) => (
+                    <div key={stat.label} className="flex items-baseline gap-2">
+                      <span
+                        className="text-lg font-semibold tracking-tight"
+                        style={{ color: "var(--accent)", fontFamily: "var(--font-mono), monospace" }}
                       >
-                        <p
-                          className="text-2xl font-semibold tracking-tight"
-                          style={{ color: "var(--accent)", fontFamily: "var(--font-mono), monospace" }}
-                        >
-                          {stat.value}
-                        </p>
-                        <p className="text-xs mt-1" style={{ color: "var(--muted)" }}>
-                          {stat.label}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                        {stat.value}
+                      </span>
+                      <span className="text-xs" style={{ color: "var(--muted)" }}>
+                        {stat.label}
+                      </span>
+                    </div>
+                  ))}
                 </div>
 
                 {/* Architecture diagram */}
