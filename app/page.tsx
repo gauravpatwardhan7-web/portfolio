@@ -96,7 +96,7 @@ export default function Home() {
           ref={addRevealRef}
           style={{ color: "var(--muted)", animationDelay: "0.2s" }}
         >
-          Full-stack PM/builder. I identify real problems and ship working
+          Product Manager / Builder. I identify real problems and ship working
           products — from data pipelines to AI agents. Four projects below.
         </p>
 
