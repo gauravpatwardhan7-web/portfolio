@@ -17,6 +17,7 @@ export type Project = {
   collaborationSignals: string[];
   links: { label: string; href: string; primary?: boolean }[];
   videoId?: string;
+  image?: string;
 };
 
 export const projects: Project[] = [
@@ -172,6 +173,7 @@ export const projects: Project[] = [
         primary: true,
       },
     ],
+    image: "/job-hunt-email.png",
   },
   {
     id: "token-efficiency",

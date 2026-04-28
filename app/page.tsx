@@ -288,8 +288,19 @@ export default function Home() {
                     </div>
                   </div>
                 )}
+                {/* Static image */}
+                {project.image && (
+                  <div className="reveal" ref={addRevealRef}>
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full"
+                      style={{ border: "1px solid var(--border)" }}
+                    />
+                  </div>
+                )}
                 {/* Stats */}
-                <div className="reveal flex flex-wrap gap-px" ref={addRevealRef} style={{ background: "var(--border)" }}>
+                <div className="reveal inline-flex flex-wrap gap-px" ref={addRevealRef} style={{ background: "var(--border)" }}>
                   {project.stats.map((stat) => (
                     <div key={stat.label} className="flex items-baseline gap-2 px-4 py-2" style={{ background: "var(--surface)" }}>
                       <span
