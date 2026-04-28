@@ -18,6 +18,7 @@ export type Project = {
   links: { label: string; href: string; primary?: boolean }[];
   videoId?: string;
   image?: string;
+  imageNarrow?: boolean;
   images?: string[];
 };
 
@@ -222,5 +223,6 @@ export const projects: Project[] = [
       },
     ],
     image: "/How-efficient.png",
+    imageNarrow: true,
   },
 ];
