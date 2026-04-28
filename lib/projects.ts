@@ -1,6 +1,6 @@
 export type Project = {
   id: string;
-  tier: 1 | 2 | 3;
+  tier: 1 | 2 | 3 | 4;
   label: string;
   title: string;
   subtitle: string;
@@ -59,6 +59,57 @@ Overpass (OSM) ┘     (nightly cron)     (PostgreSQL)   (REST)      (frontend)`
       {
         label: "View repository →",
         href: "https://github.com/gauravpatwardhan7-web/blr-neighborhood-explorer",
+      },
+    ],
+  },
+  {
+    id: "gym-coach",
+    tier: 2,
+    label: "AI Agent",
+    title: "Fitness Progress Coach",
+    subtitle: "A Telegram-native AI coaching agent that knows your training history",
+    problem:
+      "Generic fitness apps don't know your programme. Manually tracking sets and weights is tedious, and none of it connects to coaching that actually references what you did last week. There's no tool that combines natural language logging with contextual AI feedback based on your specific history.",
+    howItWorks: [
+      "Text a keyword on Telegram (chest · back · shoulder · legs) and receive your pre-filled workout template instantly",
+      "Fill in sets, reps, weight, RPE and reply — a code node parses the log and writes every exercise as a row in Google Sheets",
+      "GPT-4o-mini fetches your last 4 sessions per exercise from Sheets, detects plateaus and PRs, and sends coaching feedback as Marcus — a direct, data-driven coach persona",
+      "Anti-hallucination architecture: session counts and plateau/trend detection flags are computed in code nodes before the LLM sees the data — the model can only reference what it's explicitly given",
+      "3-workflow n8n architecture: Router (webhook + switch), Template Sender, and Log & Coach — each workflow is independently maintainable",
+    ],
+    diagram: `Telegram msg → Router Workflow → Switch
+  keyword (chest/legs/…) → Template Sender → Telegram reply
+  workout log            → Log & Coach Workflow
+                              ↓
+                         OpenAI parse → Google Sheets (log)
+                              ↓
+                         Sheets (fetch history) → format + flags
+                              ↓
+                         OpenAI "Marcus" coach → Telegram reply`,
+    stack: [
+      { category: "Automation", items: "n8n (3-workflow agent architecture)" },
+      { category: "AI", items: "OpenAI GPT-4o-mini (parse + coaching)" },
+      { category: "Interface", items: "Telegram Bot API (input + output)" },
+      { category: "Storage", items: "Google Sheets (one row per exercise per session)" },
+      { category: "Logic", items: "JavaScript code nodes (routing, parsing, anti-hallucination flags)" },
+    ],
+    stats: [
+      { value: "3", label: "n8n workflows" },
+      { value: "4", label: "workout splits tracked" },
+      { value: "Live", label: "active on Telegram" },
+      { value: "GPT-4o-mini", label: "coaching model" },
+    ],
+    collaborationSignals: [
+      "AI agent design: parse-then-reason pattern, anti-hallucination via data validation in code before LLM",
+      "Product thinking on constraints: Marcus persona has strict coaching priority order to prevent generic output",
+      "No-code + code hybrid: n8n for orchestration, JavaScript nodes for logic that needs precision",
+      "Real usage: built to solve a personal problem, runs daily, has known bugs documented honestly",
+    ],
+    links: [
+      {
+        label: "View on Notion →",
+        href: "https://www.notion.so/AI-Gym-Coach-ba0f76cdad5b42c1b78eab6e8b524a9f",
+        primary: true,
       },
     ],
   },

@@ -96,6 +96,7 @@ export default function Home() {
         >
           {[
             { label: "Consumer product", highlight: true },
+            { label: "AI Agent" },
             { label: "Automation" },
             { label: "Developer tooling" },
           ].map((tag) => (
