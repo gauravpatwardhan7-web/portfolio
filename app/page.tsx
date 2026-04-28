@@ -86,7 +86,7 @@ export default function Home() {
       </header>
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-4 md:px-6 pt-12 md:pt-20 pb-16 md:pb-24">
+      <section className="max-w-5xl mx-auto px-4 md:px-6 pt-20 md:pt-28 pb-16 md:pb-24">
         <p
           className="font-mono text-sm mb-6 reveal"
           ref={addRevealRef}
