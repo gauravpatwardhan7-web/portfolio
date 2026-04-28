@@ -139,10 +139,10 @@ export default function About() {
         </section>
 
         {/* 2x2 photo collage */}
-        <div className="grid grid-cols-2 gap-1 mb-8" style={{ maxWidth: "360px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3px", width: "300px", marginBottom: "2rem" }}>
           {["/About-me-1.jpg", "/About-me-2.jpg", "/About-me-3.jpg", "/About-me-4.jpg"].map((src, i) => (
-            <div key={i} className="overflow-hidden" style={{ aspectRatio: "1/1" }}>
-              <img src={src} alt="" className="w-full h-full object-cover" />
+            <div key={i} style={{ width: "148px", height: "148px", overflow: "hidden" }}>
+              <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
           ))}
         </div>
