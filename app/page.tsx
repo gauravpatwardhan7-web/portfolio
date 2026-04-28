@@ -29,14 +29,22 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.05 }
     );
 
     revealRefs.current.forEach((el) => {
       if (el) observer.observe(el);
     });
 
-    return () => observer.disconnect();
+    // Fallback: make everything visible after 600ms regardless
+    const fallback = setTimeout(() => {
+      revealRefs.current.forEach((el) => el?.classList.add("visible"));
+    }, 600);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallback);
+    };
   }, []);
 
   const addRevealRef = (el: HTMLElement | null) => {
@@ -53,7 +61,7 @@ export default function Home() {
           <span className="font-mono text-sm hidden md:block" style={{ color: "var(--muted)" }}>
             gauravpatwardhan7
           </span>
-          <nav className="flex items-center gap-1 md:gap-2">
+          <nav className="flex items-center gap-1">
             {[
               { label: "About", href: "/about" },
               { label: "GitHub", href: "https://github.com/gauravpatwardhan7-web", external: true },
@@ -64,20 +72,30 @@ export default function Home() {
                 href={item.href}
                 target={item.external ? "_blank" : undefined}
                 rel={item.external ? "noopener noreferrer" : undefined}
-                className="text-sm transition-colors px-3 py-2"
-                style={{ color: "var(--muted)" }}
-                onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-                onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+                className="font-medium transition-colors"
+                style={{
+                  color: "var(--foreground)",
+                  fontSize: "15px",
+                  padding: "10px 14px",
+                  display: "block",
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                onMouseOut={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               >
                 {item.label}
               </a>
             ))}
             <a
               href="mailto:gauravpatwardhan7@gmail.com"
-              className="text-sm transition-colors px-3 py-2"
-              style={{ color: "var(--muted)" }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+              className="font-medium transition-colors"
+              style={{
+                color: "var(--foreground)",
+                fontSize: "15px",
+                padding: "10px 14px",
+                display: "block",
+              }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               onClick={handleEmailClick}
             >
               {emailCopied ? "Copied!" : "Email"}

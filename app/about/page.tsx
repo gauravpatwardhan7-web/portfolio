@@ -88,7 +88,7 @@ export default function About() {
           >
             ← Work
           </a>
-          <nav className="flex items-center gap-1 md:gap-2">
+          <nav className="flex items-center gap-1">
             {[
               { label: "GitHub", href: "https://github.com/gauravpatwardhan7-web" },
               { label: "LinkedIn", href: "https://www.linkedin.com/in/patwardhangaurav/" },
@@ -98,20 +98,20 @@ export default function About() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm transition-colors px-3 py-2"
-                style={{ color: "var(--muted)" }}
-                onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-                onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+                className="font-medium transition-colors"
+                style={{ color: "var(--foreground)", fontSize: "15px", padding: "10px 14px", display: "block" }}
+                onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                onMouseOut={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               >
                 {item.label}
               </a>
             ))}
             <a
               href="mailto:gauravpatwardhan7@gmail.com"
-              className="text-sm transition-colors px-3 py-2"
-              style={{ color: "var(--muted)" }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+              className="font-medium transition-colors"
+              style={{ color: "var(--foreground)", fontSize: "15px", padding: "10px 14px", display: "block" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               onClick={handleEmailClick}
             >
               {emailCopied ? "Copied!" : "Email"}
