@@ -301,14 +301,15 @@ export default function Home() {
                   >
                     Architecture
                   </p>
-                  <div className="overflow-x-auto max-w-full">
+                  <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" as const, maxWidth: "100%" }}>
                     <pre
                       className="text-xs p-4 leading-relaxed"
                       style={{
                         background: "var(--code-bg)",
                         color: "#a3a3a3",
                         fontFamily: "var(--font-mono), 'SF Mono', monospace",
-                        minWidth: "max-content",
+                        display: "inline-block",
+                        minWidth: "100%",
                       }}
                     >
                       {project.diagram}

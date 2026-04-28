@@ -15,13 +15,19 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Gaurav Patwardhan — Builder",
   description:
-    "Full-stack PM/builder. Products that solve real problems. Open to collaborations.",
+    "Product Manager / Builder. Products that solve real problems. Open to collaborations.",
   openGraph: {
     title: "Gaurav Patwardhan — Builder",
     description:
-      "Full-stack PM/builder. Products that solve real problems. Open to collaborations.",
+      "Product Manager / Builder. Products that solve real problems. Open to collaborations.",
     type: "website",
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
