@@ -123,29 +123,31 @@ export default function About() {
       <div className="max-w-5xl mx-auto px-4 md:px-6">
 
         {/* Hero */}
-        <section className="pt-8 md:pt-12 pb-8">
-          <p className="font-mono text-sm mb-4" style={{ color: "var(--accent)" }}>
-            — Bengaluru, India
-          </p>
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight mb-6">
-            Gaurav Patwardhan
-          </h1>
-          <p className="text-lg md:text-xl max-w-2xl leading-relaxed" style={{ color: "var(--muted)" }}>
-            I started as an engineer, moved into corporate product work at Eaton, did an MBA,
-            joined two startups, and now build AI products at Shell. At every stage I&apos;ve
-            found myself wanting to actually make the thing — not just define it. That&apos;s
-            what the projects on this site are.
-          </p>
-        </section>
+        <section className="pt-8 md:pt-12 pb-8 flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+          <div className="flex-1">
+            <p className="font-mono text-sm mb-4" style={{ color: "var(--accent)" }}>
+              — Bengaluru, India
+            </p>
+            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight mb-6">
+              Gaurav Patwardhan
+            </h1>
+            <p className="text-lg md:text-xl max-w-2xl leading-relaxed" style={{ color: "var(--muted)" }}>
+              I started as an engineer, moved into corporate product work at Eaton, did an MBA,
+              joined two startups, and now build AI products at Shell. At every stage I&apos;ve
+              found myself wanting to actually make the thing — not just define it. That&apos;s
+              what the projects on this site are.
+            </p>
+          </div>
 
-        {/* 2x2 photo collage */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3px", width: "300px", marginBottom: "2rem" }}>
-          {["/About-me-1.jpg", "/About-me-2.jpg", "/About-me-3.jpg", "/About-me-4.jpg"].map((src, i) => (
-            <div key={i} style={{ width: "148px", height: "148px", overflow: "hidden" }}>
-              <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            </div>
-          ))}
-        </div>
+          {/* 2x2 photo collage */}
+          <div className="flex-shrink-0" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3px", width: "300px" }}>
+            {["/About-me-1.jpg", "/About-me-2.jpg", "/About-me-3.jpg", "/About-me-4.jpg"].map((src, i) => (
+              <div key={i} style={{ width: "148px", height: "148px", overflow: "hidden" }}>
+                <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+            ))}
+          </div>
+        </section>
 
         <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
@@ -196,17 +198,17 @@ export default function About() {
             {threeCol.map((col, i) => (
               <div
                 key={col.label}
-                className="p-6 md:p-8"
+                className="p-4"
                 style={{
                   background: "var(--surface)",
                   borderRight: i < 2 ? "1px solid var(--border)" : "none",
                   borderBottom: "1px solid var(--border)",
                 }}
               >
-                <p className="font-mono text-xs uppercase tracking-widest mb-5" style={{ color: "var(--accent)" }}>
+                <p className="font-mono text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>
                   {col.label}
                 </p>
-                <ul className="space-y-3">
+                <ul className="space-y-1">
                   {col.items.map((item) => (
                     <li key={item} className="flex gap-2 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
                       <span style={{ color: "var(--accent)", flexShrink: 0 }}>—</span>

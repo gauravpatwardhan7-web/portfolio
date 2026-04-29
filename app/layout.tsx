@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   title: "Gaurav Patwardhan — Builder",
   description:
     "Product Manager / Builder. Products that solve real problems. Open to collaborations.",
+  icons: { icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>" },
   openGraph: {
     title: "Gaurav Patwardhan — Builder",
     description:
