@@ -77,7 +77,7 @@ export default function About() {
     <div style={{ background: "var(--background)", color: "var(--foreground)", minHeight: "100vh" }}>
 
       {/* Header */}
-      <header style={{ position: "sticky", top: "0", zIndex: "50", background: "var(--background)", borderBottom: "1px solid var(--border)" }}>
+      <header style={{ position: "sticky", top: "0", zIndex: "50", width: "100%", background: "var(--background)", borderBottom: "1px solid var(--border)" }}>
         <div className="max-w-5xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
           <a
             href="/"

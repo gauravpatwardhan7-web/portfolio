@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ background: "var(--background)", color: "var(--foreground)" }}>
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b" style={{ background: "var(--background)", borderColor: "var(--border)" }}>
+      <header className="sticky top-0 z-50 border-b w-full" style={{ background: "var(--background)", borderColor: "var(--border)" }}>
         <div className="max-w-5xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
           <span className="font-mono text-sm hidden md:block" style={{ color: "var(--muted)" }}>
             gauravpatwardhan7
