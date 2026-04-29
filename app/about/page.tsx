@@ -191,27 +191,26 @@ export default function About() {
         <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
         {/* Three-column block */}
-        <section className="py-8 md:py-10">
+        <section className="py-4">
           <div
-            className="grid grid-cols-1 md:grid-cols-3"
+            className="grid grid-cols-3"
             style={{ border: "1px solid var(--border)" }}
           >
             {threeCol.map((col, i) => (
               <div
                 key={col.label}
-                className="p-4"
+                className="p-3"
                 style={{
                   background: "var(--surface)",
                   borderRight: i < 2 ? "1px solid var(--border)" : "none",
-                  borderBottom: "1px solid var(--border)",
                 }}
               >
-                <p className="font-mono text-xs uppercase tracking-widest mb-3" style={{ color: "var(--accent)" }}>
+                <p className="font-mono text-xs uppercase tracking-widest mb-2" style={{ color: "var(--accent)" }}>
                   {col.label}
                 </p>
-                <ul className="space-y-1">
+                <ul className="space-y-0.5">
                   {col.items.map((item) => (
-                    <li key={item} className="flex gap-2 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                    <li key={item} className="flex gap-2 text-sm leading-snug" style={{ color: "var(--muted)" }}>
                       <span style={{ color: "var(--accent)", flexShrink: 0 }}>—</span>
                       <span>{item}</span>
                     </li>
