@@ -163,16 +163,16 @@ export default function About() {
               className="py-2"
               style={{ borderTop: "1px solid var(--border)" }}
             >
-              <div className="flex flex-col md:grid md:grid-cols-4 gap-1 md:gap-8">
+              <div className="flex flex-col md:grid md:grid-cols-6 gap-1 md:gap-6">
                 <div className="md:col-span-2">
                   <p className="font-semibold text-base leading-snug">{item.role}</p>
                 </div>
-                <div>
+                <div className="md:col-span-1">
                   <p className="font-mono text-sm mt-1 md:mt-0.5" style={{ color: "var(--accent)" }}>
                     {item.period}
                   </p>
                 </div>
-                <div className="mt-2 md:mt-0">
+                <div className="mt-2 md:mt-0 md:col-span-3">
                   <ul className="space-y-1">
                     {item.points.map((pt, j) => (
                       <li key={j} className="flex gap-2 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
