@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://portfolio.littlemadcow.xyz"),
+  metadataBase: new URL("https://gauravs-portfolio-in.vercel.app"),
   title: "Gaurav Patwardhan — Product Manager",
   description:
     "Product Manager who ships. I find underserved user problems, make the product calls, and build the solution end to end.",
