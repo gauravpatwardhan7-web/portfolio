@@ -171,33 +171,31 @@ export default function Home() {
           ))}
         </div>
 
-        {/* About profile card */}
+        {/* About link */}
         <a
           href="/about"
-          className="inline-flex items-center gap-4 mt-10 reveal transition-colors"
+          className="inline-flex items-center gap-3 mt-8 reveal transition-colors"
           ref={addRevealRef}
-          style={{
-            animationDelay: "0.4s",
-            border: "1px solid var(--border)",
-            background: "var(--surface)",
-            padding: "10px 20px 10px 12px",
-            textDecoration: "none",
+          style={{ animationDelay: "0.4s", textDecoration: "none" }}
+          onMouseOver={(e) => {
+            const text = e.currentTarget.querySelector("span");
+            if (text) text.style.color = "var(--accent)";
           }}
-          onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
-          onMouseOut={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
+          onMouseOut={(e) => {
+            const text = e.currentTarget.querySelector("span");
+            if (text) text.style.color = "var(--muted)";
+          }}
         >
           <img
             src="/About-me-1.jpg"
             alt="Gaurav Patwardhan"
-            style={{ width: "52px", height: "52px", borderRadius: "50%", objectFit: "cover" }}
+            style={{ width: "32px", height: "32px", borderRadius: "50%", objectFit: "cover" }}
           />
-          <span>
-            <span className="block text-sm font-medium" style={{ color: "var(--foreground)" }}>
-              The PM behind these products
-            </span>
-            <span className="font-mono text-xs" style={{ color: "var(--accent)" }}>
-              Career, skills &amp; story — About me →
-            </span>
+          <span
+            className="font-mono text-sm transition-colors"
+            style={{ color: "var(--muted)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+          >
+            Meet the PM behind these products →
           </span>
         </a>
       </section>
