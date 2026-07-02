@@ -144,6 +144,7 @@ export default function About() {
           </a>
           <nav className="flex items-center gap-1">
             {[
+              { label: "Resume", href: "/Gaurav-Patwardhan-Resume.pdf" },
               { label: "GitHub", href: "https://github.com/gauravpatwardhan7-web" },
               { label: "LinkedIn", href: "https://www.linkedin.com/in/patwardhangaurav/" },
             ].map((item) => (
@@ -193,13 +194,29 @@ export default function About() {
               products from spec to production, working hands-on with engineering,
               operations, and global stakeholders.
             </p>
+            <a
+              href="/Gaurav-Patwardhan-Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-6 font-mono text-sm transition-colors"
+              style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
+            >
+              Download resume (PDF) →
+            </a>
           </div>
 
           {/* 2x2 photo collage */}
           <div className="flex-shrink-0" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3px", width: "300px" }}>
-            {["/About-me-1.jpg", "/About-me-2.jpg", "/About-me-3.jpg", "/About-me-4.jpg"].map((src, i) => (
-              <div key={i} style={{ width: "148px", height: "148px", overflow: "hidden" }}>
-                <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            {[
+              { src: "/About-me-1.jpg", alt: "Gaurav Patwardhan smiling in a car" },
+              { src: "/About-me-2.jpg", alt: "Gaurav bouldering on an indoor climbing wall" },
+              { src: "/About-me-3.jpg", alt: "Gaurav watching a sunset at the beach" },
+              { src: "/About-me-4.jpg", alt: "Gaurav hiking on a misty trail" },
+            ].map((photo) => (
+              <div key={photo.src} style={{ width: "148px", height: "148px", overflow: "hidden" }}>
+                <img src={photo.src} alt={photo.alt} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
             ))}
           </div>

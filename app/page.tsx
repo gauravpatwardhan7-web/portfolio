@@ -68,6 +68,7 @@ export default function Home() {
           <nav className="flex items-center gap-1">
             {[
               { label: "About", href: "/about" },
+              { label: "Resume", href: "/Gaurav-Patwardhan-Resume.pdf", external: true },
               { label: "GitHub", href: "https://github.com/gauravpatwardhan7-web", external: true },
               { label: "LinkedIn", href: "https://www.linkedin.com/in/patwardhangaurav/", external: true },
             ].map((item) => (
