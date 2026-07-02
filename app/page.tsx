@@ -199,22 +199,20 @@ export default function Home() {
             Meet the PM behind these products →
           </span>
         </a>
-      </section>
 
-      <hr style={{ borderColor: "var(--border)", border: "none", borderTop: "1px solid var(--border)" }} />
-
-      {/* Featured case study */}
-      <section className="max-w-5xl mx-auto px-4 md:px-6 py-6">
+        {/* Featured case study */}
         <a
           href="/case-studies/evec-alert-grouping"
-          className="reveal flex flex-col md:flex-row md:items-center gap-3 md:gap-6 transition-colors"
+          className="reveal flex flex-col md:flex-row md:items-center gap-1.5 md:gap-4 mt-6 transition-colors"
           ref={addRevealRef}
           style={{
+            animationDelay: "0.5s",
             border: "1px solid var(--border)",
             borderLeft: "3px solid var(--accent)",
             background: "var(--surface)",
-            padding: "16px 20px",
+            padding: "8px 14px",
             textDecoration: "none",
+            maxWidth: "fit-content",
           }}
           onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
           onMouseOut={(e) => {
@@ -228,15 +226,16 @@ export default function Home() {
           >
             Case study — Shell
           </span>
-          <span className="text-sm md:text-base flex-1" style={{ color: "var(--foreground)" }}>
-            How I cut alert noise by ~80% for EV charging operators — discovery, design
-            tradeoffs, and global rollout
+          <span className="text-sm" style={{ color: "var(--foreground)" }}>
+            How I cut alert noise by ~80% for EV charging operators
           </span>
-          <span className="font-mono text-sm flex-shrink-0" style={{ color: "var(--accent)" }}>
+          <span className="font-mono text-xs flex-shrink-0" style={{ color: "var(--accent)" }}>
             Read →
           </span>
         </a>
       </section>
+
+      <hr style={{ borderColor: "var(--border)", border: "none", borderTop: "1px solid var(--border)" }} />
 
       {/* Projects */}
       <main className="max-w-5xl mx-auto px-4 md:px-6">
