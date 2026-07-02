@@ -130,7 +130,7 @@ export default function Home() {
         >
           Product Manager. I find underserved user problems, make the product
           calls, and ship the solution myself — because building is the fastest
-          way to test product judgment. Five products below, each starting from
+          way to test product judgment. Four products below, each starting from
           a real user problem.
         </p>
 
@@ -144,7 +144,6 @@ export default function Home() {
             { label: "Accessibility AI", anchor: "certification-coach" },
             { label: "AI coaching", anchor: "gym-coach" },
             { label: "Automation", anchor: "job-hunt" },
-            { label: "Developer tooling", anchor: "token-efficiency" },
           ].map((tag) => (
             <a
               key={tag.label}
