@@ -42,7 +42,14 @@ const skills = [
   },
 ];
 
-const timeline = [
+type TimelineItem = {
+  role: string;
+  period: string;
+  points: string[];
+  link?: { label: string; href: string };
+};
+
+const timeline: TimelineItem[] = [
   {
     role: "Shell — Emerging Architect, Subsurface & Wells",
     period: "Dec 2025 – Present",
@@ -61,6 +68,7 @@ const timeline = [
       "Validated Autoheal's business case: recurring-fault resolution from 900 to 36 minutes",
       "Ran discovery across 15+ market operators — delivered 5+ features and 10+ roadmap items",
     ],
+    link: { label: "Read the case study →", href: "/case-studies/evec-alert-grouping" },
   },
   {
     role: "Startups & Internships",
@@ -285,6 +293,17 @@ export default function About() {
                       </li>
                     ))}
                   </ul>
+                  {item.link && (
+                    <a
+                      href={item.link.href}
+                      className="inline-block mt-2 font-mono text-sm transition-colors"
+                      style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+                      onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+                      onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                    >
+                      {item.link.label}
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -297,7 +316,7 @@ export default function About() {
         {/* Three-column block */}
         <section className="py-4">
           <div
-            className="grid md:grid-cols-3"
+            className="grid-fix md:grid-cols-3"
             style={{ border: "1px solid var(--border)" }}
           >
             {threeCol.map((col, i) => (

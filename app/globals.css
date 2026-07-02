@@ -102,3 +102,17 @@ img, iframe, video {
   opacity: 1;
   transform: translateY(0);
 }
+
+.hover-accent {
+  transition: color 0.15s ease;
+}
+
+.hover-accent:hover {
+  color: var(--accent) !important;
+}
+
+/* Tailwind's .grid rule out-orders grid-cols-* utilities in this build;
+   use .grid-fix for display:grid wherever column utilities are needed. */
+.grid-fix {
+  display: grid;
+}
