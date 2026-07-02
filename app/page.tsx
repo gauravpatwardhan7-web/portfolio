@@ -308,28 +308,18 @@ export default function Home() {
                     >
                       What
                     </p>
-                    <p className="text-sm leading-relaxed" style={{ color: "var(--foreground)" }}>
+                    <p className="text-sm leading-relaxed mb-3" style={{ color: "var(--foreground)" }}>
                       {project.what}
                     </p>
+                    <ul className="space-y-2">
+                      {project.features.map((item, i) => (
+                        <li key={i} className="flex gap-3 text-sm leading-relaxed">
+                          <span style={{ color: "var(--accent)" }} className="mt-0.5 flex-shrink-0">—</span>
+                          <span style={{ color: "var(--muted)" }}>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
-
-                {/* How */}
-                <div className="mb-5 reveal" ref={addRevealRef}>
-                  <p
-                    className="font-mono text-xs uppercase tracking-widest mb-4"
-                    style={{ color: "var(--muted)" }}
-                  >
-                    How — key decisions
-                  </p>
-                  <ul className="space-y-2">
-                    {project.decisions.slice(0, 4).map((item, i) => (
-                      <li key={i} className="flex gap-3 text-sm leading-relaxed">
-                        <span style={{ color: "var(--accent)" }} className="mt-0.5 flex-shrink-0">—</span>
-                        <span style={{ color: "var(--muted)" }}>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
 
                 {/* Links */}
@@ -435,7 +425,7 @@ export default function Home() {
                     className="font-mono text-xs uppercase tracking-widest mb-3"
                     style={{ color: "var(--muted)" }}
                   >
-                    Architecture
+                    How — architecture
                   </p>
                   <FlowDiagram stages={project.flow} />
                 </div>

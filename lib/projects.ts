@@ -10,9 +10,9 @@ export type Project = {
   title: string;
   subtitle: string;
   users: string;              // WHO this is for
-  problem: string;            // WHY — the user problem, in the user's terms
+  problem: string;            // WHY — the pain points, in the user's terms
   what: string;               // WHAT the product is, in one or two sentences
-  decisions: string[];        // HOW — product decisions and tradeoffs made
+  features: string[];         // WHAT — the product's key features
   flow: FlowStage[];
   stack: { category: string; items: string }[];
   stats: { value: string; label: string }[];
@@ -37,11 +37,11 @@ export const projects: Project[] = [
       "Choosing where to live in an unfamiliar city is a high-stakes decision made with terrible information. Renters juggle five browser tabs of outdated listings, paywalled livability reports, and word-of-mouth — then commit to a 12-month lease anyway. The job to be done: compare neighborhoods on what actually matters (rent, commute, amenities, weather) in one trustworthy view.",
     what:
       "A map-first comparison engine that scores 100+ Bengaluru neighborhoods on rent, livability, amenities, and commute — refreshed nightly from live sources, free and open.",
-    decisions: [
-      "Scoped the MVP to the decision, not the search: comparison and scoring of 100+ neighborhoods rather than yet another listings site",
-      "Chose transparent algorithmic scoring (schools, hospitals, supermarkets, commute zones) over editorial rankings — users can see why a neighborhood scores what it does",
-      "Prioritized data freshness as a trust feature: nightly automated refresh across 4+ live sources, because stale data is why users abandon existing tools",
-      "Map-first interaction — click a neighborhood, drill into rentals and scores — because location decisions are spatial, not tabular",
+    features: [
+      "Interactive map of 100+ scored neighborhoods — click any area to drill into rentals, amenities, and scores",
+      "Transparent livability scoring across schools, hospitals, supermarkets, and commute zones — you can see why an area scores what it does",
+      "Live rental listings, weather, and commute estimates aggregated from 4+ sources",
+      "Nightly automated data refresh — nothing on the map is stale",
     ],
     flow: [
       { items: ["NoBroker", "OpenWeatherMap", "Overpass (OSM)"], sub: "live sources" },
@@ -93,12 +93,12 @@ export const projects: Project[] = [
       "Enterprise certification training treats every learner identically. For employees with accessibility needs, that means plans that ignore cognitive load, calendars with no realistic study time, multiple-choice tests that measure recognition instead of understanding, and forgetting curves nobody accounts for. Certifications stall — and the learner gets blamed.",
     what:
       "An 8-agent AI coach that builds accommodation-aware study plans around real calendars, grades understanding through teach-back instead of multiple choice, and shares progress with managers only on the learner's terms.",
-    decisions: [
-      "Diagnosed three root causes of stalled certifications — time scarcity, shallow testing, forgetting — and shipped a distinct product affordance for each, instead of one generic 'AI tutor'",
-      "Calendar Negotiator refuses infeasible plans with evidence-backed pushback rather than guilt-tripping the learner — honest timelines over engagement metrics",
-      "Teach-back assessment grades learners on explaining concepts (Socratic questioning), a deliberate tradeoff of grading complexity for measuring real understanding",
-      "Consent is a product boundary, not a setting: learners control what managers see, and redaction is enforced in code — the Advocate agent drafts manager notes on the learner's behalf",
-      "Trust through transparency: every AI decision shows its retrieved sources, citations, and deliberation, and the system escalates to a human coach after three stalled remediation attempts",
+    features: [
+      "Day-by-day study plans that respect your accommodations and real calendar gaps — with honest pushback when a deadline is infeasible",
+      "Practice with cited questions, or explain concepts in your own words (teach-back)",
+      "Spaced refreshers timed to your forgetting curve",
+      "You control exactly what your manager sees — redaction enforced in code",
+      "Screen-reader-friendly narrator for every output",
     ],
     flow: [
       { items: ["Learner"], sub: "Streamlit + narrator" },
@@ -151,11 +151,10 @@ export const projects: Project[] = [
       "Fitness apps fail at two moments: logging (tedious forms kill the habit) and coaching (generic tips that ignore what you did last week). The user need is a coach with memory — one that references your actual last four sessions, spots your plateau, and tells you what to change. No mainstream app connects logging friction and contextual feedback.",
     what:
       "A Telegram coach: text one keyword to get your workout template, reply with your numbers, and get feedback grounded in your last four sessions — plateaus and PRs included.",
-    decisions: [
-      "Met users where they are: Telegram instead of a new app — zero-install distribution and logging that fits an existing habit loop",
-      "Reduced logging to one keyword: text 'chest' and get your pre-filled template back — friction is the retention killer, so the whole UX is built around removing it",
-      "Constrained the AI on purpose: session counts and plateau flags are computed in code before the model sees them, so the coach can't hallucinate your progress",
-      "Gave the coach a persona with a strict priority order ('Marcus' — direct, data-driven) to prevent the generic-LLM-advice failure mode",
+    features: [
+      "Text a keyword (chest · back · shoulder · legs) and get your workout template instantly",
+      "Reply with sets, reps, weight, RPE — logged automatically, one row per exercise",
+      "Coaching feedback that references your last 4 sessions — plateaus and PRs flagged",
     ],
     flow: [
       { items: ["Telegram"], sub: "trigger" },
@@ -203,11 +202,10 @@ export const projects: Project[] = [
       "Job hunting in India means manually checking Naukri, LinkedIn, Indeed, SmartRecruiters, and Workday every single day. That's 2–3 hours of repetitive scanning before a single application is written — and the cost of missing a fresh posting is real. The job to be done: see only the relevant new openings, twice a day, with zero effort.",
     what:
       "An automated scout that scrapes 5+ job boards, deduplicates and ranks openings against your resume, and lands a color-coded digest in your inbox twice a day.",
-    decisions: [
-      "Defined success as trust in the digest: if users still feel they must check the boards themselves, the product has failed — so relevance ranking and deduplication got the most design attention",
-      "Blended ranking (60% keyword match + 40% GPT semantic score) to balance precision against the cost of a missed match — pure keyword filtering threw away too many good roles",
-      "Chose email at 9 AM and 6 PM IST over a dashboard: meet the user in their inbox at the moments they'd naturally check, with color-coded relevance for 10-second triage",
-      "3-day deduplication window because repeated listings destroy trust in an alert product faster than missing ones",
+    features: [
+      "Curated job digest in your inbox at 9 AM and 6 PM IST — no boards to check",
+      "Openings ranked by fit: resume keyword match blended with GPT semantic scoring",
+      "Color-coded relevance for 10-second triage; duplicates removed across a 3-day window",
     ],
     flow: [
       { items: ["Naukri", "LinkedIn", "Indeed", "Workday"], sub: "job boards" },
@@ -254,11 +252,10 @@ export const projects: Project[] = [
       "Claude Code writes rich session data to local JSON files, but no one reads them. Developers can't see their cache hit rate or how much of the 200K context window they actually use — so they can't improve. The insight: the data already exists; the product gap is making it legible.",
     what:
       "A zero-dependency CLI and Claude Code skill that reads your local session files and reports cache hit rate, context utilization, and session stats — fully offline, one command.",
-    decisions: [
-      "Zero-friction adoption as the core requirement: no API calls, no auth, no pip installs — anything heavier and developers won't bother for an analytics tool",
-      "Objective facts only, no subjective scoring: report the numbers, let the developer judge — credibility over gamification",
-      "Distribution inside the workflow: ships as a Claude Code skill (/token-efficiency), so the insight is one command away instead of a separate tool to remember",
-      "Privacy as a feature: fully offline, nothing leaves the machine — a hard requirement for a tool reading your work sessions",
+    features: [
+      "One command (/token-efficiency) to see your cache hit rate and context utilization",
+      "Session stats: totals, min/max/average tokens, recent activity breakdown",
+      "Fully offline — reads local files only, nothing leaves your machine",
     ],
     flow: [
       { items: ["stats-cache.json", "session-meta/*.json", "facets/*.json"], sub: "local ~/.claude/ files" },
