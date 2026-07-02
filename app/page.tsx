@@ -170,6 +170,36 @@ export default function Home() {
             </a>
           ))}
         </div>
+
+        {/* About profile card */}
+        <a
+          href="/about"
+          className="inline-flex items-center gap-4 mt-10 reveal transition-colors"
+          ref={addRevealRef}
+          style={{
+            animationDelay: "0.4s",
+            border: "1px solid var(--border)",
+            background: "var(--surface)",
+            padding: "10px 20px 10px 12px",
+            textDecoration: "none",
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
+          onMouseOut={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
+        >
+          <img
+            src="/About-me-1.jpg"
+            alt="Gaurav Patwardhan"
+            style={{ width: "52px", height: "52px", borderRadius: "50%", objectFit: "cover" }}
+          />
+          <span>
+            <span className="block text-sm font-medium" style={{ color: "var(--foreground)" }}>
+              The PM behind these products
+            </span>
+            <span className="font-mono text-xs" style={{ color: "var(--accent)" }}>
+              Career, skills &amp; story — About me →
+            </span>
+          </span>
+        </a>
       </section>
 
       <hr style={{ borderColor: "var(--border)", border: "none", borderTop: "1px solid var(--border)" }} />
