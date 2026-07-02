@@ -134,38 +134,46 @@ export default function Home() {
           a real user problem.
         </p>
 
-        <div
-          className="flex flex-wrap gap-3 mt-10 reveal"
-          ref={addRevealRef}
-          style={{ animationDelay: "0.3s" }}
-        >
-          {[
-            { label: "Consumer product", highlight: true, anchor: "blr-neighborhood" },
-            { label: "Accessibility AI", anchor: "certification-coach" },
-            { label: "AI coaching", anchor: "gym-coach" },
-            { label: "Automation", anchor: "job-hunt" },
-          ].map((tag) => (
-            <a
-              key={tag.label}
-              href={`#${tag.anchor}`}
-              className="font-mono text-xs uppercase tracking-widest px-3 py-1 border transition-colors cursor-pointer"
-              style={{
-                borderColor: tag.highlight ? "var(--accent)" : "var(--border)",
-                color: tag.highlight ? "var(--accent)" : "var(--muted)",
-                textDecoration: "none",
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.borderColor = "var(--accent)";
-                e.currentTarget.style.color = "var(--accent)";
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.borderColor = tag.highlight ? "var(--accent)" : "var(--border)";
-                e.currentTarget.style.color = tag.highlight ? "var(--accent)" : "var(--muted)";
-              }}
-            >
-              {tag.label}
-            </a>
-          ))}
+        <div className="mt-10 reveal" ref={addRevealRef} style={{ animationDelay: "0.3s" }}>
+          <p
+            className="font-mono text-xs uppercase tracking-widest mb-3 flex items-center gap-2"
+            style={{ color: "var(--muted)" }}
+          >
+            Jump to a project
+            <span aria-hidden style={{ color: "var(--accent)" }}>↓</span>
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {[
+              { label: "Consumer product", anchor: "blr-neighborhood" },
+              { label: "Accessibility AI", anchor: "certification-coach" },
+              { label: "AI coaching", anchor: "gym-coach" },
+              { label: "Automation", anchor: "job-hunt" },
+            ].map((tag) => (
+              <a
+                key={tag.label}
+                href={`#${tag.anchor}`}
+                className="font-mono text-xs uppercase tracking-widest px-4 py-2 border transition-all cursor-pointer"
+                style={{
+                  borderColor: "var(--border)",
+                  background: "var(--surface)",
+                  color: "var(--foreground)",
+                  textDecoration: "none",
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.borderColor = "var(--accent)";
+                  e.currentTarget.style.background = "var(--accent)";
+                  e.currentTarget.style.color = "var(--background)";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.borderColor = "var(--border)";
+                  e.currentTarget.style.background = "var(--surface)";
+                  e.currentTarget.style.color = "var(--foreground)";
+                }}
+              >
+                {tag.label}
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* About link */}
