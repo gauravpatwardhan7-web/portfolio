@@ -316,13 +316,13 @@ export default function About() {
         {/* Three-column block */}
         <section className="py-4">
           <div
-            className="grid-fix md:grid-cols-3"
+            className="flex flex-col"
             style={{ border: "1px solid var(--border)" }}
           >
             {threeCol.map((col, i) => (
               <div
                 key={col.label}
-                className={`p-3 ${i < 2 ? "border-b md:border-b-0 md:border-r" : ""}`}
+                className={`p-3 ${i < 2 ? "border-b" : ""}`}
                 style={{ background: "var(--surface)", borderColor: "var(--border)" }}
               >
                 <p className="font-mono text-xs uppercase tracking-widest mb-2" style={{ color: "var(--accent)" }}>

@@ -260,7 +260,7 @@ export default function Home() {
               </span>
             </div>
 
-            <div className="grid-fix md:grid-cols-2 gap-12 md:gap-16">
+            <div className="flex flex-col gap-12 md:gap-14">
               {/* Left column */}
               <div>
                 <h2
@@ -406,7 +406,7 @@ export default function Home() {
                   </div>
                 )}
                 {/* Stats */}
-                <div className="reveal grid-fix grid-cols-2 md:grid-cols-4 md:w-fit gap-px" ref={addRevealRef} style={{ background: "var(--border)" }}>
+                <div className="reveal flex flex-col gap-px md:w-fit" ref={addRevealRef} style={{ background: "var(--border)" }}>
                   {project.stats.map((stat) => (
                     <div key={stat.label} className="flex items-baseline gap-2 px-4 py-2" style={{ background: "var(--surface)" }}>
                       <span
@@ -466,7 +466,7 @@ export default function Home() {
 
       {/* About */}
       <section className="max-w-5xl mx-auto px-4 md:px-6 py-10 md:py-14">
-        <div className="grid-fix md:grid-cols-3 gap-12">
+        <div className="flex flex-col gap-12">
           <div>
             <p className="font-mono text-xs uppercase tracking-widest mb-4" style={{ color: "var(--accent)" }}>
               About
