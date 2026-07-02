@@ -130,8 +130,10 @@ export default function Home() {
           ref={addRevealRef}
           style={{ color: "var(--muted)", animationDelay: "0.2s" }}
         >
-          Product Manager / Builder. I identify real problems and ship working
-          products — from data pipelines to AI agents. Four projects below.
+          Product Manager. I find underserved user problems, make the product
+          calls, and ship the solution myself — because building is the fastest
+          way to test product judgment. Five products below, each starting from
+          a real user problem.
         </p>
 
         <div
@@ -141,7 +143,8 @@ export default function Home() {
         >
           {[
             { label: "Consumer product", highlight: true, anchor: "blr-neighborhood" },
-            { label: "AI Agent", anchor: "gym-coach" },
+            { label: "Accessibility AI", anchor: "certification-coach" },
+            { label: "AI coaching", anchor: "gym-coach" },
             { label: "Automation", anchor: "job-hunt" },
             { label: "Developer tooling", anchor: "token-efficiency" },
           ].map((tag) => (
@@ -220,23 +223,44 @@ export default function Home() {
                     className="font-mono text-xs uppercase tracking-widest mb-2"
                     style={{ color: "var(--accent)" }}
                   >
-                    The problem
+                    The user problem
+                  </p>
+                  <p className="text-sm leading-relaxed mb-2" style={{ color: "var(--foreground)" }}>
+                    {project.users}
                   </p>
                   <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
                     {project.problem}
                   </p>
                 </div>
 
-                {/* How it works */}
+                {/* Product decisions */}
                 <div className="mb-5 reveal" ref={addRevealRef}>
                   <p
                     className="font-mono text-xs uppercase tracking-widest mb-4"
                     style={{ color: "var(--muted)" }}
                   >
-                    How it works
+                    Product decisions
                   </p>
                   <ul className="space-y-2">
-                    {project.howItWorks.slice(0, 3).map((item, i) => (
+                    {project.decisions.slice(0, 4).map((item, i) => (
+                      <li key={i} className="flex gap-3 text-sm leading-relaxed">
+                        <span style={{ color: "var(--accent)" }} className="mt-0.5 flex-shrink-0">—</span>
+                        <span style={{ color: "var(--muted)" }}>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* What this demonstrates */}
+                <div className="mb-5 reveal" ref={addRevealRef}>
+                  <p
+                    className="font-mono text-xs uppercase tracking-widest mb-4"
+                    style={{ color: "var(--muted)" }}
+                  >
+                    What this demonstrates
+                  </p>
+                  <ul className="space-y-2">
+                    {project.pmSignals.slice(0, 3).map((item, i) => (
                       <li key={i} className="flex gap-3 text-sm leading-relaxed">
                         <span style={{ color: "var(--accent)" }} className="mt-0.5 flex-shrink-0">—</span>
                         <span style={{ color: "var(--muted)" }}>{item}</span>
@@ -351,7 +375,7 @@ export default function Home() {
                     className="font-mono text-xs uppercase tracking-widest mb-3"
                     style={{ color: "var(--muted)" }}
                   >
-                    Stack
+                    Built with
                   </p>
                   <div className="space-y-2">
                     {project.stack.map((item) => (
@@ -383,25 +407,26 @@ export default function Home() {
             <p className="font-mono text-xs uppercase tracking-widest mb-4" style={{ color: "var(--accent)" }}>
               About
             </p>
-            <h2 className="text-2xl font-semibold tracking-tight">Why I build this way</h2>
+            <h2 className="text-2xl font-semibold tracking-tight">How I work as a PM</h2>
           </div>
           <div className="md:col-span-2 space-y-4 text-base leading-relaxed" style={{ color: "var(--muted)" }}>
             <p>
-              I&apos;m a product manager who builds the things I spec. Not because I have to — because
-              shipping something end-to-end is the fastest way to learn what actually matters. The
-              judgment calls you make at 2 AM debugging a data pipeline are different from the ones
-              you make in a document.
+              Every product above started the same way: a user with a problem that existing tools
+              ignored. Someone relocating with no trustworthy neighborhood data. A learner the
+              standard certification path was never designed for. A job seeker losing three hours a
+              day to browser tabs. I start from the user, define what success looks like, and make
+              the tradeoffs explicit — then I ship it.
             </p>
             <p>
-              The projects above aren&apos;t portfolio pieces. They solve problems I ran into, tools I
-              wanted to use, data I wanted to see. BLR was me trying to find a flat. For Job Hunt was
-              me drowning in browser tabs. Token Efficiency was me wondering if I was using Claude
-              Code well.
+              I build my own specs deliberately. Shipping end-to-end is the fastest feedback loop
+              on product judgment: you find out within days whether the scoping was right, whether
+              the friction you dismissed actually kills retention, whether users trust the output.
+              A PM who has felt those consequences writes better specs and makes sharper calls.
             </p>
             <p>
-              I&apos;m most useful to founders who need someone who can both think about a product and
-              build pieces of it — someone who understands that a great feature and a broken data
-              pipeline are the same problem.
+              I&apos;m most useful where product decisions and execution meet — teams that need
+              someone who can talk to users, define the solution, prioritize honestly, and work
+              shoulder-to-shoulder with engineering because they&apos;ve done the work themselves.
             </p>
             <div className="flex flex-wrap gap-6 pt-2">
               <a

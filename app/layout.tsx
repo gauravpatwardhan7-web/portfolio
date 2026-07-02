@@ -13,14 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gaurav Patwardhan — Builder",
+  title: "Gaurav Patwardhan — Product Manager",
   description:
-    "Product Manager / Builder. Products that solve real problems. Open to collaborations.",
+    "Product Manager who ships. I find underserved user problems, make the product calls, and build the solution end to end.",
   icons: { icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>" },
   openGraph: {
-    title: "Gaurav Patwardhan — Builder",
+    title: "Gaurav Patwardhan — Product Manager",
     description:
-      "Product Manager / Builder. Products that solve real problems. Open to collaborations.",
+      "Product Manager who ships. I find underserved user problems, make the product calls, and build the solution end to end.",
     type: "website",
   },
 };

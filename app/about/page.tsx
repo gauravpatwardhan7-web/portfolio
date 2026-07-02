@@ -2,47 +2,97 @@
 
 import { useState } from "react";
 
-const timeline = [
+const skills = [
   {
-    role: "Shell — Graduate Program",
-    period: "2024 – Present",
-    points: [
-      "Custom AI Agents and Implementation",
-      "Market Insights & Feature Development",
-      "Global Market Onboarding",
-      "Product Delivery & Communication",
+    label: "Product",
+    items: [
+      "Product Strategy",
+      "Roadmapping",
+      "Product Discovery",
+      "PRD Writing",
+      "Sprint Planning",
+      "Stakeholder Management",
+      "JTBD",
+      "RICE Prioritization",
+      "Go-to-Market",
     ],
   },
   {
-    role: "Startups",
+    label: "AI",
+    items: [
+      "AI Agents",
+      "RAG",
+      "Model Evaluation",
+      "MCP",
+      "Prompt Engineering",
+      "Claude Code",
+    ],
+  },
+  {
+    label: "Technical",
+    items: [
+      "Python",
+      "SQL",
+      "REST APIs",
+      "Power BI",
+      "Databricks",
+      "Figma",
+      "JIRA · ADO",
+    ],
+  },
+];
+
+const timeline = [
+  {
+    role: "Shell — Emerging Architect, Subsurface & Wells",
+    period: "Dec 2025 – Present",
+    points: [
+      "Built a two-stage Claude agent for 22 legacy Petrel plugins — cut the annual SDK upgrade cycle from 6–8 sprints to 4–5 days per plugin (~95%)",
+      "Defined a Python-native replacement for the subsurface data broker, cutting 4 middleware hops to 1",
+      "Wrote the platform's product principles and directed an agent-built MVP through spec-driven development",
+    ],
+  },
+  {
+    role: "Shell — Product Manager, EV Charging Operations",
+    period: "2024 – 2025",
+    points: [
+      "Shipped Alert Grouping & Prioritization — cut operator alert volume by ~80%",
+      "Onboarded Switzerland and Singapore from kickoff to live operations",
+      "Validated Autoheal's business case: recurring-fault resolution from 900 to 36 minutes",
+      "Ran discovery across 15+ market operators — delivered 5+ features and 10+ roadmap items",
+    ],
+  },
+  {
+    role: "Startups & Internships",
     period: "2022 – 2024",
     points: [
-      "FinRight — Built Credit Card Recommendation Product",
-      "Exly — Sales and Customer Success",
+      "FinRight — shipped a credit card recommendation engine: benchmarked 300+ cards, wrote the PRDs and wireframes",
+      "IDFC First Bank — streamlined vendor onboarding, cutting turnaround time 20%",
+      "Exly — carried revenue and retention targets in sales and customer success",
     ],
   },
   {
     role: "MBA — Marketing & Data Sciences, NMIMS Mumbai",
     period: "2022 – 2024",
     points: [
-      "Digital Solutions Intern, IDFC First Bank",
-      "Runner up — Microsoft PM Engage",
-      "Corporate Relations and Placements",
+      "Runner up — Microsoft PM Engage, awarded a pre-placement interview with Microsoft",
+      "Led a 90+ member placement team serving 1,500+ students and 100 recruiters",
     ],
   },
   {
     role: "Eaton — Project Manager & NPD Engineer",
     period: "2018 – 2021",
     points: [
-      "Launched 2 products with $3M in sales",
-      "Filed 2 patent applications",
+      "Pitched and launched 2 products with $4M projected revenue, winning Decision Gate approval as Project Manager",
+      "Co-invented bypass switching technology (US patent) — 2× E-Star Awards",
+      "Cut prototyping and validation turnaround 30% using Lean Six Sigma",
     ],
   },
   {
     role: "Mechanical Engineering — WCE Sangli",
     period: "2014 – 2018",
     points: [
-      "Where the builder instinct started",
+      "Learned to solve problems by making things, not just analyzing them",
       "Born and raised in CSN, teacher parents",
     ],
   },
@@ -50,16 +100,20 @@ const timeline = [
 
 const threeCol = [
   {
+    label: "Awards",
+    items: [
+      "Shell Special Recognition Award — EVEC delivery, 2025",
+      "Microsoft PM Engage — Runner-up, 2022",
+      "2× Eaton E-Star Awards",
+    ],
+  },
+  {
     label: "Certifications",
     items: ["KPMG Lean Six Sigma", "Data Analytics & Visualisation", "Product Management"],
   },
   {
-    label: "Skills",
-    items: ["PowerBI · Tableau", "Excel · Python · SQL", "Figma · JIRA · ADO"],
-  },
-  {
     label: "Career Interests",
-    items: ["Product Management", "Business Consulting", "Agentic AI"],
+    items: ["AI Product Management", "Platform & B2B Products", "Agentic AI"],
   },
 ];
 
@@ -133,10 +187,11 @@ export default function About() {
               Gaurav Patwardhan
             </h1>
             <p className="text-lg md:text-xl max-w-2xl leading-relaxed" style={{ color: "var(--muted)" }}>
-              I started as an engineer, moved into corporate product work at Eaton, did an MBA,
-              joined two startups, and now build AI products at Shell. At every stage I&apos;ve
-              found myself wanting to actually make the thing — not just define it. That&apos;s
-              what the projects on this site are.
+              Product manager with 5 years of experience across AI, EV charging, and
+              industrial products — currently building AI-first products at Shell. I
+              specialize in product discovery, roadmap ownership, and shipping AI agent
+              products from spec to production, working hands-on with engineering,
+              operations, and global stakeholders.
             </p>
           </div>
 
@@ -145,6 +200,38 @@ export default function About() {
             {["/About-me-1.jpg", "/About-me-2.jpg", "/About-me-3.jpg", "/About-me-4.jpg"].map((src, i) => (
               <div key={i} style={{ width: "148px", height: "148px", overflow: "hidden" }}>
                 <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
+
+        {/* Skills */}
+        <section className="py-6 md:py-8">
+          <p className="font-mono text-xs uppercase tracking-widest mb-5" style={{ color: "var(--muted)" }}>
+            Skills
+          </p>
+          <div className="space-y-3">
+            {skills.map((group) => (
+              <div key={group.label} className="flex flex-col md:flex-row gap-2 md:gap-4">
+                <span
+                  className="font-mono text-xs uppercase tracking-widest md:w-24 flex-shrink-0 md:pt-1.5"
+                  style={{ color: "var(--accent)" }}
+                >
+                  {group.label}
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <span
+                      key={item}
+                      className="font-mono text-xs px-3 py-1 border whitespace-nowrap"
+                      style={{ borderColor: "var(--border)", color: "var(--foreground)", background: "var(--surface)" }}
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -193,17 +280,14 @@ export default function About() {
         {/* Three-column block */}
         <section className="py-4">
           <div
-            className="grid grid-cols-3"
+            className="grid md:grid-cols-3"
             style={{ border: "1px solid var(--border)" }}
           >
             {threeCol.map((col, i) => (
               <div
                 key={col.label}
-                className="p-3"
-                style={{
-                  background: "var(--surface)",
-                  borderRight: i < 2 ? "1px solid var(--border)" : "none",
-                }}
+                className={`p-3 ${i < 2 ? "border-b md:border-b-0 md:border-r" : ""}`}
+                style={{ background: "var(--surface)", borderColor: "var(--border)" }}
               >
                 <p className="font-mono text-xs uppercase tracking-widest mb-2" style={{ color: "var(--accent)" }}>
                   {col.label}
