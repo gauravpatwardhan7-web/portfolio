@@ -62,10 +62,7 @@ export default function Home() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 border-b" style={{ background: "var(--background)", borderColor: "var(--border)" }}>
         <div className="max-w-5xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
-          <span className="font-mono text-sm hidden md:block" style={{ color: "var(--muted)" }}>
-            gauravpatwardhan7
-          </span>
-          <nav className="flex items-center gap-1">
+          <nav className="flex items-center gap-1 ml-auto">
             {[
               { label: "About", href: "/about" },
               { label: "Resume", href: "/Gaurav-Patwardhan-Resume.pdf", external: true },
@@ -276,54 +273,57 @@ export default function Home() {
                   {project.subtitle}
                 </p>
 
-                {/* Problem */}
+                {/* Who / Why / What */}
                 <div
-                  className="mb-5 reveal"
+                  className="mb-6 reveal space-y-4"
                   ref={addRevealRef}
                   style={{ borderLeft: "3px solid var(--accent)", paddingLeft: "1rem" }}
                 >
-                  <p
-                    className="font-mono text-xs uppercase tracking-widest mb-2"
-                    style={{ color: "var(--accent)" }}
-                  >
-                    The user problem
-                  </p>
-                  <p className="text-sm leading-relaxed mb-2" style={{ color: "var(--foreground)" }}>
-                    {project.users}
-                  </p>
-                  <p className="text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-                    {project.problem}
-                  </p>
+                  <div>
+                    <p
+                      className="font-mono text-xs uppercase tracking-widest mb-1.5"
+                      style={{ color: "var(--accent)" }}
+                    >
+                      Who
+                    </p>
+                    <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                      {project.users}
+                    </p>
+                  </div>
+                  <div>
+                    <p
+                      className="font-mono text-xs uppercase tracking-widest mb-1.5"
+                      style={{ color: "var(--accent)" }}
+                    >
+                      Why
+                    </p>
+                    <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                      {project.problem}
+                    </p>
+                  </div>
+                  <div>
+                    <p
+                      className="font-mono text-xs uppercase tracking-widest mb-1.5"
+                      style={{ color: "var(--accent)" }}
+                    >
+                      What
+                    </p>
+                    <p className="text-sm leading-relaxed" style={{ color: "var(--foreground)" }}>
+                      {project.what}
+                    </p>
+                  </div>
                 </div>
 
-                {/* Product decisions */}
+                {/* How */}
                 <div className="mb-5 reveal" ref={addRevealRef}>
                   <p
                     className="font-mono text-xs uppercase tracking-widest mb-4"
                     style={{ color: "var(--muted)" }}
                   >
-                    Product decisions
+                    How — key decisions
                   </p>
                   <ul className="space-y-2">
                     {project.decisions.slice(0, 4).map((item, i) => (
-                      <li key={i} className="flex gap-3 text-sm leading-relaxed">
-                        <span style={{ color: "var(--accent)" }} className="mt-0.5 flex-shrink-0">—</span>
-                        <span style={{ color: "var(--muted)" }}>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* What this demonstrates */}
-                <div className="mb-5 reveal" ref={addRevealRef}>
-                  <p
-                    className="font-mono text-xs uppercase tracking-widest mb-4"
-                    style={{ color: "var(--muted)" }}
-                  >
-                    What this demonstrates
-                  </p>
-                  <ul className="space-y-2">
-                    {project.pmSignals.slice(0, 3).map((item, i) => (
                       <li key={i} className="flex gap-3 text-sm leading-relaxed">
                         <span style={{ color: "var(--accent)" }} className="mt-0.5 flex-shrink-0">—</span>
                         <span style={{ color: "var(--muted)" }}>{item}</span>
@@ -404,8 +404,15 @@ export default function Home() {
                     ))}
                   </div>
                 )}
-                {/* Stats */}
-                <div className="reveal flex flex-col gap-px md:w-fit" ref={addRevealRef} style={{ background: "var(--border)" }}>
+                {/* Impact */}
+                <div className="reveal" ref={addRevealRef}>
+                  <p
+                    className="font-mono text-xs uppercase tracking-widest mb-3"
+                    style={{ color: "var(--muted)" }}
+                  >
+                    Impact
+                  </p>
+                <div className="flex flex-col gap-px md:w-fit" style={{ background: "var(--border)" }}>
                   {project.stats.map((stat) => (
                     <div key={stat.label} className="flex items-baseline gap-2 px-4 py-2" style={{ background: "var(--surface)" }}>
                       <span
@@ -419,6 +426,7 @@ export default function Home() {
                       </span>
                     </div>
                   ))}
+                </div>
                 </div>
 
                 {/* Architecture diagram */}

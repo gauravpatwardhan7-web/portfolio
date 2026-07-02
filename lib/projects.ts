@@ -9,9 +9,10 @@ export type Project = {
   label: string;
   title: string;
   subtitle: string;
-  users: string;              // who this is for
-  problem: string;            // the user problem, in the user's terms
-  decisions: string[];        // product decisions and tradeoffs made
+  users: string;              // WHO this is for
+  problem: string;            // WHY — the user problem, in the user's terms
+  what: string;               // WHAT the product is, in one or two sentences
+  decisions: string[];        // HOW — product decisions and tradeoffs made
   flow: FlowStage[];
   stack: { category: string; items: string }[];
   stats: { value: string; label: string }[];
@@ -34,6 +35,8 @@ export const projects: Project[] = [
       "People relocating to Bengaluru — new joiners, transferees, anyone choosing a neighborhood in a city they don't know yet.",
     problem:
       "Choosing where to live in an unfamiliar city is a high-stakes decision made with terrible information. Renters juggle five browser tabs of outdated listings, paywalled livability reports, and word-of-mouth — then commit to a 12-month lease anyway. The job to be done: compare neighborhoods on what actually matters (rent, commute, amenities, weather) in one trustworthy view.",
+    what:
+      "A map-first comparison engine that scores 100+ Bengaluru neighborhoods on rent, livability, amenities, and commute — refreshed nightly from live sources, free and open.",
     decisions: [
       "Scoped the MVP to the decision, not the search: comparison and scoring of 100+ neighborhoods rather than yet another listings site",
       "Chose transparent algorithmic scoring (schools, hospitals, supermarkets, commute zones) over editorial rankings — users can see why a neighborhood scores what it does",
@@ -88,6 +91,8 @@ export const projects: Project[] = [
       "Employees with accessibility needs (neurodivergent, cognitive, low-vision) preparing for certifications — plus their managers, who need progress visibility without violating the learner's privacy.",
     problem:
       "Enterprise certification training treats every learner identically. For employees with accessibility needs, that means plans that ignore cognitive load, calendars with no realistic study time, multiple-choice tests that measure recognition instead of understanding, and forgetting curves nobody accounts for. Certifications stall — and the learner gets blamed.",
+    what:
+      "An 8-agent AI coach that builds accommodation-aware study plans around real calendars, grades understanding through teach-back instead of multiple choice, and shares progress with managers only on the learner's terms.",
     decisions: [
       "Diagnosed three root causes of stalled certifications — time scarcity, shallow testing, forgetting — and shipped a distinct product affordance for each, instead of one generic 'AI tutor'",
       "Calendar Negotiator refuses infeasible plans with evidence-backed pushback rather than guilt-tripping the learner — honest timelines over engagement metrics",
@@ -144,6 +149,8 @@ export const projects: Project[] = [
       "Lifters following a structured programme who want coaching feedback grounded in their own history, not generic fitness-app advice.",
     problem:
       "Fitness apps fail at two moments: logging (tedious forms kill the habit) and coaching (generic tips that ignore what you did last week). The user need is a coach with memory — one that references your actual last four sessions, spots your plateau, and tells you what to change. No mainstream app connects logging friction and contextual feedback.",
+    what:
+      "A Telegram coach: text one keyword to get your workout template, reply with your numbers, and get feedback grounded in your last four sessions — plateaus and PRs included.",
     decisions: [
       "Met users where they are: Telegram instead of a new app — zero-install distribution and logging that fits an existing habit loop",
       "Reduced logging to one keyword: text 'chest' and get your pre-filled template back — friction is the retention killer, so the whole UX is built around removing it",
@@ -194,6 +201,8 @@ export const projects: Project[] = [
       "Job seekers in India hunting HR/talent roles across fragmented job boards — starting with one very motivated user: me.",
     problem:
       "Job hunting in India means manually checking Naukri, LinkedIn, Indeed, SmartRecruiters, and Workday every single day. That's 2–3 hours of repetitive scanning before a single application is written — and the cost of missing a fresh posting is real. The job to be done: see only the relevant new openings, twice a day, with zero effort.",
+    what:
+      "An automated scout that scrapes 5+ job boards, deduplicates and ranks openings against your resume, and lands a color-coded digest in your inbox twice a day.",
     decisions: [
       "Defined success as trust in the digest: if users still feel they must check the boards themselves, the product has failed — so relevance ranking and deduplication got the most design attention",
       "Blended ranking (60% keyword match + 40% GPT semantic score) to balance precision against the cost of a missed match — pure keyword filtering threw away too many good roles",
@@ -243,6 +252,8 @@ export const projects: Project[] = [
       "Claude Code users who want to know if their session habits are efficient — cache hit rate, context utilization — without sending data anywhere.",
     problem:
       "Claude Code writes rich session data to local JSON files, but no one reads them. Developers can't see their cache hit rate or how much of the 200K context window they actually use — so they can't improve. The insight: the data already exists; the product gap is making it legible.",
+    what:
+      "A zero-dependency CLI and Claude Code skill that reads your local session files and reports cache hit rate, context utilization, and session stats — fully offline, one command.",
     decisions: [
       "Zero-friction adoption as the core requirement: no API calls, no auth, no pip installs — anything heavier and developers won't bother for an analytics tool",
       "Objective facts only, no subjective scoring: report the numbers, let the developer judge — credibility over gamification",

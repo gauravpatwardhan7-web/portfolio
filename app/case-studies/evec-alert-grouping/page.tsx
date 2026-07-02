@@ -100,11 +100,9 @@ export default function EvecCaseStudy() {
             <SectionLabel>Context</SectionLabel>
             <p>
               EVEC (EV Engineering Cockpit) is Shell&apos;s internal platform for monitoring its EV
-              charging network across markets. It shows the live status of every charge station and
-              raises alerts from charger error codes. Market Operations teams work from it daily:
-              they keep chargers running, triage faults, and dispatch third-party field engineers
-              when hardware needs fixing. I owned product for EVEC&apos;s operations experience,
-              working directly with these teams.
+              charging network: live charge-station status plus alerts raised from charger error
+              codes. Market Operations teams work from it daily to keep chargers running and
+              dispatch field engineers. I owned product for the operations experience.
             </p>
           </section>
 
@@ -112,23 +110,18 @@ export default function EvecCaseStudy() {
           <section>
             <SectionLabel>The problem</SectionLabel>
             <p className="mb-4">
-              At any given moment, a single large market could have around 300 open alerts. The
-              alerts page showed 100+ at a time with exactly one organizing principle: newest
-              first. Offline chargers, unresponsive payment terminals, broken connectors, failed
-              charge sessions — all in one undifferentiated stream. No categories, no priorities,
-              and no deduplication, even though a single hardware fault often fires several error
-              codes at once.
-            </p>
-            <p className="mb-4">
-              Operators triaged this manually against a reference guidebook. The costs were
-              predictable and real:
+              A single large market could have ~300 open alerts at once. The page showed 100+ at a
+              time with one organizing principle: newest first. Offline chargers, payment faults,
+              broken connectors, failed sessions — one undifferentiated stream, with duplicates
+              because a single hardware fault often fires several error codes. Triaging it
+              manually meant:
             </p>
             <ul className="space-y-2">
               {[
-                "Critical faults — chargers fully offline — could sit buried under low-priority noise",
-                "No way to tell which alerts were being handled and which were untouched",
-                "Duplicate alerts inflated the queue and wasted triage effort",
-                "Response times suffered because finding the right alert meant combing through a hundred",
+                "Critical faults buried under low-priority noise",
+                "No way to tell what was handled and what was untouched",
+                "Duplicate alerts inflating the queue",
+                "Slow responses — finding the right alert meant combing through a hundred",
               ].map((item) => (
                 <li key={item} className="flex gap-3">
                   <span style={{ color: "var(--accent)" }} className="mt-0.5 flex-shrink-0">
@@ -144,13 +137,11 @@ export default function EvecCaseStudy() {
           <section>
             <SectionLabel>Discovery</SectionLabel>
             <p>
-              I talked to market operators on a regular cadence, and one complaint kept surfacing:
-              the alerts page was too messy to navigate. Digging in, the specific pain was
-              twofold — it was hard to <em>find</em> the alerts that mattered most, and hard to{" "}
-              <em>track</em> the state of anything. That reframed the job to be done: an operator
-              should open one page and immediately know what&apos;s broken, what matters most, and
-              what&apos;s already in motion. I took that framing back as a concept: alert grouping
-              plus prioritization.
+              Operators kept telling me the same thing: the page was too messy to navigate. The
+              real pain was twofold — hard to <em>find</em> the alerts that mattered, hard to{" "}
+              <em>track</em> the state of anything. The reframe: an operator should open one page
+              and know what&apos;s broken, what matters most, and what&apos;s in motion. That
+              became the concept — grouping plus prioritization.
             </p>
           </section>
 
@@ -172,11 +163,9 @@ export default function EvecCaseStudy() {
               ))}
             </ul>
             <p>
-              Each charge station surfaces a primary and a secondary alert plus a summary of
-              everything beneath (&ldquo;2 offline · 3 faulted · 3 network · 3 payment&rdquo;), so
-              scanning the page means scanning stations — not raw alerts. The severity order came
-              straight from how operators actually work: an offline charger means a site visit; a
-              payment glitch usually doesn&apos;t.
+              Each station surfaces a primary and secondary alert plus a type summary (&ldquo;2
+              offline · 3 faulted · 3 network&rdquo;) — scanning the page means scanning stations,
+              not raw alerts.
             </p>
           </section>
 
@@ -184,12 +173,10 @@ export default function EvecCaseStudy() {
           <section>
             <SectionLabel>What I considered and rejected</SectionLabel>
             <p>
-              The cheaper option was prioritization alone — re-sort the existing feed by severity
-              and ship in weeks. I rejected it because it solved the wrong half of the problem:
-              operators would still comb through hundreds of individual alerts and still couldn&apos;t
-              track state site by site. Grouping was the tracking mechanism, not a cosmetic layer.
-              The tradeoff I accepted: collapsed groups hide detail by default, which is why every
-              group leads with its highest-severity alert and a type summary.
+              Prioritization alone — re-sort the feed, ship in weeks. Rejected: it solved the
+              wrong half. Operators would still comb hundreds of alerts with no way to track state
+              site by site. Grouping was the tracking mechanism. The accepted tradeoff: collapsed
+              groups hide detail, so every group leads with its highest-severity alert.
             </p>
           </section>
 
@@ -197,12 +184,10 @@ export default function EvecCaseStudy() {
           <section>
             <SectionLabel>Shipping it</SectionLabel>
             <p>
-              I validated the concept with wireframes and mockups directly with Market Ops — two
-              rounds of iteration before a line of code. The build itself had real technical
-              questions: whether grouping logic lives in the frontend or backend, and how groups
-              and priorities stay consistent while new alerts stream in continuously. Working
-              through that with engineering, alongside competing roadmap priorities, took the
-              feature from concept to live in about four months.
+              Two rounds of wireframe iteration with Market Ops before any code. The hard build
+              questions — where grouping logic lives, how groups stay consistent as alerts stream
+              in — took about four months to work through with engineering, alongside competing
+              roadmap priorities.
             </p>
           </section>
 
@@ -210,11 +195,10 @@ export default function EvecCaseStudy() {
           <section>
             <SectionLabel>Outcome</SectionLabel>
             <p>
-              Pages that showed 100+ alerts settled at roughly 25 on average — observed across
-              markets after launch, not a lab number. More important than the count: operators now
-              work site by site on a single page, priority alerts are findable at a glance, and
-              alert state is trackable. The grouping design was adopted globally — it&apos;s now
-              the default alerts experience in every Shell EV market.
+              Pages of 100+ alerts settled at ~25 on average — observed across markets after
+              launch, not a lab number. Operators work site by site on one page, priority alerts
+              are findable at a glance, and the design is now the default in every Shell EV market
+              globally.
             </p>
           </section>
 
@@ -222,11 +206,9 @@ export default function EvecCaseStudy() {
           <section>
             <SectionLabel>What I&apos;d do differently</SectionLabel>
             <p>
-              Define success metrics before launch and run a structured validation study after it.
-              I observed the reduction and the workflow change, but I moved to a new team before I
-              could run the rigorous post-launch study the feature deserved — measuring triage
-              time and missed-critical rates, not just alert counts. It&apos;s the first thing
-              I&apos;d set up on day one next time.
+              Define success metrics before launch, not after. I observed the reduction but moved
+              teams before running the structured study the feature deserved — triage time and
+              missed-critical rates, not just alert counts. First thing I&apos;d set up next time.
             </p>
           </section>
 
