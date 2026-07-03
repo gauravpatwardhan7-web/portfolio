@@ -63,6 +63,8 @@ export const projects: Project[] = [
       { value: "Nightly", label: "data refresh" },
       { value: "Live", label: "deployed on Vercel" },
     ],
+    outcome:
+      "Peaked at around 400 visitors in its launch week, and friends used it to shortlist neighborhoods when relocating to Bengaluru.",
     pmSignals: [
       "Problem-first: started from my own relocation pain, validated it's shared, then scoped to the core decision",
       "Trust as the differentiator: freshness and transparent scoring, not more features",
@@ -177,6 +179,8 @@ export const projects: Project[] = [
       { value: "Daily", label: "real usage" },
       { value: "Live", label: "active on Telegram" },
     ],
+    outcome:
+      "I use it daily to log workouts and get coaching grounded in my own training history.",
     pmSignals: [
       "Retention thinking: identified logging friction as the real churn driver and designed the whole product around it",
       "AI product judgment: guardrails computed in code, persona constraints against generic output",
