@@ -16,6 +16,7 @@ export type Project = {
   flow: FlowStage[];
   stack: { category: string; items: string }[];
   stats: { value: string; label: string }[];
+  outcome?: string;           // what happened after shipping (real facts only)
   pmSignals: string[];        // what this demonstrates about product judgment
   links: { label: string; href: string; primary?: boolean }[];
   videoId?: string;

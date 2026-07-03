@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { projects } from "@/lib/projects";
 import FlowDiagram from "@/app/components/FlowDiagram";
+import LiteYouTube from "@/app/components/LiteYouTube";
 
 export default function Home() {
   const revealRefs = useRef<HTMLElement[]>([]);
@@ -356,21 +357,10 @@ export default function Home() {
 
               {/* Right column */}
               <div className="space-y-8">
-                {/* Video embed */}
+                {/* Video embed (click to play) */}
                 {project.videoId && (
                   <div className="reveal" ref={addRevealRef}>
-                    <div
-                      className="relative w-full"
-                      style={{ paddingBottom: "56.25%" /* 16:9 */ }}
-                    >
-                      <iframe
-                        className="absolute inset-0 w-full h-full"
-                        src={`https://www.youtube.com/embed/${project.videoId}?autoplay=1&mute=1&loop=1&playlist=${project.videoId}&controls=1&rel=0&modestbranding=1`}
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen
-                        style={{ border: "none" }}
-                      />
-                    </div>
+                    <LiteYouTube id={project.videoId} title={project.title} />
                   </div>
                 )}
                 {/* Static image */}
@@ -424,6 +414,15 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
+                {project.outcome && (
+                  <p
+                    className="text-sm leading-relaxed mt-3 flex gap-2"
+                    style={{ color: "var(--muted)" }}
+                  >
+                    <span style={{ color: "var(--accent)" }} className="flex-shrink-0">→</span>
+                    <span>{project.outcome}</span>
+                  </p>
+                )}
                 </div>
 
                 {/* Architecture diagram */}
