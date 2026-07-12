@@ -78,7 +78,11 @@ export const projects: Project[] = [
         primary: true,
       },
     ],
-    image: "/whatsup-bangalore.png",
+    images: [
+      "/whatsup-bangalore-1.png",
+      "/whatsup-bangalore-2.png",
+      "/whatsup-bangalore-3.png",
+    ],
   },
   {
     id: "blr-neighborhood",
