@@ -27,6 +27,64 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "whatsup-bangalore",
+    tier: 1,
+    label: "Consumer Product · Newest",
+    title: "What's Trending Bangalore",
+    subtitle:
+      "A living map of what's actually trending in Bengaluru — upvoted by the people who went",
+    users:
+      "People in Bengaluru deciding where to go this weekend — locals bored of the same spots and newcomers with no local network to ask.",
+    problem:
+      "Discovery in a big city is broken. What's worth going to right now is scattered across Instagram stories that vanish in 24 hours, Reddit threads, and group-chat word of mouth — none of it on a map, none of it with memory. You either default to the same three places or gamble on a spot that peaked six months ago. The job to be done: see what's genuinely trending near me, right now, and trust that the signal is fresh.",
+    what:
+      "A map-first community platform where trending spots visually pulse and grow with real activity. People upvote places, drop tips, and add new spots — think Instagram discovery on a map, but with memory.",
+    features: [
+      "Map-first interface where popular spots pulse and grow based on live community activity",
+      "Upvote and comment on spots; anyone can submit a new place, gated by review moderation",
+      "A recency-weighted trending score — spots earn 'Trending' and 'Hot' status, then fade as they cool",
+      "Filter discovery by intent: food, drinks, nightlife, outdoors, art & culture, experiences, and this-weekend events",
+      "Automated ingestion from Reddit and event feeds to seed the map beyond manual submissions",
+    ],
+    flow: [
+      { items: ["Community", "Reddit", "YouTube"], sub: "signals" },
+      { items: ["Next.js ingestion"], sub: "scripts" },
+      { items: ["Supabase"], sub: "PostgreSQL + auth" },
+      { items: ["Trending score"], sub: "14-day decay" },
+      { items: ["MapLibre"], sub: "pulsing map" },
+    ],
+    stack: [
+      { category: "Frontend", items: "Next.js, React, MapLibre GL, Supercluster, Tailwind CSS" },
+      { category: "Backend", items: "Supabase (PostgreSQL, Google OAuth, moderation)" },
+      { category: "Data", items: "Reddit + YouTube ingestion, Google Gemini enrichment" },
+      { category: "Ops", items: "Vercel, admin approval queue, email newsletter" },
+    ],
+    stats: [
+      { value: "Map-first", label: "discovery, not another list" },
+      { value: "14-day", label: "decay window for trending" },
+      { value: "1.5×", label: "weight on comments vs. votes" },
+      { value: "8", label: "discovery categories" },
+    ],
+    pmSignals: [
+      "Reframed a crowded space (city discovery) around a sharp insight: the signal has to be fresh and social, not comprehensive",
+      "Designed the trending algorithm as the product — decay and thresholds decide what users trust, so they're tuned as product decisions",
+      "Cold-start thinking: seeded the map with automated Reddit/event ingestion so it isn't empty on day one",
+      "Moderation built in from the start — community submissions are a growth lever and a trust risk at once",
+    ],
+    links: [
+      {
+        label: "View repository →",
+        href: "https://github.com/gauravpatwardhan7-web/whatsup-bangalore",
+        primary: true,
+      },
+    ],
+    images: [
+      "/whatsup-bangalore-1.png",
+      "/whatsup-bangalore-2.png",
+      "/whatsup-bangalore-3.png",
+    ],
+  },
+  {
     id: "blr-neighborhood",
     tier: 1,
     label: "Consumer Product",
