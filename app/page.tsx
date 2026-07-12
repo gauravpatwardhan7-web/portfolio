@@ -131,7 +131,7 @@ export default function Home() {
         >
           Product Manager. I find underserved user problems, make the product
           calls, and ship the solution myself — because building is the fastest
-          way to test product judgment. Four products below, each starting from
+          way to test product judgment. Five products below, each starting from
           a real user problem.
         </p>
 
@@ -145,6 +145,7 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap gap-3">
             {[
+              { label: "Trending map", anchor: "whatsup-bangalore" },
               { label: "Consumer product", anchor: "blr-neighborhood" },
               { label: "Accessibility AI", anchor: "certification-coach" },
               { label: "AI coaching", anchor: "gym-coach" },
