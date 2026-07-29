@@ -17,11 +17,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://gauravs-portfolio-in.vercel.app"),
   title: "Gaurav Patwardhan — Portfolio",
   description:
-    "Portfolio of Gaurav Patwardhan. Products I've built end to end, each starting from a real user problem — plus case studies and how I work.",
+    "My portfolio. Products I've built end to end, each starting from a real user problem — plus case studies and how I work.",
   openGraph: {
     title: "Gaurav Patwardhan — Portfolio",
     description:
-      "Portfolio of Gaurav Patwardhan. Products I've built end to end, each starting from a real user problem — plus case studies and how I work.",
+      "My portfolio. Products I've built end to end, each starting from a real user problem — plus case studies and how I work.",
     type: "website",
   },
 };
@@ -52,7 +52,7 @@ export default function RootLayout({
               name: "Gaurav Patwardhan",
               jobTitle: "Product Manager",
               description:
-                "Portfolio of Gaurav Patwardhan — products built end to end, from user problem to shipped solution.",
+                "My portfolio — products built end to end, from user problem to shipped solution.",
               url: "https://gauravs-portfolio-in.vercel.app",
               image: "https://gauravs-portfolio-in.vercel.app/About-me-1.jpg",
               address: {
