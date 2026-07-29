@@ -38,8 +38,8 @@ export default function Image() {
             Gaurav Patwardhan
           </div>
           <div style={{ fontSize: 36, color: "#404040", maxWidth: 900, lineHeight: 1.4 }}>
-            Product Manager. I find underserved user problems, make the product
-            calls, and ship the solution myself.
+            Portfolio — products I&apos;ve built end to end, each starting from
+            a real user problem.
           </div>
         </div>
         <div style={{ display: "flex", gap: 16 }}>
