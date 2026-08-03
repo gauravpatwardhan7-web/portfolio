@@ -29,7 +29,7 @@ export const projects: Project[] = [
   {
     id: "whatsup-bangalore",
     tier: 1,
-    label: "Consumer Product · Newest",
+    label: "Consumer product · Newest",
     title: "What's Trending Bangalore",
     subtitle:
       "A living map of what's actually trending in Bengaluru — upvoted by the people who went",
@@ -87,7 +87,7 @@ export const projects: Project[] = [
   {
     id: "blr-neighborhood",
     tier: 1,
-    label: "Consumer Product",
+    label: "Consumer product · Live",
     title: "BLR Neighborhood Explorer",
     subtitle: "One place to decide where to live in Bengaluru — before signing a lease",
     users:
@@ -144,7 +144,7 @@ export const projects: Project[] = [
   {
     id: "certification-coach",
     tier: 1,
-    label: "AI Product · Accessibility",
+    label: "AI agents · Accessibility",
     title: "Inclusive Certification Coach",
     subtitle:
       "Certification prep that adapts to how you learn — built for employees the standard training path leaves behind",
@@ -203,7 +203,7 @@ export const projects: Project[] = [
   {
     id: "gym-coach",
     tier: 2,
-    label: "AI Product",
+    label: "AI automation · In daily use",
     title: "Fitness Progress Coach",
     subtitle: "An AI coach that knows your training history — inside the app you already use daily",
     users:
@@ -252,55 +252,5 @@ export const projects: Project[] = [
       },
     ],
     images: ["/AI-gym-coach-1.PNG", "/AI-gym-coach-2.PNG", "/AI-gym-coach-3.PNG"],
-  },
-  {
-    id: "job-hunt",
-    tier: 2,
-    label: "Automation Product",
-    title: "For Job Hunt",
-    subtitle: "Give job seekers their 2–3 hours a day back",
-    users:
-      "Job seekers in India hunting HR/talent roles across fragmented job boards — starting with one very motivated user: me.",
-    problem:
-      "Job hunting in India means manually checking Naukri, LinkedIn, Indeed, SmartRecruiters, and Workday every single day. That's 2–3 hours of repetitive scanning before a single application is written — and the cost of missing a fresh posting is real. The job to be done: see only the relevant new openings, twice a day, with zero effort.",
-    what:
-      "An automated scout that scrapes 5+ job boards, deduplicates and ranks openings against your resume, and lands a color-coded digest in your inbox twice a day.",
-    features: [
-      "Curated job digest in your inbox at 9 AM and 6 PM IST — no boards to check",
-      "Openings ranked by fit: resume keyword match blended with GPT semantic scoring",
-      "Color-coded relevance for 10-second triage; duplicates removed across a 3-day window",
-    ],
-    flow: [
-      { items: ["Naukri", "LinkedIn", "Indeed", "Workday"], sub: "job boards" },
-      { items: ["Selenium / BS4"], sub: "scraping" },
-      { items: ["Dedup + Filter"], sub: "Supabase + GPT-3.5" },
-      { items: ["Top Matches", "Other Openings"], sub: "ranked by relevance" },
-      { items: ["Email alert"], sub: "9 AM + 6 PM IST" },
-    ],
-    stack: [
-      { category: "Scraping", items: "Selenium, BeautifulSoup4, LXML" },
-      { category: "Intelligence", items: "OpenAI GPT-3.5 (semantic re-ranking)" },
-      { category: "Data", items: "Supabase PostgreSQL (dedup + retention)" },
-      { category: "Delivery", items: "GitHub Actions schedule, HTML email via Gmail" },
-    ],
-    stats: [
-      { value: "2–3 hrs", label: "saved per user per day" },
-      { value: "5+", label: "job boards covered" },
-      { value: "2×", label: "daily digest" },
-      { value: "3-day", label: "dedup window" },
-    ],
-    pmSignals: [
-      "Quantified the pain before building: 2–3 hours a day was the metric the product had to beat",
-      "Precision/recall tradeoffs treated as product decisions, not just tuning",
-      "Built for one user, abstracted for many — the classic wedge",
-    ],
-    links: [
-      {
-        label: "View repository →",
-        href: "https://github.com/gauravpatwardhan7-web/for-job-hunt",
-        primary: true,
-      },
-    ],
-    image: "/job-hunt-email.png",
   },
 ];

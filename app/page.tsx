@@ -131,7 +131,7 @@ export default function Home() {
         >
           Product Manager. I find underserved user problems, make the product
           calls, and ship the solution myself — because building is the fastest
-          way to test product judgment. Five products below, each starting from
+          way to test product judgment. Four products below, each starting from
           a real user problem.
         </p>
 
@@ -145,11 +145,10 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap gap-3">
             {[
-              { label: "Trending map", anchor: "whatsup-bangalore" },
-              { label: "Consumer product", anchor: "blr-neighborhood" },
-              { label: "Accessibility AI", anchor: "certification-coach" },
-              { label: "AI coaching", anchor: "gym-coach" },
-              { label: "Automation", anchor: "job-hunt" },
+              { label: "What's Trending Bangalore", anchor: "whatsup-bangalore" },
+              { label: "Neighborhood Explorer", anchor: "blr-neighborhood" },
+              { label: "Certification Coach", anchor: "certification-coach" },
+              { label: "Fitness Coach", anchor: "gym-coach" },
             ].map((tag) => (
               <a
                 key={tag.label}
@@ -468,6 +467,64 @@ export default function Home() {
 
       <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
+      {/* Writing */}
+      <section id="writing" className="max-w-5xl mx-auto px-4 md:px-6 py-10 md:py-14">
+        <p
+          className="font-mono text-xs uppercase tracking-widest mb-4"
+          style={{ color: "var(--accent)" }}
+        >
+          Writing
+        </p>
+        <div className="flex flex-col gap-4">
+          {[
+            {
+              title: "This could have been a prompt",
+              href: "https://gauravpatwardhan1.substack.com/p/this-could-have-been-a-prompt",
+            },
+          ].map((post) => (
+            <a
+              key={post.href}
+              href={post.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="reveal flex flex-col md:flex-row md:items-baseline gap-1.5 md:gap-4 transition-colors"
+              ref={addRevealRef}
+              style={{
+                border: "1px solid var(--border)",
+                borderLeft: "3px solid var(--accent)",
+                background: "var(--surface)",
+                padding: "12px 16px",
+                textDecoration: "none",
+                maxWidth: "fit-content",
+              }}
+              onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
+              onMouseOut={(e) => {
+                e.currentTarget.style.borderColor = "var(--border)";
+                e.currentTarget.style.borderLeftColor = "var(--accent)";
+              }}
+            >
+              <span
+                className="font-mono text-xs uppercase tracking-widest flex-shrink-0"
+                style={{ color: "var(--accent)" }}
+              >
+                Substack
+              </span>
+              <span className="text-base" style={{ color: "var(--foreground)" }}>
+                {post.title}
+              </span>
+              <span
+                className="font-mono text-xs flex-shrink-0"
+                style={{ color: "var(--accent)" }}
+              >
+                Read →
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
+
       {/* About */}
       <section className="max-w-5xl mx-auto px-4 md:px-6 py-10 md:py-14">
         <div className="flex flex-col gap-12">
@@ -481,8 +538,8 @@ export default function Home() {
             <p>
               Every product above started the same way: a user with a problem that existing tools
               ignored. Someone relocating with no trustworthy neighborhood data. A learner the
-              standard certification path was never designed for. A job seeker losing three hours a
-              day to browser tabs. I start from the user, define what success looks like, and make
+              standard certification path was never designed for. A lifter whose app had no memory
+              of last week. I start from the user, define what success looks like, and make
               the tradeoffs explicit — then I ship it.
             </p>
             <p>
