@@ -238,6 +238,42 @@ export default function Home() {
             Read →
           </span>
         </a>
+
+        {/* Featured writing */}
+        <a
+          href="https://gauravpatwardhan1.substack.com/p/this-could-have-been-a-prompt"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="reveal flex flex-col md:flex-row md:items-center gap-1.5 md:gap-4 mt-3 transition-colors"
+          ref={addRevealRef}
+          style={{
+            animationDelay: "0.6s",
+            border: "1px solid var(--border)",
+            borderLeft: "3px solid var(--accent)",
+            background: "var(--surface)",
+            padding: "8px 14px",
+            textDecoration: "none",
+            maxWidth: "fit-content",
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
+          onMouseOut={(e) => {
+            e.currentTarget.style.borderColor = "var(--border)";
+            e.currentTarget.style.borderLeftColor = "var(--accent)";
+          }}
+        >
+          <span
+            className="font-mono text-xs uppercase tracking-widest flex-shrink-0"
+            style={{ color: "var(--accent)" }}
+          >
+            Writing — Substack
+          </span>
+          <span className="text-sm" style={{ color: "var(--foreground)" }}>
+            This could have been a prompt
+          </span>
+          <span className="font-mono text-xs flex-shrink-0" style={{ color: "var(--accent)" }}>
+            Read →
+          </span>
+        </a>
       </section>
 
       <hr style={{ borderColor: "var(--border)", border: "none", borderTop: "1px solid var(--border)" }} />
@@ -466,62 +502,6 @@ export default function Home() {
       </main>
 
       <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
-
-      {/* Writing */}
-      <section id="writing" className="max-w-5xl mx-auto px-4 md:px-6 py-10 md:py-14">
-        <p
-          className="font-mono text-xs uppercase tracking-widest mb-4"
-          style={{ color: "var(--accent)" }}
-        >
-          Writing
-        </p>
-        <div className="flex flex-col gap-4">
-          {[
-            {
-              title: "This could have been a prompt",
-              href: "https://gauravpatwardhan1.substack.com/p/this-could-have-been-a-prompt",
-            },
-          ].map((post) => (
-            <a
-              key={post.href}
-              href={post.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="reveal flex flex-col md:flex-row md:items-baseline gap-1.5 md:gap-4 transition-colors"
-              ref={addRevealRef}
-              style={{
-                border: "1px solid var(--border)",
-                borderLeft: "3px solid var(--accent)",
-                background: "var(--surface)",
-                padding: "12px 16px",
-                textDecoration: "none",
-                maxWidth: "fit-content",
-              }}
-              onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
-              onMouseOut={(e) => {
-                e.currentTarget.style.borderColor = "var(--border)";
-                e.currentTarget.style.borderLeftColor = "var(--accent)";
-              }}
-            >
-              <span
-                className="font-mono text-xs uppercase tracking-widest flex-shrink-0"
-                style={{ color: "var(--accent)" }}
-              >
-                Substack
-              </span>
-              <span className="text-base" style={{ color: "var(--foreground)" }}>
-                {post.title}
-              </span>
-              <span
-                className="font-mono text-xs flex-shrink-0"
-                style={{ color: "var(--accent)" }}
-              >
-                Read →
-              </span>
-            </a>
-          ))}
-        </div>
-      </section>
 
       <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
