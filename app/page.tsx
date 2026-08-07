@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { projects, type Project } from "@/lib/projects";
-import ProjectDetail from "@/app/components/ProjectDetail";
 
 // Card thumbnail: first screenshot, else the static image, else the video still.
 const thumbFor = (p: Project) =>
@@ -11,28 +10,41 @@ const thumbFor = (p: Project) =>
 export default function Home() {
   const revealRefs = useRef<HTMLElement[]>([]);
   const railRef = useRef<HTMLDivElement>(null);
-  const detailRef = useRef<HTMLDivElement>(null);
-  const [selectedId, setSelectedId] = useState(projects[0].id);
+  const railSectionRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const selected = projects.find((p) => p.id === selectedId) ?? projects[0];
-  const activeIndex = projects.findIndex((p) => p.id === selected.id);
+  // One slide fills the rail exactly, so the active index is just how many
+  // slide-widths we've scrolled. Keeps the counter honest when swiping.
+  const handleRailScroll = () => {
+    const rail = railRef.current;
+    // clientWidth is 0 mid-resize; dividing by it yields NaN and breaks the counter.
+    if (!rail || !rail.clientWidth) return;
+    const i = Math.round(rail.scrollLeft / rail.clientWidth);
+    if (!Number.isFinite(i)) return;
+    setActiveIndex(Math.min(projects.length - 1, Math.max(0, i)));
+  };
 
-  // Bring the chosen card into view in the rail; only pull the page down to the
-  // detail when the reader asked from elsewhere (a hero chip), not on every click.
-  const selectProject = (id: string, scrollToDetail = false) => {
-    setSelectedId(id);
-    railRef.current
-      ?.querySelector(`[data-card="${id}"]`)
-      ?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-    if (scrollToDetail) {
-      detailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const goToSlide = (i: number, scrollIntoView = false) => {
+    const rail = railRef.current;
+    const clamped = Math.min(projects.length - 1, Math.max(0, i));
+    rail?.scrollTo({ left: clamped * rail.clientWidth, behavior: "smooth" });
+    setActiveIndex(clamped);
+    if (scrollIntoView) {
+      railSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
-  const scrollRail = (dir: number) => {
-    const next = projects[Math.min(projects.length - 1, Math.max(0, activeIndex + dir))];
-    if (next) selectProject(next.id);
-  };
+  // Slide offsets are computed from the rail width, so a resize leaves the
+  // scroll position between slides. Re-snap to the active one.
+  useEffect(() => {
+    const onResize = () => {
+      const rail = railRef.current;
+      if (!rail || !rail.clientWidth) return;
+      rail.scrollTo({ left: activeIndex * rail.clientWidth, behavior: "auto" });
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [activeIndex]);
 
   // Always start at top on load — disable browser scroll restoration
   useEffect(() => {
@@ -179,7 +191,12 @@ export default function Home() {
               <button
                 key={tag.label}
                 type="button"
-                onClick={() => selectProject(tag.anchor, true)}
+                onClick={() =>
+                  goToSlide(
+                    projects.findIndex((p) => p.id === tag.anchor),
+                    true
+                  )
+                }
                 className="font-mono text-xs uppercase tracking-widest px-4 py-2 border transition-all cursor-pointer"
                 style={{
                   borderColor: "var(--border)",
@@ -305,9 +322,12 @@ export default function Home() {
 
       <hr style={{ borderColor: "var(--border)", border: "none", borderTop: "1px solid var(--border)" }} />
 
-      {/* Projects — horizontal rail, detail expands in place */}
-      <main className="max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-10">
-        <div className="flex items-baseline justify-between gap-4 mb-4">
+      {/* Projects — one full-width slide per project */}
+      <main
+        ref={railSectionRef}
+        className="max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-10"
+      >
+        <div className="flex items-baseline justify-between gap-4 mb-5">
           <p
             className="font-mono text-xs uppercase tracking-widest"
             style={{ color: "var(--accent)" }}
@@ -318,181 +338,190 @@ export default function Home() {
               — {String(activeIndex + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
             </span>
           </p>
-          <div className="flex gap-2">
-            {[
-              { dir: -1, glyph: "←", label: "Previous project" },
-              { dir: 1, glyph: "→", label: "Next project" },
-            ].map((btn) => (
-              <button
-                key={btn.label}
-                type="button"
-                aria-label={btn.label}
-                onClick={() => scrollRail(btn.dir)}
-                className="font-mono text-sm transition-colors"
-                style={{
-                  border: "1px solid var(--border)",
-                  background: "var(--surface)",
-                  color: "var(--foreground)",
-                  width: "34px",
-                  height: "34px",
-                  lineHeight: 1,
-                  cursor: "pointer",
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.borderColor = "var(--accent)";
-                  e.currentTarget.style.color = "var(--accent)";
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.borderColor = "var(--border)";
-                  e.currentTarget.style.color = "var(--foreground)";
-                }}
-              >
-                {btn.glyph}
-              </button>
-            ))}
+          <div className="flex items-center gap-4">
+            {/* Slide indicators */}
+            <div className="hidden md:flex items-center gap-2">
+              {projects.map((project, i) => (
+                <button
+                  key={project.id}
+                  type="button"
+                  aria-label={`Go to ${project.title}`}
+                  aria-current={i === activeIndex}
+                  onClick={() => goToSlide(i)}
+                  style={{
+                    width: i === activeIndex ? "28px" : "10px",
+                    height: "3px",
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
+                    background: i === activeIndex ? "var(--accent)" : "var(--border)",
+                    transition: "width 0.3s ease, background 0.3s ease",
+                  }}
+                />
+              ))}
+            </div>
+            <div className="flex gap-2">
+              {[
+                { dir: -1, glyph: "←", label: "Previous project" },
+                { dir: 1, glyph: "→", label: "Next project" },
+              ].map((btn) => {
+                const disabled =
+                  btn.dir < 0 ? activeIndex === 0 : activeIndex === projects.length - 1;
+                return (
+                  <button
+                    key={btn.label}
+                    type="button"
+                    aria-label={btn.label}
+                    disabled={disabled}
+                    onClick={() => goToSlide(activeIndex + btn.dir)}
+                    className="font-mono text-sm transition-colors"
+                    style={{
+                      border: "1px solid var(--border)",
+                      background: "var(--surface)",
+                      color: disabled ? "var(--border)" : "var(--foreground)",
+                      width: "34px",
+                      height: "34px",
+                      lineHeight: 1,
+                      cursor: disabled ? "default" : "pointer",
+                    }}
+                    onMouseOver={(e) => {
+                      if (disabled) return;
+                      e.currentTarget.style.borderColor = "var(--accent)";
+                      e.currentTarget.style.color = "var(--accent)";
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.borderColor = "var(--border)";
+                      e.currentTarget.style.color = disabled
+                        ? "var(--border)"
+                        : "var(--foreground)";
+                    }}
+                  >
+                    {btn.glyph}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        {/* Card rail */}
-        <div className="rail gap-4 pb-2" ref={railRef}>
+        {/* Slides */}
+        <div className="rail" ref={railRef} onScroll={handleRailScroll}>
           {projects.map((project) => {
-            const isActive = project.id === selectedId;
             const thumb = thumbFor(project);
             return (
-              <button
+              <article
                 key={project.id}
-                type="button"
-                data-card={project.id}
-                aria-pressed={isActive}
-                onClick={() => selectProject(project.id)}
-                className="flex-shrink-0 flex flex-col text-left transition-colors"
-                style={{
-                  width: "260px",
-                  border: "1px solid",
-                  borderColor: isActive ? "var(--accent)" : "var(--border)",
-                  borderLeft: isActive ? "3px solid var(--accent)" : "1px solid var(--border)",
-                  background: "var(--surface)",
-                  cursor: "pointer",
-                  padding: 0,
-                }}
-                onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
-                onMouseOut={(e) =>
-                  (e.currentTarget.style.borderColor = isActive ? "var(--accent)" : "var(--border)")
-                }
+                data-slide={project.id}
+                style={{ flex: "0 0 100%", minWidth: 0 }}
               >
-                {thumb && (
-                  <img
-                    src={thumb}
-                    alt=""
-                    aria-hidden
-                    onError={(e) => (e.currentTarget.style.display = "none")}
-                    style={{
-                      width: "100%",
-                      aspectRatio: "4 / 3",
-                      objectFit: "cover",
-                      objectPosition: "top center",
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  />
-                )}
-                <span className="flex flex-col gap-2 p-4">
-                  <span
-                    className="font-mono text-[10px] uppercase tracking-widest"
-                    style={{ color: isActive ? "var(--accent)" : "var(--muted)" }}
-                  >
-                    {project.label}
-                  </span>
-                  <span
-                    className="text-base font-semibold tracking-tight leading-snug"
-                    style={{ color: "var(--foreground)" }}
-                  >
-                    {project.title}
-                  </span>
-                  <span className="text-xs leading-relaxed" style={{ color: "var(--muted)" }}>
-                    {project.subtitle}
-                  </span>
-                  <span className="font-mono text-xs mt-1" style={{ color: "var(--accent)" }}>
-                    {isActive ? "Showing below \u2193" : "View details \u2192"}
-                  </span>
-                </span>
-              </button>
+                <div
+                  className="flex flex-col md:flex-row gap-6 md:gap-10"
+                  style={{
+                    border: "1px solid var(--border)",
+                    borderLeft: "3px solid var(--accent)",
+                    background: "var(--surface)",
+                    padding: "24px",
+                  }}
+                >
+                  {/* Text */}
+                  <div className="md:w-1/2 flex flex-col">
+                    <span
+                      className="font-mono text-xs uppercase tracking-widest mb-4"
+                      style={{ color: "var(--accent)" }}
+                    >
+                      {project.label}
+                    </span>
+                    <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-3">
+                      {project.title}
+                    </h2>
+                    <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--muted)" }}>
+                      {project.subtitle}
+                    </p>
+
+                    {/* Two headline numbers — the rest lives on the project page */}
+                    <div className="flex flex-wrap gap-x-8 gap-y-3 mb-6">
+                      {project.stats.slice(0, 2).map((stat) => (
+                        <div key={stat.label} className="flex flex-col">
+                          <span
+                            className="text-lg font-semibold tracking-tight"
+                            style={{
+                              color: "var(--accent)",
+                              fontFamily: "var(--font-mono), monospace",
+                            }}
+                          >
+                            {stat.value}
+                          </span>
+                          <span className="text-xs" style={{ color: "var(--muted)" }}>
+                            {stat.label}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-wrap gap-4 mt-auto">
+                      <a
+                        href={`/projects/${project.id}`}
+                        className="text-sm font-mono transition-colors"
+                        style={{
+                          color: "var(--accent)",
+                          textDecoration: "underline",
+                          textUnderlineOffset: "4px",
+                        }}
+                        onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+                        onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                      >
+                        Full detail →
+                      </a>
+                      {project.links
+                        .filter((link) => link.primary)
+                        .map((link) => (
+                          <a
+                            key={link.href}
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm font-mono transition-colors"
+                            style={{
+                              color: "var(--muted)",
+                              textDecoration: "underline",
+                              textUnderlineOffset: "4px",
+                            }}
+                            onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+                            onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+                          >
+                            {link.label}
+                          </a>
+                        ))}
+                    </div>
+                  </div>
+
+                  {/* Visual */}
+                  {thumb && (
+                    <a href={`/projects/${project.id}`} className="md:w-1/2 block">
+                      <img
+                        src={thumb}
+                        alt=""
+                        aria-hidden
+                        onError={(e) => (e.currentTarget.style.display = "none")}
+                        style={{
+                          width: "100%",
+                          aspectRatio: "16 / 10",
+                          objectFit: "cover",
+                          objectPosition: "top center",
+                          border: "1px solid var(--border)",
+                          background: "var(--background)",
+                        }}
+                      />
+                    </a>
+                  )}
+                </div>
+              </article>
             );
           })}
-        </div>
-
-        {/* Detail for the selected card */}
-        <div
-          id="project-detail"
-          ref={detailRef}
-          className="pt-8 md:pt-10 mt-6"
-          style={{ borderTop: "1px solid var(--border)" }}
-        >
-          <ProjectDetail key={selected.id} project={selected} />
         </div>
       </main>
 
       <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
-
-      {/* About */}
-      <section className="max-w-5xl mx-auto px-4 md:px-6 py-10 md:py-14">
-        <div className="flex flex-col gap-12">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-widest mb-4" style={{ color: "var(--accent)" }}>
-              About
-            </p>
-            <h2 className="text-2xl font-semibold tracking-tight">How I work as a PM</h2>
-          </div>
-          <div className="md:col-span-2 space-y-4 text-base leading-relaxed" style={{ color: "var(--muted)" }}>
-            <p>
-              Every product above started the same way: a user with a problem that existing tools
-              ignored. Someone relocating with no trustworthy neighborhood data. A learner the
-              standard certification path was never designed for. A lifter whose app had no memory
-              of last week. I start from the user, define what success looks like, and make
-              the tradeoffs explicit — then I ship it.
-            </p>
-            <p>
-              I build my own specs deliberately. Shipping end-to-end is the fastest feedback loop
-              on product judgment: you find out within days whether the scoping was right, whether
-              the friction you dismissed actually kills retention, whether users trust the output.
-              A PM who has felt those consequences writes better specs and makes sharper calls.
-            </p>
-            <p>
-              I&apos;m most useful where product decisions and execution meet — teams that need
-              someone who can talk to users, define the solution, prioritize honestly, and work
-              shoulder-to-shoulder with engineering because they&apos;ve done the work themselves.
-            </p>
-            <div className="flex flex-wrap gap-6 pt-2">
-              <a
-                href="/case-studies/evec-alert-grouping"
-                className="font-mono text-sm transition-colors"
-                style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
-                onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-                onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
-              >
-                Case study: cutting alert noise ~80% at Shell →
-              </a>
-              <a
-                href="/about"
-                className="font-mono text-sm transition-colors"
-                style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
-                onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-                onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
-              >
-                Full background →
-              </a>
-              <a
-                href="mailto:gauravpatwardhan7@gmail.com"
-                className="font-mono text-sm transition-colors"
-                style={{ color: "var(--muted)", textDecoration: "underline", textUnderlineOffset: "4px" }}
-                onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-                onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
-              >
-                Get in touch →
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="border-t" style={{ borderColor: "var(--border)" }}>

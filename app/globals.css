@@ -122,8 +122,8 @@ img, iframe, video {
   scroll-snap-align: start;
 }
 
-/* Detail panel swaps in on card select — animate it as one block, since the
-   IntersectionObserver reveal only runs for elements present at mount. */
+/* Project page detail — a plain entry animation. The IntersectionObserver
+   reveal is the home page's mechanism and isn't wired up here. */
 @keyframes detailIn {
   from {
     opacity: 0;
@@ -135,8 +135,13 @@ img, iframe, video {
   }
 }
 
-.detail-panel {
-  animation: detailIn 0.35s ease both;
+.detail-panel > * {
+  animation: detailIn 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* Second block trails the first so the page resolves in sequence. */
+.detail-panel > *:nth-child(2) {
+  animation-delay: 0.08s;
 }
 
 .hover-accent {
@@ -167,7 +172,7 @@ img, iframe, video {
     scroll-behavior: auto;
     scroll-snap-type: none;
   }
-  .detail-panel {
+  .detail-panel > * {
     animation: none;
   }
   *,
