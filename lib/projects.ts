@@ -73,9 +73,13 @@ export const projects: Project[] = [
     ],
     links: [
       {
+        label: "Try the live demo →",
+        href: "https://whatsupbangalore.netlify.app/",
+        primary: true,
+      },
+      {
         label: "View repository →",
         href: "https://github.com/gauravpatwardhan7-web/whatsup-bangalore",
-        primary: true,
       },
     ],
     images: [

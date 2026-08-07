@@ -103,6 +103,42 @@ img, iframe, video {
   transform: translateY(0);
 }
 
+/* Project rail: horizontal snap scrolling, scrollbar hidden (arrows + swipe
+   are the affordance). Snap is disabled under reduce-motion below. */
+.rail {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+.rail > * {
+  scroll-snap-align: start;
+}
+
+/* Detail panel swaps in on card select — animate it as one block, since the
+   IntersectionObserver reveal only runs for elements present at mount. */
+@keyframes detailIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.detail-panel {
+  animation: detailIn 0.35s ease both;
+}
+
 .hover-accent {
   transition: color 0.15s ease;
 }
@@ -126,6 +162,13 @@ img, iframe, video {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .rail {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+  .detail-panel {
+    animation: none;
   }
   *,
   *::before,
