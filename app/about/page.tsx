@@ -2,59 +2,37 @@
 
 import { useState } from "react";
 
+// Three lines of plain text, not a wall of chips — the long taxonomy read as
+// boasting and pushed the career section off the screen.
 const skills = [
   {
     label: "Product",
     items: [
-      "Product Discovery",
-      "User Research & Interviews",
-      "PRD & Spec Writing",
-      "Roadmap Ownership",
-      "Prioritization (RICE, MoSCoW)",
-      "Jobs-to-be-Done",
-      "MVP Scoping",
-      "Backlog & Sprint Planning",
-      "Product Analytics",
-      "Go-to-Market",
-    ],
-  },
-  {
-    label: "Strategy",
-    items: [
-      "Product Strategy",
-      "Business Case & ROI",
-      "Opportunity Sizing",
-      "Competitive Analysis",
-      "Build vs. Buy",
-      "Vendor Evaluation",
-      "OKRs & Success Metrics",
-      "Stakeholder Management",
-    ],
-  },
-  {
-    label: "Business analysis",
-    items: [
-      "Requirements Elicitation",
-      "User Stories & Acceptance Criteria",
-      "Process Mapping",
-      "Gap Analysis",
-      "Root Cause Analysis",
-      "Data Analysis & SQL",
-      "Dashboards & Reporting",
-      "UAT & Release Validation",
+      "discovery",
+      "user research",
+      "PRDs & user stories",
+      "roadmap ownership",
+      "prioritization (RICE, MoSCoW)",
+      "MVP scoping",
+      "product analytics",
+      "go-to-market",
+      "business case & ROI",
+      "competitive analysis",
+      "build vs. buy",
+      "OKRs",
+      "stakeholder management",
     ],
   },
   {
     label: "AI",
     items: [
-      "AI Agent Design",
-      "Multi-Agent Orchestration",
-      "Prompt Engineering",
-      "RAG & Retrieval Grounding",
-      "Model Context Protocol (MCP)",
-      "LLM Evaluation & Guardrails",
-      "Human-in-the-Loop Design",
-      "AI Product Discovery",
+      "agent design",
+      "multi-agent orchestration",
+      "prompt engineering",
+      "RAG",
+      "MCP",
+      "LLM evaluation & guardrails",
+      "human-in-the-loop design",
     ],
   },
   {
@@ -266,26 +244,18 @@ export default function About() {
           <p className="font-mono text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>
             Skills
           </p>
-          <div className="space-y-2.5">
+          <div className="space-y-2">
             {skills.map((group) => (
-              <div key={group.label} className="flex flex-col md:flex-row gap-2 md:gap-4">
+              <div key={group.label} className="flex flex-col md:flex-row gap-0.5 md:gap-4">
                 <span
-                  className="font-mono text-xs uppercase tracking-widest md:w-32 flex-shrink-0 md:pt-1.5"
+                  className="font-mono text-xs uppercase tracking-widest md:w-24 flex-shrink-0 md:pt-0.5"
                   style={{ color: "var(--accent)" }}
                 >
                   {group.label}
                 </span>
-                <div className="flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <span
-                      key={item}
-                      className="font-mono text-xs px-3 py-1 border whitespace-nowrap"
-                      style={{ borderColor: "var(--border)", color: "var(--foreground)", background: "var(--surface)" }}
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                  {group.items.join(", ")}
+                </p>
               </div>
             ))}
           </div>

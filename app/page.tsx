@@ -50,12 +50,41 @@ export default function Home() {
     return () => window.removeEventListener("resize", onResize);
   }, [activeIndex]);
 
-  // Always start at top on load — disable browser scroll restoration
+  // Disable browser scroll restoration; the effect below owns where we land.
   useEffect(() => {
     if (history.scrollRestoration) {
       history.scrollRestoration = "manual";
     }
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
+
+  // Always start at top on load — except when coming back from a project page,
+  // which asks for its own slide via ?p=<id> so you land where you left off
+  // instead of at the hero.
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("p");
+    const index = requested ? projects.findIndex((p) => p.id === requested) : -1;
+    if (index < 0) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      return;
+    }
+    const jump = () => {
+      const rail = railRef.current;
+      if (rail?.clientWidth) {
+        rail.scrollLeft = index * rail.clientWidth;
+      }
+      railSectionRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
+    };
+    jump();
+    // The rest runs a tick later, once layout has settled — scroll snap can
+    // undo the first set. A timer, not rAF, so it still lands in a background
+    // tab. The param is only stripped at the end: clearing it earlier makes
+    // StrictMode's second pass see no param and scroll back to the top.
+    const timer = setTimeout(() => {
+      setActiveIndex(index);
+      jump();
+      window.history.replaceState(null, "", window.location.pathname);
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
   const [emailCopied, setEmailCopied] = useState(false);
 
@@ -98,6 +127,41 @@ export default function Home() {
     if (el && !revealRefs.current.includes(el)) {
       revealRefs.current.push(el);
     }
+  };
+
+  // A plain function, not a component — inlining it keeps the buttons from
+  // remounting (and losing focus) on every render.
+  const navArrow = (dir: -1 | 1, className: string, size: number) => {
+    const disabled = dir < 0 ? activeIndex === 0 : activeIndex === projects.length - 1;
+    return (
+      <button
+        type="button"
+        aria-label={dir < 0 ? "Previous project" : "Next project"}
+        disabled={disabled}
+        onClick={() => goToSlide(activeIndex + dir)}
+        className={`font-mono transition-colors ${className}`}
+        style={{
+          border: "1px solid var(--border)",
+          background: "var(--surface)",
+          color: disabled ? "var(--border)" : "var(--foreground)",
+          width: `${size}px`,
+          height: `${size}px`,
+          lineHeight: 1,
+          cursor: disabled ? "default" : "pointer",
+        }}
+        onMouseOver={(e) => {
+          if (disabled) return;
+          e.currentTarget.style.borderColor = "var(--accent)";
+          e.currentTarget.style.color = "var(--accent)";
+        }}
+        onMouseOut={(e) => {
+          e.currentTarget.style.borderColor = "var(--border)";
+          e.currentTarget.style.color = disabled ? "var(--border)" : "var(--foreground)";
+        }}
+      >
+        {dir < 0 ? "←" : "→"}
+      </button>
+    );
   };
 
   return (
@@ -171,10 +235,8 @@ export default function Home() {
           ref={addRevealRef}
           style={{ color: "var(--muted)", animationDelay: "0.2s" }}
         >
-          Product Manager. I find underserved user problems, make the product
-          calls, and ship the solution myself — because building is the fastest
-          way to test product judgment. Four products below, each starting from
-          a real user problem.
+          I find underserved user problems, make the product calls, and ship the
+          solution myself. Four products below, each starting from a real one.
         </p>
 
         <div className="mt-7 reveal" ref={addRevealRef} style={{ animationDelay: "0.3s" }}>
@@ -249,7 +311,7 @@ export default function Home() {
             className="font-mono text-sm transition-colors"
             style={{ color: "var(--muted)", textDecoration: "underline", textUnderlineOffset: "4px" }}
           >
-            Meet the PM behind these products →
+            How I actually work →
           </span>
         </a>
 
@@ -364,53 +426,28 @@ export default function Home() {
                 />
               ))}
             </div>
-            <div className="flex gap-2">
-              {[
-                { dir: -1, glyph: "←", label: "Previous project" },
-                { dir: 1, glyph: "→", label: "Next project" },
-              ].map((btn) => {
-                const disabled =
-                  btn.dir < 0 ? activeIndex === 0 : activeIndex === projects.length - 1;
-                return (
-                  <button
-                    key={btn.label}
-                    type="button"
-                    aria-label={btn.label}
-                    disabled={disabled}
-                    onClick={() => goToSlide(activeIndex + btn.dir)}
-                    className="font-mono text-sm transition-colors"
-                    style={{
-                      border: "1px solid var(--border)",
-                      background: "var(--surface)",
-                      color: disabled ? "var(--border)" : "var(--foreground)",
-                      width: "34px",
-                      height: "34px",
-                      lineHeight: 1,
-                      cursor: disabled ? "default" : "pointer",
-                    }}
-                    onMouseOver={(e) => {
-                      if (disabled) return;
-                      e.currentTarget.style.borderColor = "var(--accent)";
-                      e.currentTarget.style.color = "var(--accent)";
-                    }}
-                    onMouseOut={(e) => {
-                      e.currentTarget.style.borderColor = "var(--border)";
-                      e.currentTarget.style.color = disabled
-                        ? "var(--border)"
-                        : "var(--foreground)";
-                    }}
-                  >
-                    {btn.glyph}
-                  </button>
-                );
-              })}
+            {/* Desktop gets the side arrows below; keep a pair up here for mobile. */}
+            <div className="flex gap-2 md:hidden">
+              {navArrow(-1, "text-sm", 40)}
+              {navArrow(1, "text-sm", 40)}
             </div>
           </div>
         </div>
 
-        {/* Slides */}
-        <div className="rail" ref={railRef} onScroll={handleRailScroll}>
-          {projects.map((project) => {
+        {/* Slides — arrows straddle the card edges so they're always in reach */}
+        <div className="relative">
+          {navArrow(
+            -1,
+            "hidden md:flex items-center justify-center absolute left-0 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-base rounded-full shadow-sm",
+            48
+          )}
+          {navArrow(
+            1,
+            "hidden md:flex items-center justify-center absolute right-0 top-1/2 z-10 translate-x-1/2 -translate-y-1/2 text-base rounded-full shadow-sm",
+            48
+          )}
+          <div className="rail" ref={railRef} onScroll={handleRailScroll}>
+            {projects.map((project) => {
             const thumb = thumbFor(project);
             return (
               <article
@@ -419,39 +456,39 @@ export default function Home() {
                 style={{ flex: "0 0 100%", minWidth: 0 }}
               >
                 <div
-                  className="flex flex-col md:flex-row gap-8 md:gap-14 md:items-stretch"
+                  className="flex flex-col md:flex-row gap-6 md:gap-10 md:items-stretch"
                   style={{
                     border: "1px solid var(--border)",
                     borderLeft: "4px solid var(--accent)",
                     background: "var(--surface)",
-                    padding: "32px",
+                    padding: "24px",
                     minHeight: "clamp(420px, 62vh, 640px)",
                   }}
                 >
-                  {/* Text */}
-                  <div className="md:w-1/2 flex flex-col justify-center">
+                  {/* Text — deliberately the smaller half; the cover carries the slide */}
+                  <div className="md:w-[38%] flex flex-col justify-center">
                     <span
-                      className="font-mono text-xs uppercase tracking-widest mb-5"
+                      className="font-mono text-[11px] uppercase tracking-widest mb-3"
                       style={{ color: "var(--accent)" }}
                     >
                       {project.label}
                     </span>
-                    <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mb-4 leading-tight">
+                    <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-3 leading-tight">
                       {project.title}
                     </h2>
                     <p
-                      className="text-base md:text-lg leading-relaxed mb-8"
+                      className="text-sm md:text-base leading-relaxed mb-6"
                       style={{ color: "var(--muted)" }}
                     >
                       {project.subtitle}
                     </p>
 
                     {/* Two headline numbers — the rest lives on the project page */}
-                    <div className="flex flex-wrap gap-x-12 gap-y-4 mb-10">
+                    <div className="flex flex-wrap gap-x-8 gap-y-3 mb-6">
                       {project.stats.slice(0, 2).map((stat) => (
                         <div key={stat.label} className="flex flex-col">
                           <span
-                            className="text-2xl md:text-3xl font-semibold tracking-tight"
+                            className="text-xl md:text-2xl font-semibold tracking-tight"
                             style={{
                               color: "var(--accent)",
                               fontFamily: "var(--font-mono), monospace",
@@ -459,17 +496,17 @@ export default function Home() {
                           >
                             {stat.value}
                           </span>
-                          <span className="text-sm" style={{ color: "var(--muted)" }}>
+                          <span className="text-xs" style={{ color: "var(--muted)" }}>
                             {stat.label}
                           </span>
                         </div>
                       ))}
                     </div>
 
-                    <div className="flex flex-wrap gap-6">
+                    <div className="flex flex-wrap gap-5">
                       <a
                         href={`/projects/${project.id}`}
-                        className="text-base font-mono transition-colors"
+                        className="text-sm font-mono transition-colors"
                         style={{
                           color: "var(--accent)",
                           textDecoration: "underline",
@@ -488,7 +525,7 @@ export default function Home() {
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-base font-mono transition-colors"
+                            className="text-sm font-mono transition-colors"
                             style={{
                               color: "var(--muted)",
                               textDecoration: "underline",
@@ -505,19 +542,22 @@ export default function Home() {
 
                   {/* Visual */}
                   {thumb && (
-                    <a href={`/projects/${project.id}`} className="md:w-1/2 flex items-center">
+                    <a href={`/projects/${project.id}`} className="md:w-[62%] relative flex">
                       <img
                         src={thumb}
                         alt=""
                         aria-hidden
                         onError={(e) => (e.currentTarget.style.display = "none")}
+                        // Absolute on desktop so the cover fills the slide height
+                        // without a portrait screenshot stretching the row to its
+                        // own natural aspect; a fixed height does the same on mobile.
+                        className="w-full h-[clamp(220px,38vh,320px)] md:absolute md:inset-0 md:h-full"
                         style={{
-                          width: "100%",
-                          // Fixed height + cover, so a portrait screenshot can't
-                          // stretch the slide to its own natural aspect.
-                          height: "clamp(240px, 44vh, 460px)",
                           objectFit: "cover",
-                          objectPosition: "top center",
+                          // Left, not centre: these covers put their product UI
+                          // (side panels, sidebars) against the left edge, and
+                          // centring crops it off.
+                          objectPosition: "top left",
                           border: "1px solid var(--border)",
                           background: "var(--background)",
                         }}
@@ -527,7 +567,8 @@ export default function Home() {
                 </div>
               </article>
             );
-          })}
+            })}
+          </div>
         </div>
       </main>
 
@@ -536,15 +577,6 @@ export default function Home() {
       {/* Closing links */}
       <section className="max-w-5xl mx-auto px-4 md:px-6 py-10 md:py-14">
         <div className="flex flex-wrap gap-6">
-          <a
-            href="/case-studies/evec-alert-grouping"
-            className="font-mono text-sm transition-colors"
-            style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
-          >
-            Case study: cutting alert noise ~80% at Shell →
-          </a>
           <a
             href="/about"
             className="font-mono text-sm transition-colors"

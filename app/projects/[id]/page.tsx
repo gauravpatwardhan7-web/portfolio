@@ -55,12 +55,20 @@ export default async function ProjectPage({
         }}
       >
         <div className="max-w-5xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between gap-4">
+          {/* Bordered and accent-coloured — the muted text link was too easy to miss */}
           <Link
-            href="/"
-            className="text-sm hover-accent"
-            style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}
+            href={`/?p=${project.id}`}
+            className="text-sm hover-accent inline-flex items-center gap-2"
+            style={{
+              color: "var(--accent)",
+              fontFamily: "var(--font-mono)",
+              border: "1px solid var(--border)",
+              background: "var(--surface)",
+              padding: "8px 14px",
+              textDecoration: "none",
+            }}
           >
-            ← Work
+            ← All work
           </Link>
           <span
             className="font-mono text-xs uppercase tracking-widest"
@@ -110,6 +118,24 @@ export default async function ProjectPage({
                 </span>
               </a>
             ))}
+        </div>
+
+        {/* Second exit at the end of the page, so getting back never needs a scroll up */}
+        <div className="mt-6">
+          <Link
+            href={`/?p=${project.id}`}
+            className="inline-flex items-center gap-2 text-sm hover-accent"
+            style={{
+              color: "var(--accent)",
+              fontFamily: "var(--font-mono)",
+              border: "1px solid var(--border)",
+              background: "var(--surface)",
+              padding: "10px 16px",
+              textDecoration: "none",
+            }}
+          >
+            ← Back to all work
+          </Link>
         </div>
       </nav>
     </div>
