@@ -451,16 +451,25 @@ export default function Home() {
                 />
               ))}
             </div>
-            {/* Desktop gets the side arrows below; keep a pair up here for mobile. */}
-            <div className="flex gap-2 md:hidden">
-              {navArrow(-1, "text-sm", 40)}
-              {navArrow(1, "text-sm", 40)}
-            </div>
           </div>
         </div>
 
-        {/* Slides — arrows straddle the card edges so they're always in reach */}
+        {/* Slides — arrows straddle the card edges so they're always in reach.
+            Mobile gets the same floating, card-straddling arrows as desktop,
+            just smaller (32px, not 48px): the page margin at this width is
+            16px, exactly half the arrow's width, so it sits flush with the
+            screen edge instead of clipping off it. */}
         <div className="relative">
+          {navArrow(
+            -1,
+            "flex md:hidden items-center justify-center absolute left-0 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-sm rounded-full shadow-sm",
+            32
+          )}
+          {navArrow(
+            1,
+            "flex md:hidden items-center justify-center absolute right-0 top-1/2 z-10 translate-x-1/2 -translate-y-1/2 text-sm rounded-full shadow-sm",
+            32
+          )}
           {navArrow(
             -1,
             "hidden md:flex items-center justify-center absolute left-0 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-base rounded-full shadow-sm",
