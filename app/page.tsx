@@ -307,7 +307,7 @@ export default function Home() {
             followed by two cards. */}
         <a
           href="/about"
-          className="reveal w-full flex items-center gap-2.5 mt-6 transition-colors"
+          className="reveal inline-flex w-fit items-center gap-2.5 mt-6 transition-colors"
           ref={addRevealRef}
           style={{
             animationDelay: "0.4s",
