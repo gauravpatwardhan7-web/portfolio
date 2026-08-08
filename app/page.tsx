@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { projects, type Project } from "@/lib/projects";
-import WavePattern from "@/app/components/WavePattern";
 
 // Card thumbnail: the dedicated cover, else first screenshot, else the static
 // image, else the video still.
@@ -172,8 +171,19 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ background: "var(--background)", color: "var(--foreground)" }}>
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 border-b" style={{ background: "var(--background)", borderColor: "var(--border)" }}>
-        <div className="max-w-5xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b overflow-hidden" style={{ background: "var(--background)", borderColor: "var(--border)" }}>
+        {/* Same wave field as the page footer, so the banner is bookended */}
+        <div
+          className="absolute inset-0 pointer-events-none select-none"
+          style={{
+            backgroundImage: "url(/wave-pattern.jpg)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.16,
+          }}
+          aria-hidden
+        />
+        <div className="relative max-w-5xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
           <nav className="flex items-center gap-1 ml-auto">
             {[
               { label: "About", href: "/about" },
@@ -316,11 +326,44 @@ export default function Home() {
             className="font-mono text-sm transition-colors"
             style={{ color: "var(--muted)", textDecoration: "underline", textUnderlineOffset: "4px" }}
           >
-            How I actually work →
+            About me →
           </span>
         </a>
 
         <div className="flex flex-col md:flex-row gap-3 mt-6">
+        {/* Featured case study */}
+        <a
+          href="/case-studies/evec-alert-grouping"
+          className="reveal w-full md:flex-1 md:min-w-0 flex flex-col md:flex-row md:items-center gap-1.5 md:gap-3 transition-colors"
+          ref={addRevealRef}
+          style={{
+            animationDelay: "0.5s",
+            border: "1px solid var(--border)",
+            borderLeft: "3px solid var(--accent)",
+            background: "var(--surface)",
+            padding: "7px 12px",
+            textDecoration: "none",
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
+          onMouseOut={(e) => {
+            e.currentTarget.style.borderColor = "var(--border)";
+            e.currentTarget.style.borderLeftColor = "var(--accent)";
+          }}
+        >
+          <span
+            className="font-mono text-[11px] uppercase tracking-widest flex-shrink-0"
+            style={{ color: "var(--accent)" }}
+          >
+            Case study — Shell
+          </span>
+          <span className="text-sm" style={{ color: "var(--foreground)" }}>
+            How I cut alert noise by ~80% for EV charging operators
+          </span>
+          <span className="font-mono text-xs flex-shrink-0" style={{ color: "var(--accent)" }}>
+            Read →
+          </span>
+        </a>
+
         {/* Featured writing */}
         <a
           href="https://gauravpatwardhan1.substack.com/p/this-could-have-been-a-prompt"
@@ -554,11 +597,14 @@ export default function Home() {
       <div className="relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none select-none"
-          style={{ color: "var(--foreground)", opacity: 0.09 }}
+          style={{
+            backgroundImage: "url(/wave-pattern.jpg)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.16,
+          }}
           aria-hidden
-        >
-          <WavePattern className="w-full h-full" height={160} />
-        </div>
+        />
 
       {/* Closing links */}
       <section className="relative max-w-5xl mx-auto px-4 md:px-6 py-7 md:py-9">

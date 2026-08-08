@@ -34,15 +34,34 @@ export default function EvecCaseStudy() {
           zIndex: 50,
           background: "var(--background)",
           borderBottom: "1px solid var(--border)",
+          overflow: "hidden",
         }}
       >
-        <div className="max-w-3xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+        <div
+          className="absolute inset-0 pointer-events-none select-none"
+          style={{
+            backgroundImage: "url(/wave-pattern.jpg)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.16,
+          }}
+          aria-hidden
+        />
+        <div className="relative max-w-3xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+          {/* Bordered and accent-coloured, matching the project pages */}
           <a
             href="/"
-            className="text-sm hover-accent"
-            style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}
+            className="text-sm hover-accent inline-flex items-center gap-2"
+            style={{
+              color: "var(--accent)",
+              fontFamily: "var(--font-mono)",
+              border: "1px solid var(--border)",
+              background: "var(--surface)",
+              padding: "8px 14px",
+              textDecoration: "none",
+            }}
           >
-            ← Work
+            ← All work
           </a>
           <nav className="flex items-center gap-1">
             {[

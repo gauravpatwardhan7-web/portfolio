@@ -44,6 +44,7 @@ export default async function ProjectPage({
     <div style={{ background: "var(--background)", color: "var(--foreground)", minHeight: "100vh" }}>
       {/* Header */}
       <header
+        className="overflow-hidden"
         style={{
           position: "fixed",
           top: 0,
@@ -54,7 +55,17 @@ export default async function ProjectPage({
           borderBottom: "1px solid var(--border)",
         }}
       >
-        <div className="max-w-5xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between gap-4">
+        <div
+          className="absolute inset-0 pointer-events-none select-none"
+          style={{
+            backgroundImage: "url(/wave-pattern.jpg)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.16,
+          }}
+          aria-hidden
+        />
+        <div className="relative max-w-5xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between gap-4">
           {/* Bordered and accent-coloured — the muted text link was too easy to miss */}
           <Link
             href={`/?p=${project.id}#projects`}

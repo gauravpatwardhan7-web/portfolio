@@ -146,16 +146,35 @@ export default function About() {
     <div style={{ background: "var(--background)", color: "var(--foreground)", minHeight: "100vh" }}>
 
       {/* Header */}
-      <header style={{ position: "fixed", top: "0", left: "0", right: "0", zIndex: "50", background: "var(--background)", borderBottom: "1px solid var(--border)" }}>
-        <div className="max-w-5xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+      <header className="overflow-hidden" style={{ position: "fixed", top: "0", left: "0", right: "0", zIndex: "50", background: "var(--background)", borderBottom: "1px solid var(--border)" }}>
+        <div
+          className="absolute inset-0 pointer-events-none select-none"
+          style={{
+            backgroundImage: "url(/wave-pattern.jpg)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.16,
+          }}
+          aria-hidden
+        />
+        <div className="relative max-w-5xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+          {/* Bordered and accent-coloured, matching the project pages — the
+              muted text link was too easy to miss */}
           <a
             href="/"
-            className="text-sm transition-colors px-0 py-2"
-            style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+            className="text-sm transition-colors inline-flex items-center gap-2"
+            style={{
+              color: "var(--accent)",
+              fontFamily: "var(--font-mono)",
+              border: "1px solid var(--border)",
+              background: "var(--surface)",
+              padding: "8px 14px",
+              textDecoration: "none",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
+            onMouseOut={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
           >
-            ← Work
+            ← All work
           </a>
           <nav className="flex items-center gap-1">
             {[
