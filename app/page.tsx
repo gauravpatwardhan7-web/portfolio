@@ -606,37 +606,28 @@ export default function Home() {
           aria-hidden
         />
 
-      {/* Closing links */}
-      <section className="relative max-w-6xl mx-auto px-4 md:px-6 py-7 md:py-9">
-        <div className="flex flex-wrap gap-6">
-          <a
-            href="/about"
-            className="font-mono text-sm transition-colors"
-            style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
-          >
-            Full background →
-          </a>
-          <a
-            href="mailto:gauravpatwardhan7@gmail.com"
-            className="font-mono text-sm transition-colors"
-            style={{ color: "var(--muted)", textDecoration: "underline", textUnderlineOffset: "4px" }}
-            onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
-          >
-            Get in touch →
-          </a>
-        </div>
-      </section>
-
-      {/* Footer */}
+      {/* Footer — closing links and the copyright/social row used to be two
+          separate sections (each with its own padding, plus a border between
+          them); that was most of the dead space at the tail of the page.
+          One row, one set of padding — "Get in touch" is gone too, since the
+          Email link two items to the right went to the same mailto. */}
       <footer className="relative border-t" style={{ borderColor: "var(--border)" }}>
-        <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 flex flex-col md:flex-row justify-between gap-4">
-          <span className="font-mono text-xs" style={{ color: "var(--muted)" }}>
-            Gaurav Patwardhan · {new Date().getFullYear()}
-          </span>
-          <div className="flex gap-6">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <span className="font-mono text-xs" style={{ color: "var(--muted)" }}>
+              Gaurav Patwardhan · {new Date().getFullYear()}
+            </span>
+            <a
+              href="/about"
+              className="font-mono text-xs transition-colors"
+              style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+              onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
+            >
+              Full background →
+            </a>
+          </div>
+          <div className="flex flex-wrap gap-6">
             <a
               href="https://github.com/gauravpatwardhan7-web"
               target="_blank"
