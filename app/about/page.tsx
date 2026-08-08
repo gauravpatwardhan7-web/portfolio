@@ -6,30 +6,59 @@ const skills = [
   {
     label: "Product",
     items: [
-      "Product Strategy",
-      "Roadmapping",
       "Product Discovery",
-      "PRD Writing",
-      "Sprint Planning",
-      "Stakeholder Management",
-      "JTBD",
-      "RICE Prioritization",
+      "User Research & Interviews",
+      "PRD & Spec Writing",
+      "Roadmap Ownership",
+      "Prioritization (RICE, MoSCoW)",
+      "Jobs-to-be-Done",
+      "MVP Scoping",
+      "Backlog & Sprint Planning",
+      "Product Analytics",
       "Go-to-Market",
+    ],
+  },
+  {
+    label: "Strategy",
+    items: [
+      "Product Strategy",
+      "Business Case & ROI",
+      "Opportunity Sizing",
+      "Competitive Analysis",
+      "Build vs. Buy",
+      "Vendor Evaluation",
+      "OKRs & Success Metrics",
+      "Stakeholder Management",
+    ],
+  },
+  {
+    label: "Business analysis",
+    items: [
+      "Requirements Elicitation",
+      "User Stories & Acceptance Criteria",
+      "Process Mapping",
+      "Gap Analysis",
+      "Root Cause Analysis",
+      "Data Analysis & SQL",
+      "Dashboards & Reporting",
+      "UAT & Release Validation",
     ],
   },
   {
     label: "AI",
     items: [
-      "AI Agents",
-      "RAG",
-      "Model Evaluation",
-      "MCP",
+      "AI Agent Design",
+      "Multi-Agent Orchestration",
       "Prompt Engineering",
-      "Claude Code",
+      "RAG & Retrieval Grounding",
+      "Model Context Protocol (MCP)",
+      "LLM Evaluation & Guardrails",
+      "Human-in-the-Loop Design",
+      "AI Product Discovery",
     ],
   },
   {
-    label: "Technical",
+    label: "Tools",
     items: [
       "Python",
       "SQL",
@@ -37,7 +66,7 @@ const skills = [
       "Power BI",
       "Databricks",
       "Figma",
-      "JIRA · ADO",
+      "JIRA · Azure DevOps",
     ],
   },
 ];
@@ -241,7 +270,7 @@ export default function About() {
             {skills.map((group) => (
               <div key={group.label} className="flex flex-col md:flex-row gap-2 md:gap-4">
                 <span
-                  className="font-mono text-xs uppercase tracking-widest md:w-24 flex-shrink-0 md:pt-1.5"
+                  className="font-mono text-xs uppercase tracking-widest md:w-32 flex-shrink-0 md:pt-1.5"
                   style={{ color: "var(--accent)" }}
                 >
                   {group.label}
