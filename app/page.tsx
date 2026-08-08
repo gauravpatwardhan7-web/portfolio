@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { projects, type Project } from "@/lib/projects";
+import WavePattern from "@/app/components/WavePattern";
 
 // Card thumbnail: the dedicated cover, else first screenshot, else the static
 // image, else the video still.
@@ -365,7 +366,7 @@ export default function Home() {
       <main
         id="projects"
         ref={railSectionRef}
-        className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14 scroll-mt-[69px]"
+        className="max-w-7xl mx-auto px-4 md:px-8 pt-8 pb-8 md:pt-10 md:pb-10 scroll-mt-[69px]"
       >
         <div className="flex items-baseline justify-between gap-4 mb-5">
           <p
@@ -548,8 +549,19 @@ export default function Home() {
 
       <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
+      {/* The tail of the page was mostly empty; the wave field fills it without
+          adding height, sitting behind the closing links and the footer. */}
+      <div className="relative overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none select-none"
+          style={{ color: "var(--foreground)", opacity: 0.09 }}
+          aria-hidden
+        >
+          <WavePattern className="w-full h-full" height={160} />
+        </div>
+
       {/* Closing links */}
-      <section className="max-w-5xl mx-auto px-4 md:px-6 py-10 md:py-14">
+      <section className="relative max-w-5xl mx-auto px-4 md:px-6 py-7 md:py-9">
         <div className="flex flex-wrap gap-6">
           <a
             href="/about"
@@ -573,8 +585,8 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t" style={{ borderColor: "var(--border)" }}>
-        <div className="max-w-5xl mx-auto px-4 md:px-6 py-8 flex flex-col md:flex-row justify-between gap-4">
+      <footer className="relative border-t" style={{ borderColor: "var(--border)" }}>
+        <div className="max-w-5xl mx-auto px-4 md:px-6 py-6 flex flex-col md:flex-row justify-between gap-4">
           <span className="font-mono text-xs" style={{ color: "var(--muted)" }}>
             Gaurav Patwardhan · {new Date().getFullYear()}
           </span>
@@ -613,6 +625,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      </div>
     </div>
   );
 }
