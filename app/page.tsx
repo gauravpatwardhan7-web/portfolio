@@ -176,8 +176,9 @@ export default function Home() {
         <div
           className="absolute inset-0 pointer-events-none select-none"
           style={{
-            backgroundImage: "url(/wave-pattern.jpg)",
-            backgroundSize: "cover",
+            backgroundImage: "url(/wave-pattern-tile.jpg)",
+            backgroundRepeat: "repeat-x",
+            backgroundSize: "auto 240px",
             backgroundPosition: "center",
             opacity: 0.16,
           }}
@@ -480,13 +481,23 @@ export default function Home() {
                 style={{ flex: "0 0 100%", minWidth: 0 }}
               >
                 <div
-                  className="flex flex-col md:flex-row gap-6 md:gap-10 md:items-stretch"
+                  // Fixed height on mobile (not min-height) so every card matches
+                  // regardless of subtitle length — min-height alone let the
+                  // shortest-copy project shrink while the longest stretched the
+                  // card taller, so swiping between them visibly resized the row.
+                  // Desktop keeps the old min-height/clamp: the image is absolutely
+                  // positioned there, so it was never actually affected.
+                  // justify-center: the fixed mobile height leaves slack below
+                  // shorter-copy projects — centered, that slack splits evenly
+                  // above and below instead of collecting as dead space at the
+                  // bottom. md:justify-start restores the default for the row
+                  // layout, where the axis flips to horizontal.
+                  className="flex flex-col md:flex-row gap-6 md:gap-10 justify-center md:justify-start md:items-stretch h-[840px] md:h-auto md:min-h-[clamp(420px,62vh,640px)]"
                   style={{
                     border: "1px solid var(--border)",
                     borderLeft: "4px solid var(--accent)",
                     background: "var(--surface)",
                     padding: "24px",
-                    minHeight: "clamp(420px, 62vh, 640px)",
                   }}
                 >
                   {/* Text — deliberately the smaller half; the cover carries the slide */}
@@ -604,8 +615,9 @@ export default function Home() {
         <div
           className="absolute inset-0 pointer-events-none select-none"
           style={{
-            backgroundImage: "url(/wave-pattern.jpg)",
-            backgroundSize: "cover",
+            backgroundImage: "url(/wave-pattern-tile.jpg)",
+            backgroundRepeat: "repeat-x",
+            backgroundSize: "auto 240px",
             backgroundPosition: "center",
             opacity: 0.16,
           }}

@@ -126,6 +126,18 @@ img, iframe, video {
   scroll-snap-stop: always;
 }
 
+/* CSS scroll-behavior: smooth is meant for the JS-triggered scrollTo() calls
+   (arrow/dot navigation) — on a touch device it fights the browser's native
+   momentum-and-snap calculation, so a swipe can drift past the slide instead
+   of settling on it. Coarse pointer = touch; leave native touch scrolling to
+   the browser and keep "smooth" only for the pointer devices that trigger it
+   programmatically. */
+@media (pointer: coarse) {
+  .rail {
+    scroll-behavior: auto;
+  }
+}
+
 /* Project page detail — a plain entry animation. The IntersectionObserver
    reveal is the home page's mechanism and isn't wired up here. */
 @keyframes detailIn {

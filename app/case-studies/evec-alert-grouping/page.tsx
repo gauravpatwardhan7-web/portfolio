@@ -40,8 +40,9 @@ export default function EvecCaseStudy() {
         <div
           className="absolute inset-0 pointer-events-none select-none"
           style={{
-            backgroundImage: "url(/wave-pattern.jpg)",
-            backgroundSize: "cover",
+            backgroundImage: "url(/wave-pattern-tile.jpg)",
+            backgroundRepeat: "repeat-x",
+            backgroundSize: "auto 240px",
             backgroundPosition: "center",
             opacity: 0.16,
           }}
