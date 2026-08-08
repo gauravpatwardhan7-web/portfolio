@@ -332,17 +332,20 @@ export default function About() {
 
         <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
-        {/* Three-column block */}
+        {/* Three-column block — same left-accent card as the case-study/
+            writing/about-me cards on the home page, one per column, instead
+            of a single plain-bordered box with hairline dividers. */}
         <section className="py-4">
-          <div
-            className="flex flex-col"
-            style={{ border: "1px solid var(--border)" }}
-          >
-            {threeCol.map((col, i) => (
+          <div className="flex flex-col md:flex-row gap-3">
+            {threeCol.map((col) => (
               <div
                 key={col.label}
-                className={`p-3 ${i < 2 ? "border-b" : ""}`}
-                style={{ background: "var(--surface)", borderColor: "var(--border)" }}
+                className="flex-1 p-3"
+                style={{
+                  border: "1px solid var(--border)",
+                  borderLeft: "3px solid var(--accent)",
+                  background: "var(--surface)",
+                }}
               >
                 <p className="font-mono text-xs uppercase tracking-widest mb-2" style={{ color: "var(--accent)" }}>
                   {col.label}
@@ -379,9 +382,21 @@ export default function About() {
 
       </div>
 
-      {/* Footer */}
-      <footer style={{ borderTop: "1px solid var(--border)" }}>
-        <div className="max-w-5xl mx-auto px-4 md:px-6 py-6 flex flex-col md:flex-row justify-between gap-3">
+      {/* Footer — same wave-tile band as the home page footer; this one had
+          gone plain when the rest of the page picked up the pattern. */}
+      <footer className="relative overflow-hidden" style={{ borderTop: "1px solid var(--border)" }}>
+        <div
+          className="absolute inset-0 pointer-events-none select-none"
+          style={{
+            backgroundImage: "url(/wave-pattern-tile.jpg)",
+            backgroundRepeat: "repeat-x",
+            backgroundSize: "auto 240px",
+            backgroundPosition: "center",
+            opacity: 0.16,
+          }}
+          aria-hidden
+        />
+        <div className="relative max-w-5xl mx-auto px-4 md:px-6 py-6 flex flex-col md:flex-row justify-between gap-3">
           <span className="font-mono text-xs" style={{ color: "var(--muted)" }}>
             Gaurav Patwardhan · {new Date().getFullYear()}
           </span>

@@ -492,7 +492,16 @@ export default function Home() {
                   // above and below instead of collecting as dead space at the
                   // bottom. md:justify-start restores the default for the row
                   // layout, where the axis flips to horizontal.
-                  className="flex flex-col md:flex-row gap-4 md:gap-10 justify-center md:justify-start md:items-stretch h-[700px] md:h-auto md:min-h-[clamp(420px,62vh,640px)] p-[18px] md:p-6"
+                  //
+                  // Three height tiers, not one: real content need (measured on
+                  // production, not headless Chrome — its text-wrap widths ran
+                  // noticeably narrower than actual mobile Safari, understating
+                  // how much a wider phone shrinks the text column) drops from
+                  // ~680px under 380px wide to ~590px at 380-414px to ~540px
+                  // above that, as the subtitle sheds wrapped lines. A single
+                  // fixed height sized to the narrowest phone left 100px+ of
+                  // dead space on the 390-430px phones most people actually have.
+                  className="flex flex-col md:flex-row gap-4 md:gap-10 justify-center md:justify-start md:items-stretch h-[700px] min-[380px]:h-[620px] min-[415px]:h-[560px] md:h-auto md:min-h-[clamp(420px,62vh,640px)] p-[18px] md:p-6"
                   style={{
                     border: "1px solid var(--border)",
                     borderLeft: "4px solid var(--accent)",
