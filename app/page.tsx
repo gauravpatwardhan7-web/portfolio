@@ -147,23 +147,23 @@ export default function Home() {
       <div className="h-[69px]" />
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-4 md:px-6 pt-8 md:pt-12 pb-6 md:pb-8">
+      <section className="max-w-5xl mx-auto px-4 md:px-6 pt-6 md:pt-8 pb-5 md:pb-7">
         <p
-          className="font-mono text-sm mb-6 reveal"
+          className="font-mono text-xs mb-3 reveal"
           ref={addRevealRef}
           style={{ color: "var(--accent)" }}
         >
           — Bengaluru, India
         </p>
         <h1
-          className="text-5xl md:text-7xl font-semibold tracking-tight leading-tight mb-6 reveal"
+          className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight mb-4 reveal"
           ref={addRevealRef}
           style={{ animationDelay: "0.1s" }}
         >
           Gaurav Patwardhan
         </h1>
         <p
-          className="text-lg md:text-xl max-w-2xl reveal"
+          className="text-base md:text-lg max-w-2xl leading-relaxed reveal"
           ref={addRevealRef}
           style={{ color: "var(--muted)", animationDelay: "0.2s" }}
         >
@@ -173,15 +173,15 @@ export default function Home() {
           a real user problem.
         </p>
 
-        <div className="mt-10 reveal" ref={addRevealRef} style={{ animationDelay: "0.3s" }}>
+        <div className="mt-7 reveal" ref={addRevealRef} style={{ animationDelay: "0.3s" }}>
           <p
-            className="font-mono text-xs uppercase tracking-widest mb-3 flex items-center gap-2"
+            className="font-mono text-xs uppercase tracking-widest mb-2.5 flex items-center gap-2"
             style={{ color: "var(--muted)" }}
           >
             Jump to a project
             <span aria-hidden style={{ color: "var(--accent)" }}>↓</span>
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2">
             {[
               { label: "What's Trending Bangalore", anchor: "whatsup-bangalore" },
               { label: "Neighborhood Explorer", anchor: "blr-neighborhood" },
@@ -197,7 +197,7 @@ export default function Home() {
                     true
                   )
                 }
-                className="font-mono text-xs uppercase tracking-widest px-4 py-2 border transition-all cursor-pointer"
+                className="font-mono text-[11px] uppercase tracking-widest px-3 py-1.5 border transition-all cursor-pointer"
                 style={{
                   borderColor: "var(--border)",
                   background: "var(--surface)",
@@ -224,7 +224,7 @@ export default function Home() {
         {/* About link */}
         <a
           href="/about"
-          className="inline-flex items-center gap-3 mt-8 reveal transition-colors"
+          className="inline-flex items-center gap-2.5 mt-6 reveal transition-colors"
           ref={addRevealRef}
           style={{ animationDelay: "0.4s", textDecoration: "none" }}
           onMouseOver={(e) => {
@@ -239,7 +239,7 @@ export default function Home() {
           <img
             src="/About-me-1.jpg"
             alt="Gaurav Patwardhan"
-            style={{ width: "32px", height: "32px", borderRadius: "50%", objectFit: "cover" }}
+            style={{ width: "26px", height: "26px", borderRadius: "50%", objectFit: "cover" }}
           />
           <span
             className="font-mono text-sm transition-colors"
@@ -249,19 +249,19 @@ export default function Home() {
           </span>
         </a>
 
+        <div className="flex flex-col md:flex-row gap-3 mt-6">
         {/* Featured case study */}
         <a
           href="/case-studies/evec-alert-grouping"
-          className="reveal flex flex-col md:flex-row md:items-center gap-1.5 md:gap-4 mt-6 transition-colors"
+          className="reveal w-full md:flex-1 md:min-w-0 flex flex-col md:flex-row md:items-center gap-1.5 md:gap-3 transition-colors"
           ref={addRevealRef}
           style={{
             animationDelay: "0.5s",
             border: "1px solid var(--border)",
             borderLeft: "3px solid var(--accent)",
             background: "var(--surface)",
-            padding: "8px 14px",
+            padding: "7px 12px",
             textDecoration: "none",
-            maxWidth: "fit-content",
           }}
           onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
           onMouseOut={(e) => {
@@ -270,7 +270,7 @@ export default function Home() {
           }}
         >
           <span
-            className="font-mono text-xs uppercase tracking-widest flex-shrink-0"
+            className="font-mono text-[11px] uppercase tracking-widest flex-shrink-0"
             style={{ color: "var(--accent)" }}
           >
             Case study — Shell
@@ -288,16 +288,15 @@ export default function Home() {
           href="https://gauravpatwardhan1.substack.com/p/this-could-have-been-a-prompt"
           target="_blank"
           rel="noopener noreferrer"
-          className="reveal flex flex-col md:flex-row md:items-center gap-1.5 md:gap-4 mt-3 transition-colors"
+          className="reveal w-full md:flex-1 md:min-w-0 flex flex-col md:flex-row md:items-center gap-1.5 md:gap-3 transition-colors"
           ref={addRevealRef}
           style={{
             animationDelay: "0.6s",
             border: "1px solid var(--border)",
             borderLeft: "3px solid var(--accent)",
             background: "var(--surface)",
-            padding: "8px 14px",
+            padding: "7px 12px",
             textDecoration: "none",
-            maxWidth: "fit-content",
           }}
           onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
           onMouseOut={(e) => {
@@ -306,7 +305,7 @@ export default function Home() {
           }}
         >
           <span
-            className="font-mono text-xs uppercase tracking-widest flex-shrink-0"
+            className="font-mono text-[11px] uppercase tracking-widest flex-shrink-0"
             style={{ color: "var(--accent)" }}
           >
             Writing — Substack
@@ -318,6 +317,7 @@ export default function Home() {
             Read →
           </span>
         </a>
+        </div>
       </section>
 
       <hr style={{ borderColor: "var(--border)", border: "none", borderTop: "1px solid var(--border)" }} />

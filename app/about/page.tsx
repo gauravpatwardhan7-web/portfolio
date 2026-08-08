@@ -187,15 +187,15 @@ export default function About() {
       <div className="max-w-5xl mx-auto px-4 md:px-6">
 
         {/* Hero */}
-        <section className="pt-8 md:pt-12 pb-8 flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+        <section className="pt-6 md:pt-8 pb-6 flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-10">
           <div className="flex-1">
-            <p className="font-mono text-sm mb-4" style={{ color: "var(--accent)" }}>
+            <p className="font-mono text-xs mb-3" style={{ color: "var(--accent)" }}>
               — Bengaluru, India
             </p>
-            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight mb-6">
+            <h1 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight mb-4">
               Gaurav Patwardhan
             </h1>
-            <p className="text-lg md:text-xl max-w-2xl leading-relaxed" style={{ color: "var(--muted)" }}>
+            <p className="text-sm md:text-base max-w-2xl leading-relaxed" style={{ color: "var(--muted)" }}>
               Product manager with 5 years of experience across AI, EV charging, and
               industrial products — currently building AI-first products at Shell. I
               specialize in product discovery, roadmap ownership, and shipping AI agent
@@ -206,7 +206,7 @@ export default function About() {
               href="/Gaurav-Patwardhan-Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-6 font-mono text-sm transition-colors"
+              className="inline-block mt-5 font-mono text-sm transition-colors"
               style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
               onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
@@ -216,14 +216,14 @@ export default function About() {
           </div>
 
           {/* 2x2 photo collage */}
-          <div className="flex-shrink-0" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3px", width: "300px" }}>
+          <div className="flex-shrink-0" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3px", width: "224px" }}>
             {[
               { src: "/About-me-1.jpg", alt: "Gaurav Patwardhan smiling in a car" },
               { src: "/About-me-2.jpg", alt: "Gaurav bouldering on an indoor climbing wall" },
               { src: "/About-me-3.jpg", alt: "Gaurav watching a sunset at the beach" },
               { src: "/About-me-4.jpg", alt: "Gaurav hiking on a misty trail" },
             ].map((photo) => (
-              <div key={photo.src} style={{ width: "148px", height: "148px", overflow: "hidden" }}>
+              <div key={photo.src} style={{ width: "110px", height: "110px", overflow: "hidden" }}>
                 <img src={photo.src} alt={photo.alt} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
             ))}
@@ -233,11 +233,11 @@ export default function About() {
         <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
         {/* Skills */}
-        <section className="py-6 md:py-8">
-          <p className="font-mono text-xs uppercase tracking-widest mb-5" style={{ color: "var(--muted)" }}>
+        <section className="py-5 md:py-6">
+          <p className="font-mono text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>
             Skills
           </p>
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {skills.map((group) => (
               <div key={group.label} className="flex flex-col md:flex-row gap-2 md:gap-4">
                 <span
@@ -265,8 +265,8 @@ export default function About() {
         <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
         {/* Career Timeline */}
-        <section className="py-8 md:py-10">
-          <p className="font-mono text-xs uppercase tracking-widest mb-8" style={{ color: "var(--muted)" }}>
+        <section className="py-6 md:py-8">
+          <p className="font-mono text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>
             Career
           </p>
           {timeline.map((item, i) => (
@@ -342,8 +342,8 @@ export default function About() {
         </section>
 
         {/* CTA */}
-        <section className="pb-16 md:pb-20">
-          <p className="text-base" style={{ color: "var(--muted)" }}>
+        <section className="pb-10 md:pb-14">
+          <p className="text-sm" style={{ color: "var(--muted)" }}>
             Want to build something together?{" "}
             <a
               href="mailto:gauravpatwardhan7@gmail.com"
