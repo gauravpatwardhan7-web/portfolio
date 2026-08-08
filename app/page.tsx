@@ -492,12 +492,11 @@ export default function Home() {
                   // above and below instead of collecting as dead space at the
                   // bottom. md:justify-start restores the default for the row
                   // layout, where the axis flips to horizontal.
-                  className="flex flex-col md:flex-row gap-6 md:gap-10 justify-center md:justify-start md:items-stretch h-[840px] md:h-auto md:min-h-[clamp(420px,62vh,640px)]"
+                  className="flex flex-col md:flex-row gap-4 md:gap-10 justify-center md:justify-start md:items-stretch h-[700px] md:h-auto md:min-h-[clamp(420px,62vh,640px)] p-[18px] md:p-6"
                   style={{
                     border: "1px solid var(--border)",
                     borderLeft: "4px solid var(--accent)",
                     background: "var(--surface)",
-                    padding: "24px",
                   }}
                 >
                   {/* Text — deliberately the smaller half; the cover carries the slide */}
@@ -586,7 +585,7 @@ export default function Home() {
                         // Absolute on desktop so the cover fills the slide height
                         // without a portrait screenshot stretching the row to its
                         // own natural aspect; a fixed height does the same on mobile.
-                        className="w-full h-[clamp(220px,38vh,320px)] md:absolute md:inset-0 md:h-full"
+                        className="w-full h-[clamp(180px,30vh,260px)] md:absolute md:inset-0 md:h-full"
                         style={{
                           objectFit: "cover",
                           // Left, not centre: these covers put their product UI
