@@ -516,7 +516,7 @@ export default function Home() {
                     >
                       {project.label}
                     </span>
-                    <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-3 leading-tight">
+                    <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-3 leading-tight">
                       {project.title}
                     </h2>
                     <p

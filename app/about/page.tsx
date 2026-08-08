@@ -296,7 +296,7 @@ export default function About() {
             >
               <div className="flex flex-col md:grid md:grid-cols-6 gap-1 md:gap-6">
                 <div className="md:col-span-2">
-                  <p className="font-semibold text-base leading-snug">{item.role}</p>
+                  <p className="font-semibold text-lg md:text-xl leading-snug">{item.role}</p>
                 </div>
                 <div className="md:col-span-1">
                   <p className="font-mono text-sm mt-1 md:mt-0.5" style={{ color: "var(--accent)" }}>
