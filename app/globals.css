@@ -120,6 +120,10 @@ img, iframe, video {
 
 .rail > * {
   scroll-snap-align: start;
+  /* Without this, a fast flick on mobile can sail past the next slide and
+     land two or three in — "mandatory" only guarantees it stops on *a* snap
+     point, not the nearest one. "always" forces it to stop at every slide. */
+  scroll-snap-stop: always;
 }
 
 /* Project page detail — a plain entry animation. The IntersectionObserver
