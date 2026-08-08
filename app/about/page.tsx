@@ -332,32 +332,22 @@ export default function About() {
 
         <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
 
-        {/* Three-column block — same left-accent card as the case-study/
-            writing/about-me cards on the home page, one per column, instead
-            of a single plain-bordered box with hairline dividers. */}
-        <section className="py-4">
-          <div className="flex flex-col md:flex-row gap-3">
+        {/* Awards / Certifications / Career Interests — same plain
+            label + comma-separated-line shape as Skills above, not its own
+            boxed treatment. */}
+        <section className="py-5 md:py-6">
+          <div className="space-y-2">
             {threeCol.map((col) => (
-              <div
-                key={col.label}
-                className="flex-1 p-3"
-                style={{
-                  border: "1px solid var(--border)",
-                  borderLeft: "3px solid var(--accent)",
-                  background: "var(--surface)",
-                }}
-              >
-                <p className="font-mono text-xs uppercase tracking-widest mb-2" style={{ color: "var(--accent)" }}>
+              <div key={col.label} className="flex flex-col md:flex-row gap-0.5 md:gap-4">
+                <span
+                  className="font-mono text-xs uppercase tracking-widest md:w-40 flex-shrink-0 md:pt-0.5"
+                  style={{ color: "var(--accent)" }}
+                >
                   {col.label}
+                </span>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
+                  {col.items.join(", ")}
                 </p>
-                <ul className="space-y-0.5">
-                  {col.items.map((item) => (
-                    <li key={item} className="flex gap-2 text-sm leading-snug" style={{ color: "var(--muted)" }}>
-                      <span style={{ color: "var(--accent)", flexShrink: 0 }}>—</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>
