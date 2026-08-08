@@ -302,29 +302,35 @@ export default function Home() {
           </div>
         </div>
 
-        {/* About link */}
+        {/* About link — same bordered-card shape as the case-study/writing
+            cards below it, so the three read as one family instead of a link
+            followed by two cards. */}
         <a
           href="/about"
-          className="inline-flex items-center gap-2.5 mt-6 reveal transition-colors"
+          className="reveal w-full flex items-center gap-2.5 mt-6 transition-colors"
           ref={addRevealRef}
-          style={{ animationDelay: "0.4s", textDecoration: "none" }}
-          onMouseOver={(e) => {
-            const text = e.currentTarget.querySelector("span");
-            if (text) text.style.color = "var(--accent)";
+          style={{
+            animationDelay: "0.4s",
+            border: "1px solid var(--border)",
+            borderLeft: "3px solid var(--accent)",
+            background: "var(--surface)",
+            padding: "9px 12px",
+            textDecoration: "none",
           }}
+          onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
           onMouseOut={(e) => {
-            const text = e.currentTarget.querySelector("span");
-            if (text) text.style.color = "var(--muted)";
+            e.currentTarget.style.borderColor = "var(--border)";
+            e.currentTarget.style.borderLeftColor = "var(--accent)";
           }}
         >
           <img
             src="/About-me-1.jpg"
             alt="Gaurav Patwardhan"
-            style={{ width: "26px", height: "26px", borderRadius: "50%", objectFit: "cover" }}
+            style={{ width: "26px", height: "26px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
           />
           <span
-            className="font-mono text-sm transition-colors"
-            style={{ color: "var(--muted)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+            className="font-mono text-sm"
+            style={{ color: "var(--foreground)", textDecoration: "underline", textUnderlineOffset: "4px" }}
           >
             About me →
           </span>
