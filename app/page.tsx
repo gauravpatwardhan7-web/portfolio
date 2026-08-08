@@ -325,7 +325,7 @@ export default function Home() {
       {/* Projects — one full-width slide per project */}
       <main
         ref={railSectionRef}
-        className="max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-10"
+        className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14"
       >
         <div className="flex items-baseline justify-between gap-4 mb-5">
           <p
@@ -415,35 +415,39 @@ export default function Home() {
                 style={{ flex: "0 0 100%", minWidth: 0 }}
               >
                 <div
-                  className="flex flex-col md:flex-row gap-6 md:gap-10"
+                  className="flex flex-col md:flex-row gap-8 md:gap-14 md:items-stretch"
                   style={{
                     border: "1px solid var(--border)",
-                    borderLeft: "3px solid var(--accent)",
+                    borderLeft: "4px solid var(--accent)",
                     background: "var(--surface)",
-                    padding: "24px",
+                    padding: "32px",
+                    minHeight: "clamp(420px, 62vh, 640px)",
                   }}
                 >
                   {/* Text */}
-                  <div className="md:w-1/2 flex flex-col">
+                  <div className="md:w-1/2 flex flex-col justify-center">
                     <span
-                      className="font-mono text-xs uppercase tracking-widest mb-4"
+                      className="font-mono text-xs uppercase tracking-widest mb-5"
                       style={{ color: "var(--accent)" }}
                     >
                       {project.label}
                     </span>
-                    <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-3">
+                    <h2 className="text-3xl md:text-5xl font-semibold tracking-tight mb-4 leading-tight">
                       {project.title}
                     </h2>
-                    <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--muted)" }}>
+                    <p
+                      className="text-base md:text-lg leading-relaxed mb-8"
+                      style={{ color: "var(--muted)" }}
+                    >
                       {project.subtitle}
                     </p>
 
                     {/* Two headline numbers — the rest lives on the project page */}
-                    <div className="flex flex-wrap gap-x-8 gap-y-3 mb-6">
+                    <div className="flex flex-wrap gap-x-12 gap-y-4 mb-10">
                       {project.stats.slice(0, 2).map((stat) => (
                         <div key={stat.label} className="flex flex-col">
                           <span
-                            className="text-lg font-semibold tracking-tight"
+                            className="text-2xl md:text-3xl font-semibold tracking-tight"
                             style={{
                               color: "var(--accent)",
                               fontFamily: "var(--font-mono), monospace",
@@ -451,17 +455,17 @@ export default function Home() {
                           >
                             {stat.value}
                           </span>
-                          <span className="text-xs" style={{ color: "var(--muted)" }}>
+                          <span className="text-sm" style={{ color: "var(--muted)" }}>
                             {stat.label}
                           </span>
                         </div>
                       ))}
                     </div>
 
-                    <div className="flex flex-wrap gap-4 mt-auto">
+                    <div className="flex flex-wrap gap-6">
                       <a
                         href={`/projects/${project.id}`}
-                        className="text-sm font-mono transition-colors"
+                        className="text-base font-mono transition-colors"
                         style={{
                           color: "var(--accent)",
                           textDecoration: "underline",
@@ -480,7 +484,7 @@ export default function Home() {
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm font-mono transition-colors"
+                            className="text-base font-mono transition-colors"
                             style={{
                               color: "var(--muted)",
                               textDecoration: "underline",
@@ -497,7 +501,7 @@ export default function Home() {
 
                   {/* Visual */}
                   {thumb && (
-                    <a href={`/projects/${project.id}`} className="md:w-1/2 block">
+                    <a href={`/projects/${project.id}`} className="md:w-1/2 flex items-center">
                       <img
                         src={thumb}
                         alt=""
@@ -505,7 +509,9 @@ export default function Home() {
                         onError={(e) => (e.currentTarget.style.display = "none")}
                         style={{
                           width: "100%",
-                          aspectRatio: "16 / 10",
+                          // Fixed height + cover, so a portrait screenshot can't
+                          // stretch the slide to its own natural aspect.
+                          height: "clamp(240px, 44vh, 460px)",
                           objectFit: "cover",
                           objectPosition: "top center",
                           border: "1px solid var(--border)",
@@ -522,6 +528,39 @@ export default function Home() {
       </main>
 
       <hr style={{ border: "none", borderTop: "1px solid var(--border)" }} />
+
+      {/* Closing links */}
+      <section className="max-w-5xl mx-auto px-4 md:px-6 py-10 md:py-14">
+        <div className="flex flex-wrap gap-6">
+          <a
+            href="/case-studies/evec-alert-grouping"
+            className="font-mono text-sm transition-colors"
+            style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+            onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+            onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
+          >
+            Case study: cutting alert noise ~80% at Shell →
+          </a>
+          <a
+            href="/about"
+            className="font-mono text-sm transition-colors"
+            style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+            onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+            onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
+          >
+            Full background →
+          </a>
+          <a
+            href="mailto:gauravpatwardhan7@gmail.com"
+            className="font-mono text-sm transition-colors"
+            style={{ color: "var(--muted)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+            onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+            onMouseOut={(e) => (e.currentTarget.style.color = "var(--muted)")}
+          >
+            Get in touch →
+          </a>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="border-t" style={{ borderColor: "var(--border)" }}>
