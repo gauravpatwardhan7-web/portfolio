@@ -58,31 +58,35 @@ export default function Home() {
   }, []);
 
   // Always start at top on load — except when coming back from a project page,
-  // which asks for its own slide via ?p=<id> so you land where you left off
-  // instead of at the hero.
+  // which asks for its own slide via ?p=<id>#projects so you land where you
+  // left off instead of at the hero. The #projects fragment does the vertical
+  // scroll natively; this only has to line the rail up horizontally.
   useEffect(() => {
     const requested = new URLSearchParams(window.location.search).get("p");
     const index = requested ? projects.findIndex((p) => p.id === requested) : -1;
     if (index < 0) {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      if (!window.location.hash) {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      }
       return;
     }
     const jump = () => {
+      // scrollLeft only — scrollIntoView would also nudge the page vertically
+      // and undo where the #projects fragment put us.
       const rail = railRef.current;
       if (rail?.clientWidth) {
         rail.scrollLeft = index * rail.clientWidth;
       }
-      railSectionRef.current?.scrollIntoView({ behavior: "auto", block: "start" });
     };
     jump();
-    // The rest runs a tick later, once layout has settled — scroll snap can
-    // undo the first set. A timer, not rAF, so it still lands in a background
-    // tab. The param is only stripped at the end: clearing it earlier makes
+    // Re-assert a tick later, once layout has settled — scroll snap can undo
+    // the first set. A timer, not rAF, so it still lands in a background tab.
+    // The query is only stripped at the end: clearing it earlier makes
     // StrictMode's second pass see no param and scroll back to the top.
     const timer = setTimeout(() => {
       setActiveIndex(index);
       jump();
-      window.history.replaceState(null, "", window.location.pathname);
+      window.history.replaceState(null, "", `${window.location.pathname}#projects`);
     }, 0);
     return () => clearTimeout(timer);
   }, []);
@@ -316,39 +320,6 @@ export default function Home() {
         </a>
 
         <div className="flex flex-col md:flex-row gap-3 mt-6">
-        {/* Featured case study */}
-        <a
-          href="/case-studies/evec-alert-grouping"
-          className="reveal w-full md:flex-1 md:min-w-0 flex flex-col md:flex-row md:items-center gap-1.5 md:gap-3 transition-colors"
-          ref={addRevealRef}
-          style={{
-            animationDelay: "0.5s",
-            border: "1px solid var(--border)",
-            borderLeft: "3px solid var(--accent)",
-            background: "var(--surface)",
-            padding: "7px 12px",
-            textDecoration: "none",
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
-          onMouseOut={(e) => {
-            e.currentTarget.style.borderColor = "var(--border)";
-            e.currentTarget.style.borderLeftColor = "var(--accent)";
-          }}
-        >
-          <span
-            className="font-mono text-[11px] uppercase tracking-widest flex-shrink-0"
-            style={{ color: "var(--accent)" }}
-          >
-            Case study — Shell
-          </span>
-          <span className="text-sm" style={{ color: "var(--foreground)" }}>
-            How I cut alert noise by ~80% for EV charging operators
-          </span>
-          <span className="font-mono text-xs flex-shrink-0" style={{ color: "var(--accent)" }}>
-            Read →
-          </span>
-        </a>
-
         {/* Featured writing */}
         <a
           href="https://gauravpatwardhan1.substack.com/p/this-could-have-been-a-prompt"
@@ -389,9 +360,12 @@ export default function Home() {
       <hr style={{ borderColor: "var(--border)", border: "none", borderTop: "1px solid var(--border)" }} />
 
       {/* Projects — one full-width slide per project */}
+      {/* #projects is the anchor the project pages link back to, so the browser
+          does the vertical scroll natively instead of us timing it in JS. */}
       <main
+        id="projects"
         ref={railSectionRef}
-        className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14"
+        className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14 scroll-mt-[69px]"
       >
         <div className="flex items-baseline justify-between gap-4 mb-5">
           <p
