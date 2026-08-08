@@ -23,6 +23,7 @@ export type Project = {
   image?: string;
   imageNarrow?: boolean;
   images?: string[];
+  cover?: string;             // slide cover on the home page; images[] stays for detail pages
 };
 
 export const projects: Project[] = [
@@ -87,6 +88,7 @@ export const projects: Project[] = [
       "/whatsup-bangalore-2.png",
       "/whatsup-bangalore-3.png",
     ],
+    cover: "/whatsup-bangalore-cover.jpg",
   },
   {
     id: "blr-neighborhood",
@@ -144,6 +146,7 @@ export const projects: Project[] = [
       },
     ],
     videoId: "DxLrKuRraxM",
+    cover: "/blr-neighborhood-cover.jpg",
   },
   {
     id: "certification-coach",
@@ -203,6 +206,7 @@ export const projects: Project[] = [
       },
     ],
     videoId: "aNrbi3qeOe0",
+    cover: "/certification-coach-cover.png",
   },
   {
     id: "gym-coach",

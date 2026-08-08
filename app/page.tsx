@@ -3,9 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import { projects, type Project } from "@/lib/projects";
 
-// Card thumbnail: first screenshot, else the static image, else the video still.
+// Card thumbnail: the dedicated cover, else first screenshot, else the static
+// image, else the video still.
 const thumbFor = (p: Project) =>
-  p.images?.[0] ?? p.image ?? (p.videoId ? `https://i.ytimg.com/vi/${p.videoId}/hqdefault.jpg` : null);
+  p.cover ??
+  p.images?.[0] ??
+  p.image ??
+  (p.videoId ? `https://i.ytimg.com/vi/${p.videoId}/hqdefault.jpg` : null);
 
 export default function Home() {
   const revealRefs = useRef<HTMLElement[]>([]);
