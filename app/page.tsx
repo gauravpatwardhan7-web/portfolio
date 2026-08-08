@@ -183,7 +183,7 @@ export default function Home() {
           }}
           aria-hidden
         />
-        <div className="relative max-w-5xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+        <div className="relative max-w-6xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
           <nav className="flex items-center gap-1 ml-auto">
             {[
               { label: "About", href: "/about" },
@@ -230,7 +230,7 @@ export default function Home() {
       <div className="h-[69px]" />
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-4 md:px-6 pt-6 md:pt-8 pb-5 md:pb-7">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 pt-6 md:pt-8 pb-5 md:pb-7">
         <p
           className="font-mono text-xs mb-3 reveal"
           ref={addRevealRef}
@@ -409,7 +409,7 @@ export default function Home() {
       <main
         id="projects"
         ref={railSectionRef}
-        className="max-w-7xl mx-auto px-4 md:px-8 pt-8 pb-8 md:pt-10 md:pb-10 scroll-mt-[69px]"
+        className="max-w-6xl mx-auto px-4 md:px-6 pt-8 pb-8 md:pt-10 md:pb-10 scroll-mt-[69px]"
       >
         <div className="flex items-baseline justify-between gap-4 mb-5">
           <p
@@ -607,7 +607,7 @@ export default function Home() {
         />
 
       {/* Closing links */}
-      <section className="relative max-w-5xl mx-auto px-4 md:px-6 py-7 md:py-9">
+      <section className="relative max-w-6xl mx-auto px-4 md:px-6 py-7 md:py-9">
         <div className="flex flex-wrap gap-6">
           <a
             href="/about"
@@ -632,7 +632,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="relative border-t" style={{ borderColor: "var(--border)" }}>
-        <div className="max-w-5xl mx-auto px-4 md:px-6 py-6 flex flex-col md:flex-row justify-between gap-4">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-6 flex flex-col md:flex-row justify-between gap-4">
           <span className="font-mono text-xs" style={{ color: "var(--muted)" }}>
             Gaurav Patwardhan · {new Date().getFullYear()}
           </span>
