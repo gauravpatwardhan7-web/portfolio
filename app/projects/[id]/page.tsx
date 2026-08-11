@@ -70,13 +70,12 @@ export default async function ProjectPage({
           {/* Bordered and accent-coloured — the muted text link was too easy to miss */}
           <Link
             href={`/?p=${project.id}#projects`}
-            className="text-sm hover-accent inline-flex items-center gap-2"
+            className="header-back hover-accent inline-flex items-center gap-2"
             style={{
               color: "var(--accent)",
               fontFamily: "var(--font-mono)",
               border: "1px solid var(--border)",
               background: "var(--surface)",
-              padding: "8px 14px",
               textDecoration: "none",
             }}
           >
