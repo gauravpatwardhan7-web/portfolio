@@ -63,7 +63,7 @@ type TimelineItem = {
 
 const timeline: TimelineItem[] = [
   {
-    role: "Shell — Product Management, Subsurface & Wells Architecture",
+    role: "Shell — Emerging Architect, Subsurface & Wells Architecture",
     period: "Dec 2025 – Present",
     points: [
       "Cut plugin SDK maintenance from 6 weeks to about 1 week per plugin with a two-agent harness of tools, skills, test playbook, and acceptance criteria — 5-plugin pilot approved",
@@ -72,7 +72,7 @@ const timeline: TimelineItem[] = [
     ],
   },
   {
-    role: "Shell — Product Management, E-Mobility (EVEC)",
+    role: "Shell — Associate IDT Advisor (Product Management), EV Charging Operations",
     period: "May 2024 – Dec 2025",
     points: [
       "Shipped Alert Grouping & Prioritization — cut operator alert volume by ~80%, to about 25 per page; now the default alerts experience in every Shell EV market",
