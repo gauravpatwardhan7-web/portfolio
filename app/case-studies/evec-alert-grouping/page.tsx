@@ -52,19 +52,18 @@ export default function EvecCaseStudy() {
           {/* Bordered and accent-coloured, matching the project pages */}
           <a
             href="/"
-            className="text-sm hover-accent inline-flex items-center gap-2"
+            className="header-back hover-accent inline-flex items-center gap-2"
             style={{
               color: "var(--accent)",
               fontFamily: "var(--font-mono)",
               border: "1px solid var(--border)",
               background: "var(--surface)",
-              padding: "8px 14px",
               textDecoration: "none",
             }}
           >
             ← All work
           </a>
-          <nav className="flex items-center gap-1">
+          <nav className="nav-row flex items-center gap-0 md:gap-1">
             {[
               { label: "About", href: "/about" },
               { label: "Resume", href: "/Gaurav-Patwardhan-Resume.pdf" },
@@ -73,8 +72,8 @@ export default function EvecCaseStudy() {
               <a
                 key={item.label}
                 href={item.href}
-                className="font-medium hover-accent"
-                style={{ color: "var(--foreground)", fontSize: "15px", padding: "10px 14px", display: "block" }}
+                className="nav-link font-medium hover-accent"
+                style={{ color: "var(--foreground)" }}
               >
                 {item.label}
               </a>

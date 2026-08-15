@@ -185,7 +185,11 @@ export default function Home() {
           aria-hidden
         />
         <div className="relative max-w-6xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
-          <nav className="flex items-center gap-1 ml-auto">
+          {/* Five links at the desktop scale are wider than a phone: the last
+              one (Email) ran off the right edge and the header clipped it.
+              nav-link shrinks the type and padding below md so the whole row
+              fits, and nav-row scrolls rather than clips if it ever can't. */}
+          <nav className="nav-row flex items-center gap-0 md:gap-1 ml-auto">
             {[
               { label: "About", href: "/about" },
               { label: "Resume", href: "/Gaurav-Patwardhan-Resume.pdf", external: true },
@@ -197,13 +201,8 @@ export default function Home() {
                 href={item.href}
                 target={item.external ? "_blank" : undefined}
                 rel={item.external ? "noopener noreferrer" : undefined}
-                className="font-medium transition-colors"
-                style={{
-                  color: "var(--foreground)",
-                  fontSize: "15px",
-                  padding: "10px 14px",
-                  display: "block",
-                }}
+                className="nav-link font-medium transition-colors"
+                style={{ color: "var(--foreground)" }}
                 onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
                 onMouseOut={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               >
@@ -212,13 +211,8 @@ export default function Home() {
             ))}
             <a
               href="mailto:gauravpatwardhan7@gmail.com"
-              className="font-medium transition-colors"
-              style={{
-                color: "var(--foreground)",
-                fontSize: "15px",
-                padding: "10px 14px",
-                display: "block",
-              }}
+              className="nav-link font-medium transition-colors"
+              style={{ color: "var(--foreground)" }}
               onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
               onMouseOut={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               onClick={handleEmailClick}

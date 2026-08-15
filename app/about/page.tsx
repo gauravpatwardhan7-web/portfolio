@@ -8,11 +8,14 @@ const skills = [
   {
     label: "Product",
     items: [
+      "product strategy",
       "discovery",
       "user research",
       "PRDs & user stories",
       "roadmap ownership",
+      "sprint planning",
       "prioritization (RICE, MoSCoW)",
+      "JTBD",
       "MVP scoping",
       "product analytics",
       "go-to-market",
@@ -33,6 +36,8 @@ const skills = [
       "MCP",
       "LLM evaluation & guardrails",
       "human-in-the-loop design",
+      "spec-driven development",
+      "Claude Code",
     ],
   },
   {
@@ -58,22 +63,22 @@ type TimelineItem = {
 
 const timeline: TimelineItem[] = [
   {
-    role: "Shell — Emerging Architect, Subsurface & Wells",
+    role: "Shell — Emerging Architect, Subsurface & Wells Architecture",
     period: "Dec 2025 – Present",
     points: [
-      "Built a two-stage Claude agent for 22 legacy Petrel plugins — cut the annual SDK upgrade cycle from 6–8 sprints to 4–5 days per plugin (~95%)",
-      "Defined a Python-native replacement for the subsurface data broker, cutting 4 middleware hops to 1",
-      "Wrote the platform's product principles and directed an agent-built MVP through spec-driven development",
+      "Cut plugin SDK maintenance from 6 weeks to about 1 week per plugin with a two-agent harness of tools, skills, test playbook, and acceptance criteria — 5-plugin pilot approved",
+      "Ran discovery on Shell's 22 legacy Petrel plugins, then scoped an adapter pattern that isolates SDK calls so each annual deprecation release changes one layer, not the whole plugin",
+      "Owned discovery to MVP for replacing the end-of-life Java data broker behind Petrel's well and seismic data — removed the vendor dependency and added OSDU and Databricks connectors; funded for 2027 delivery",
     ],
   },
   {
-    role: "Shell — Product Manager, EV Charging Operations",
-    period: "2024 – 2025",
+    role: "Shell — Associate IDT Advisor (Product Management), EV Charging Operations",
+    period: "May 2024 – Dec 2025",
     points: [
-      "Shipped Alert Grouping & Prioritization — cut operator alert volume by ~80%",
+      "Shipped Alert Grouping & Prioritization — cut operator alert volume by ~80%, to about 25 per page; now the default alerts experience in every Shell EV market",
       "Onboarded Switzerland and Singapore from kickoff to live operations",
       "Validated Autoheal's business case: recurring-fault resolution from 900 to 36 minutes",
-      "Ran discovery across 15+ market operators — delivered 5+ features and 10+ roadmap items",
+      "Ran discovery across 15+ market operators and benchmarked 3 competing products — delivered 5+ features and 10+ roadmap items",
     ],
     link: { label: "Read the case study →", href: "/case-studies/evec-alert-grouping" },
   },
@@ -163,13 +168,12 @@ export default function About() {
               muted text link was too easy to miss */}
           <a
             href="/"
-            className="text-sm transition-colors inline-flex items-center gap-2"
+            className="header-back transition-colors inline-flex items-center gap-2"
             style={{
               color: "var(--accent)",
               fontFamily: "var(--font-mono)",
               border: "1px solid var(--border)",
               background: "var(--surface)",
-              padding: "8px 14px",
               textDecoration: "none",
             }}
             onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
@@ -177,7 +181,7 @@ export default function About() {
           >
             ← All work
           </a>
-          <nav className="flex items-center gap-1">
+          <nav className="nav-row flex items-center gap-0 md:gap-1">
             {[
               { label: "Resume", href: "/Gaurav-Patwardhan-Resume.pdf" },
               { label: "GitHub", href: "https://github.com/gauravpatwardhan7-web" },
@@ -188,8 +192,8 @@ export default function About() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium transition-colors"
-                style={{ color: "var(--foreground)", fontSize: "15px", padding: "10px 14px", display: "block" }}
+                className="nav-link font-medium transition-colors"
+                style={{ color: "var(--foreground)" }}
                 onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
                 onMouseOut={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               >
@@ -198,8 +202,8 @@ export default function About() {
             ))}
             <a
               href="mailto:gauravpatwardhan7@gmail.com"
-              className="font-medium transition-colors"
-              style={{ color: "var(--foreground)", fontSize: "15px", padding: "10px 14px", display: "block" }}
+              className="nav-link font-medium transition-colors"
+              style={{ color: "var(--foreground)" }}
               onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
               onMouseOut={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               onClick={handleEmailClick}

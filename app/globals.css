@@ -80,6 +80,59 @@ img, iframe, video {
   color: white;
 }
 
+/* Header nav. The desktop scale (15px type, 14px side padding) is wider than
+   a phone once there are four or five links, so the last one used to run off
+   the right edge and get clipped by the header's overflow: hidden. Below md
+   the type and padding step down so the full row fits; nav-row keeps the
+   links on one line and scrolls — rather than clips — on the narrowest
+   viewports. Values match the md: breakpoint used elsewhere. */
+.nav-row {
+  min-width: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.nav-row::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-row > * {
+  flex: none;
+}
+
+.nav-link {
+  display: block;
+  font-size: 13px;
+  padding: 10px 6px;
+  white-space: nowrap;
+}
+
+/* The back link sits opposite the nav on the inner pages; without nowrap it
+   is the element that gives, wrapping "← All work" onto three lines and
+   pushing the header past the fixed spacer below it. */
+.header-back {
+  white-space: nowrap;
+  flex: none;
+  font-size: 13px;
+  /* Matches the line-height text-sm used to supply, so the header keeps its
+     height on desktop. */
+  line-height: 1.25rem;
+  padding: 8px 8px;
+}
+
+@media (min-width: 768px) {
+  .nav-link {
+    font-size: 15px;
+    padding: 10px 14px;
+  }
+
+  .header-back {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+}
+
 /* Section reveal animation */
 @keyframes fadeInUp {
   from {
