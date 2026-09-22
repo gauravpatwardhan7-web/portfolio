@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Rebuilding a Petrel plugin with AI agents</title>
+<style>
+  @page { size: A4; margin: 20mm 22mm; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11pt;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #fff;
+    margin: 0;
+  }
+  h1 { font-size: 15pt; font-weight: normal; margin: 0 0 4px; }
+  .byline { font-size: 9.5pt; color: #555; margin: 0 0 22px; }
+  p { margin: 0 0 12px; }
+  ul { margin: 0 0 12px; padding-left: 20px; }
+  li { margin-bottom: 7px; }
+  .foot { margin-top: 24px; font-size: 9.5pt; color: #555; }
+</style>
+</head>
+<body>
+
+<h1>Rebuilding a Petrel plugin with AI agents</h1>
+<p class="byline">Gaurav Patwardhan &middot; Shell, Subsurface &amp; Wells</p>
+
+<p>
+  Shell's subsurface teams run about 22 in-house plugins inside Petrel, the software our geologists
+  and engineers work in every day. Those plugins are built on a vendor SDK, and that SDK ships a
+  deprecation release every year. When it does, someone has to go through each plugin and fix
+  everything the new version broke before the teams can use it again. That was taking roughly six
+  weeks of engineering time per plugin.
+</p>
+
+<p>
+  I took one plugin and rebuilt it with AI agents instead.
+</p>
+
+<p>
+  The obvious approach is to paste the code into a chat window and ask for a fix, and it doesn't
+  work. The model writes something that looks right, and in a geoscience tool a patch that looks
+  right but isn't is worse than no patch at all &mdash; finding the mistake three months later costs
+  more than doing the work by hand would have. The hard part was never generating the change. It was
+  knowing whether to trust it.
+</p>
+
+<p>
+  So I set it up as two agents, with four things built around them:
+</p>
+
+<ul>
+  <li>
+    <b>Tools</b> &mdash; so the agents could read the codebase and the SDK directly, instead of me
+    pasting snippets back and forth and hoping I'd pasted the right ones.
+  </li>
+  <li>
+    <b>Skills</b> &mdash; the migration knowledge our senior engineers carry in their heads, written
+    down once so the agents load it on every run rather than rediscovering it each time.
+  </li>
+  <li>
+    <b>A test playbook</b> &mdash; what to run, in what order, to prove the migration actually held.
+  </li>
+  <li>
+    <b>Acceptance criteria</b> &mdash; a written definition of done, so the output is checked against
+    a standard instead of against whoever happens to be reviewing that day.
+  </li>
+</ul>
+
+<p>
+  Most of the work went into the last two. The first two are setup; the last two are the reason
+  anyone can rely on what comes out.
+</p>
+
+<p>
+  The plugin came through in about a week instead of six.
+</p>
+
+<p>
+  Two things worth saying about that. The reusable part isn't the patched plugin &mdash; it's the
+  harness and the written-down migration knowledge, and both of those still hold for next year's SDK
+  release. And AI made the recurring work cheaper without making it stop recurring, so alongside this
+  I scoped an adapter pattern that isolates the SDK calls, so a deprecation release changes one layer
+  instead of the whole plugin.
+</p>
+
+<p>
+  On the back of the one plugin, a five-plugin pilot was approved.
+</p>
+
+<p class="foot">
+  gauravpatwardhan7@gmail.com &middot; gauravs-portfolio-in.vercel.app
+</p>
+
+</body>
+</html>
+<!--
+  Source for public/petrel-plugin-case-study.pdf. Regenerate with:
+  chrome --headless --no-pdf-header-footer \
+    --print-to-pdf=public/petrel-plugin-case-study.pdf \
+    file://$PWD/docs/petrel-plugin-case-study.html
+-->
