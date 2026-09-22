@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Gaurav Patwardhan — Leveraging AI as a Product Manager</title>
+<style>
+  @page { size: A4; margin: 11mm 14mm; }
+  * { box-sizing: border-box; }
+  :root {
+    --background: #fafaf9;
+    --surface: #f4f3f0;
+    --foreground: #1a1a1a;
+    --accent: #d97706;
+    --accent-muted: #92400e;
+    --muted: #404040;
+    --border: #e8e5e0;
+    --sans: ui-sans-serif, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "DejaVu Sans Mono", "Liberation Mono", Menlo, Consolas, monospace;
+  }
+  html, body { background: var(--background); color: var(--foreground); }
+  body { font-family: var(--sans); font-size: 8.8pt; line-height: 1.38; margin: 0; }
+  a { color: var(--accent-muted); text-decoration: none; }
+
+  .masthead { display: flex; justify-content: space-between; align-items: flex-end;
+              border-bottom: 1px solid var(--border); padding-bottom: 6px; margin-bottom: 13px; }
+  .masthead .name { font-size: 11.8pt; font-weight: 600; letter-spacing: -0.01em; }
+  .masthead .role { font-family: var(--mono); font-size: 7.6pt; color: var(--muted); margin-top: 2px; }
+  .masthead .links { font-family: var(--mono); font-size: 7.4pt; color: var(--muted); text-align: right; line-height: 1.6; }
+
+  .kicker { font-family: var(--mono); font-size: 7.2pt; text-transform: uppercase;
+            letter-spacing: 0.16em; color: var(--accent); margin: 0 0 8px; }
+  h1 { font-size: 16pt; font-weight: 600; letter-spacing: -0.02em; line-height: 1.16; margin: 0 0 8px; }
+  .standfirst { font-size: 9.2pt; color: var(--muted); line-height: 1.42; margin: 0 0 11px; max-width: 95%; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+           background: var(--border); border: 1px solid var(--border); margin-bottom: 12px; }
+  .stat { background: var(--surface); padding: 6px 9px; }
+  .stat .v { display: block; font-family: var(--mono); font-size: 11.2pt; font-weight: 600;
+             color: var(--accent); letter-spacing: -0.02em; }
+  .stat .l { display: block; font-size: 7.4pt; color: var(--muted); line-height: 1.35; margin-top: 2px; }
+
+  section { margin-bottom: 9px; break-inside: avoid; }
+  .label { font-family: var(--mono); font-size: 7.1pt; text-transform: uppercase;
+           letter-spacing: 0.16em; color: var(--accent); margin: 0 0 4px; }
+  p { margin: 0 0 5px; color: var(--muted); }
+  p.lead { color: var(--foreground); }
+  strong { color: var(--foreground); font-weight: 600; }
+
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { display: flex; gap: 7px; margin-bottom: 3px; color: var(--muted); }
+  li .dash { color: var(--accent); flex-shrink: 0; }
+  li .num { color: var(--accent); font-family: var(--mono); font-size: 8.2pt;
+            flex-shrink: 0; width: 12px; padding-top: 1px; }
+
+  .pull { border-left: 2px solid var(--accent); background: var(--surface);
+          padding: 8px 11px; margin: 0 0 6px; }
+  .pull p { margin: 0; }
+
+  footer { border-top: 1px solid var(--border); padding-top: 8px; margin-top: 4px;
+           font-family: var(--mono); font-size: 7.4pt; color: var(--muted);
+           display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+  <div class="masthead">
+    <div>
+      <div class="name">Gaurav Patwardhan</div>
+      <div class="role">Product Manager &middot; Shell &middot; Bengaluru, India</div>
+    </div>
+    <div class="links">
+      gauravs-portfolio-in.vercel.app<br />
+      linkedin.com/in/patwardhangaurav &middot; github.com/gauravpatwardhan7-web
+    </div>
+  </div>
+
+  <p class="kicker">Where I excel at leveraging AI as a PM &mdash; Shell, Subsurface &amp; Wells Architecture</p>
+  <h1>Turning repetitive engineering work into an agent harness &mdash; 6 weeks to ~1 week per plugin</h1>
+  <p class="standfirst">
+    I treat agents as products, not prompts: scoped to a real cost centre, given tools and written-down
+    expertise, and shipped with the tests and acceptance criteria that make their output trustworthy.
+  </p>
+
+  <div class="stats">
+    <div class="stat"><span class="v">6 wks &rarr; ~1 wk</span><span class="l">maintenance per plugin</span></div>
+    <div class="stat"><span class="v">22</span><span class="l">legacy plugins in scope</span></div>
+    <div class="stat"><span class="v">5-plugin</span><span class="l">pilot approved</span></div>
+    <div class="stat"><span class="v">2</span><span class="l">agents in the harness</span></div>
+  </div>
+
+  <section>
+    <p class="label">Context</p>
+    <p class="lead">
+      Shell runs 22 in-house Petrel plugins &mdash; geoscience tools built on a vendor SDK that ships a
+      deprecation release every year. Every release, engineers hand-patch each plugin against the SDK
+      changes before subsurface teams can use it. I own product for this area.
+    </p>
+  </section>
+
+  <section>
+    <p class="label">The problem</p>
+    <p>
+      Maintenance ran to roughly <strong>six weeks of engineering time per plugin, per release</strong>.
+      The work is repetitive and low-judgment, but high-context: you need the SDK, the plugin, and a
+      working definition of &ldquo;still correct.&rdquo; That makes it AI-shaped &mdash; and also
+      AI-failure-shaped. A plausible-but-wrong patch inside a geoscience tool costs more than doing the
+      patch by hand, so the hard part was never generation. It was verification.
+    </p>
+  </section>
+
+  <section>
+    <p class="label">What I built</p>
+    <p>A two-agent harness, specified the way I&rsquo;d specify any product:</p>
+    <ul>
+      <li><span class="dash">&mdash;</span><span><strong>Tools</strong> &mdash; the agents act on the codebase and the SDK through a defined surface, instead of emitting free-form suggestions a human has to transcribe.</span></li>
+      <li><span class="dash">&mdash;</span><span><strong>Skills</strong> &mdash; the SDK migration knowledge senior engineers carried in their heads, written down once as instructions the agents load every run.</span></li>
+      <li><span class="dash">&mdash;</span><span><strong>A test playbook</strong> &mdash; what to run, in what order, to prove a migration actually held.</span></li>
+      <li><span class="dash">&mdash;</span><span><strong>Acceptance criteria</strong> &mdash; an explicit definition of done, so output is measured against a standard rather than eyeballed by whoever is reviewing.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="label">Where the product judgment was</p>
+    <ul>
+      <li><span class="num">1</span><span><strong>Choosing the problem by cost, not by novelty.</strong> Annual, repetitive, 22 plugins wide &mdash; the arithmetic made the case before any demo did.</span></li>
+      <li><span class="num">2</span><span><strong>Designing for verification, not autonomy.</strong> The harness&rsquo;s job is a change an engineer can check quickly and reject cheaply. The playbook and acceptance criteria are the product; generation is the easy half.</span></li>
+      <li><span class="num">3</span><span><strong>Fixing the structural cause in parallel.</strong> Discovery across all 22 plugins led me to scope an adapter pattern isolating SDK calls, so each annual release changes one layer, not the whole plugin. AI makes the recurring work cheaper; architecture makes less of it recur.</span></li>
+      <li><span class="num">4</span><span><strong>Proving it before scaling it.</strong> I took a 5-plugin pilot for approval rather than a 22-plugin mandate &mdash; a real sample, with a decision point attached.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="label">Outcome</p>
+    <div class="pull">
+      <p>
+        <strong>Maintenance fell from about six weeks to roughly one week per plugin</strong>, and the
+        5-plugin pilot was approved. The reusable asset isn&rsquo;t the patch &mdash; it&rsquo;s the
+        harness and the written-down migration knowledge, which hold for next year&rsquo;s release too.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">The same approach, elsewhere in my work</p>
+    <ul>
+      <li><span class="dash">&mdash;</span><span><strong>Inclusive Certification Coach</strong> &mdash; 8 cooperative agents building accommodation-aware study plans, shipped with a 72-check evaluation harness and 3&times; decision verification, because &ldquo;it demos well&rdquo; is not a quality bar.</span></li>
+      <li><span class="dash">&mdash;</span><span><strong>Fitness Progress Coach</strong> &mdash; an n8n and GPT-4o-mini agent I use daily, with guardrails computed in code rather than requested of the model.</span></li>
+      <li><span class="dash">&mdash;</span><span><strong>Two live consumer products</strong> &mdash; BLR Neighborhood Explorer and What&rsquo;s Trending Bangalore, taken solo from PRD to deployed product with AI coding agents. Writing the spec well is most of the work &mdash; and I get to test my own specs against a running build.</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>Full portfolio, case studies and live products &mdash; gauravs-portfolio-in.vercel.app</span>
+    <span>gauravpatwardhan7@gmail.com</span>
+  </footer>
+
+</body>
+</html>
+<!--
+  Source for public/Gaurav-Patwardhan-AI-PM-Case-Study.pdf. Regenerate with:
+  chrome --headless --no-pdf-header-footer \
+    --print-to-pdf=public/Gaurav-Patwardhan-AI-PM-Case-Study.pdf \
+    file://$PWD/docs/ai-pm-case-study.html
+  Keep it to one A4 page: content height must stay under ~1039px at 688px width.
+-->
