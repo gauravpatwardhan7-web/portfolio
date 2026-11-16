@@ -192,24 +192,49 @@ export default function Home() {
 
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-4 md:px-6 pt-6 md:pt-8 pb-5 md:pb-7">
-        <p
-          className="font-mono text-xs mb-3"
-          style={{ color: "var(--accent-strong)" }}
-        >
-          — Bengaluru, India
+        {/* Profile: photo beside the name, then who I am before what I do.
+            profile.jpg is a 384px crop — About-me-1.jpg is a 3.7MB original. */}
+        <div className="flex items-center gap-4 md:gap-6 mb-5">
+          <img
+            src="/profile.jpg"
+            alt="Portrait of Gaurav Patwardhan"
+            width={96}
+            height={96}
+            className="w-16 h-16 md:w-24 md:h-24 flex-shrink-0"
+            style={{ borderRadius: "50%", objectFit: "cover", border: "1px solid var(--border)" }}
+          />
+          <div className="min-w-0">
+            <p
+              className="font-mono text-xs mb-1.5 md:mb-2"
+              style={{ color: "var(--accent-strong)" }}
+            >
+              — Bengaluru, India
+            </p>
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight">
+              Gaurav Patwardhan
+            </h1>
+          </div>
+        </div>
+        <p className="text-base md:text-lg max-w-2xl leading-relaxed">
+          Product manager with 5 years of experience across AI, EV charging, and
+          industrial products — currently building AI-first products at Shell.
         </p>
-        <h1
-          className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight mb-4"
-        >
-          Gaurav Patwardhan
-        </h1>
         <p
-          className="text-base md:text-lg max-w-2xl leading-relaxed"
+          className="text-base md:text-lg max-w-2xl leading-relaxed mt-3"
           style={{ color: "var(--muted)" }}
         >
           I find underserved user problems, make the product calls, and ship the
           solution myself. Four products below, each starting from a real one.
         </p>
+        <a
+          href="/about"
+          className="inline-block mt-4 font-mono text-sm transition-colors"
+          style={{ color: "var(--accent-strong)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+          onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
+          onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent-strong)")}
+        >
+          More about me →
+        </a>
 
         <div className="mt-7">
           <p
@@ -258,38 +283,6 @@ export default function Home() {
             ))}
           </div>
         </div>
-
-        {/* About link — same bordered-card shape as the case-study/writing
-            cards below it, so the three read as one family instead of a link
-            followed by two cards. */}
-        <a
-          href="/about"
-          className="inline-flex w-fit items-center gap-2.5 mt-6 transition-colors"
-          style={{
-            border: "1px solid var(--border)",
-            borderLeft: "3px solid var(--accent)",
-            background: "var(--surface)",
-            padding: "9px 12px",
-            textDecoration: "none",
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
-          onMouseOut={(e) => {
-            e.currentTarget.style.borderColor = "var(--border)";
-            e.currentTarget.style.borderLeftColor = "var(--accent)";
-          }}
-        >
-          <img
-            src="/About-me-1.jpg"
-            alt="Gaurav Patwardhan"
-            style={{ width: "26px", height: "26px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
-          />
-          <span
-            className="font-mono text-sm"
-            style={{ color: "var(--foreground)", textDecoration: "underline", textUnderlineOffset: "4px" }}
-          >
-            About me →
-          </span>
-        </a>
 
         <div className="flex flex-col md:flex-row gap-3 mt-6">
         {/* Featured case study */}
