@@ -15,7 +15,7 @@ const stats = [
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-mono text-xs uppercase tracking-widest mb-4" style={{ color: "var(--accent)" }}>
+    <p className="font-mono text-xs uppercase tracking-widest mb-4" style={{ color: "var(--accent-strong)" }}>
       {children}
     </p>
   );
@@ -54,7 +54,7 @@ export default function EvecCaseStudy() {
             href="/"
             className="header-back hover-accent inline-flex items-center gap-2"
             style={{
-              color: "var(--accent)",
+              color: "var(--accent-strong)",
               fontFamily: "var(--font-mono)",
               border: "1px solid var(--border)",
               background: "var(--surface)",
@@ -102,7 +102,7 @@ export default function EvecCaseStudy() {
             <div key={stat.label} className="px-4 py-3" style={{ background: "var(--surface)" }}>
               <span
                 className="block text-xl font-semibold tracking-tight"
-                style={{ color: "var(--accent)", fontFamily: "var(--font-mono), monospace" }}
+                style={{ color: "var(--accent-strong)", fontFamily: "var(--font-mono), monospace" }}
               >
                 {stat.value}
               </span>
@@ -113,12 +113,12 @@ export default function EvecCaseStudy() {
           ))}
         </div>
 
-        <div className="space-y-12 text-base leading-relaxed" style={{ color: "var(--muted)" }}>
+        <div className="space-y-12 text-base leading-relaxed max-w-[38rem]" style={{ color: "var(--muted)" }}>
           {/* Context */}
           <section>
             <SectionLabel>Context</SectionLabel>
             <p>
-              EVEC (EV Engineering Cockpit) is Shell&apos;s internal platform for monitoring its EV
+              EVEC (EV Engineering Cockpit) is Shell&rsquo;s internal platform for monitoring its EV
               charging network: live charge-station status plus alerts raised from charger error
               codes. Market Operations teams work from it daily to keep chargers running and
               dispatch field engineers. I owned product for the operations experience.
@@ -143,7 +143,7 @@ export default function EvecCaseStudy() {
                 "Slow responses — finding the right alert meant combing through a hundred",
               ].map((item) => (
                 <li key={item} className="flex gap-3">
-                  <span style={{ color: "var(--accent)" }} className="mt-0.5 flex-shrink-0">
+                  <span style={{ color: "var(--accent-strong)" }} className="mt-0.5 flex-shrink-0">
                     —
                   </span>
                   <span>{item}</span>
@@ -159,7 +159,7 @@ export default function EvecCaseStudy() {
               Operators kept telling me the same thing: the page was too messy to navigate. The
               real pain was twofold — hard to <em>find</em> the alerts that mattered, hard to{" "}
               <em>track</em> the state of anything. The reframe: an operator should open one page
-              and know what&apos;s broken, what matters most, and what&apos;s in motion. That
+              and know what&rsquo;s broken, what matters most, and what&rsquo;s in motion. That
               became the concept — grouping plus prioritization.
             </p>
           </section>
@@ -174,7 +174,7 @@ export default function EvecCaseStudy() {
                 "Prioritize by operational severity — offline chargers rank highest (someone has to physically go and check), hardware faults next, then network and payment issues.",
               ].map((item) => (
                 <li key={item} className="flex gap-3">
-                  <span style={{ color: "var(--accent)" }} className="mt-0.5 flex-shrink-0">
+                  <span style={{ color: "var(--accent-strong)" }} className="mt-0.5 flex-shrink-0">
                     —
                   </span>
                   <span>{item}</span>
@@ -223,11 +223,11 @@ export default function EvecCaseStudy() {
 
           {/* Retro */}
           <section>
-            <SectionLabel>What I&apos;d do differently</SectionLabel>
+            <SectionLabel>What I&rsquo;d do differently</SectionLabel>
             <p>
               Define success metrics before launch, not after. I observed the reduction but moved
               teams before running the structured study the feature deserved — triage time and
-              missed-critical rates, not just alert counts. First thing I&apos;d set up next time.
+              missed-critical rates, not just alert counts. First thing I&rsquo;d set up next time.
             </p>
           </section>
 
@@ -247,7 +247,7 @@ export default function EvecCaseStudy() {
           <a
             href="/"
             className="font-mono text-sm hover-accent"
-            style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+            style={{ color: "var(--accent-strong)", textDecoration: "underline", textUnderlineOffset: "4px" }}
           >
             ← Back to products
           </a>

@@ -67,8 +67,8 @@ const timeline: TimelineItem[] = [
     period: "Dec 2025 – Present",
     points: [
       "Cut plugin SDK maintenance from 6 weeks to about 1 week per plugin with a two-agent harness of tools, skills, test playbook, and acceptance criteria — 5-plugin pilot approved",
-      "Ran discovery on Shell's 22 legacy Petrel plugins, then scoped an adapter pattern that isolates SDK calls so each annual deprecation release changes one layer, not the whole plugin",
-      "Owned discovery to MVP for replacing the end-of-life Java data broker behind Petrel's well and seismic data — removed the vendor dependency and added OSDU and Databricks connectors; funded for 2027 delivery",
+      "Ran discovery on Shell’s 22 legacy Petrel plugins, then scoped an adapter pattern that isolates SDK calls so each annual deprecation release changes one layer, not the whole plugin",
+      "Owned discovery to MVP for replacing the end-of-life Java data broker behind Petrel’s well and seismic data — removed the vendor dependency and added OSDU and Databricks connectors; funded for 2027 delivery",
     ],
   },
   {
@@ -77,7 +77,7 @@ const timeline: TimelineItem[] = [
     points: [
       "Shipped Alert Grouping & Prioritization — cut operator alert volume by ~80%, to about 25 per page; now the default alerts experience in every Shell EV market",
       "Onboarded Switzerland and Singapore from kickoff to live operations",
-      "Validated Autoheal's business case: recurring-fault resolution from 900 to 36 minutes",
+      "Validated Autoheal’s business case: recurring-fault resolution from 900 to 36 minutes",
       "Ran discovery across 15+ market operators and benchmarked 3 competing products — delivered 5+ features and 10+ roadmap items",
     ],
     link: { label: "Read the case study →", href: "/case-studies/evec-alert-grouping" },
@@ -170,7 +170,7 @@ export default function About() {
             href="/"
             className="header-back transition-colors inline-flex items-center gap-2"
             style={{
-              color: "var(--accent)",
+              color: "var(--accent-strong)",
               fontFamily: "var(--font-mono)",
               border: "1px solid var(--border)",
               background: "var(--surface)",
@@ -194,7 +194,7 @@ export default function About() {
                 rel="noopener noreferrer"
                 className="nav-link font-medium transition-colors"
                 style={{ color: "var(--foreground)" }}
-                onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent-strong)")}
                 onMouseOut={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               >
                 {item.label}
@@ -204,7 +204,7 @@ export default function About() {
               href="mailto:gauravpatwardhan7@gmail.com"
               className="nav-link font-medium transition-colors"
               style={{ color: "var(--foreground)" }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
+              onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent-strong)")}
               onMouseOut={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               onClick={handleEmailClick}
             >
@@ -220,7 +220,7 @@ export default function About() {
         {/* Hero */}
         <section className="pt-6 md:pt-8 pb-6 flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-10">
           <div className="flex-1">
-            <p className="font-mono text-xs mb-3" style={{ color: "var(--accent)" }}>
+            <p className="font-mono text-xs mb-3" style={{ color: "var(--accent-strong)" }}>
               — Bengaluru, India
             </p>
             <h1 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight mb-4">
@@ -238,9 +238,9 @@ export default function About() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-5 font-mono text-sm transition-colors"
-              style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+              style={{ color: "var(--accent-strong)", textDecoration: "underline", textUnderlineOffset: "4px" }}
               onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent-strong)")}
             >
               Download resume (PDF) →
             </a>
@@ -268,12 +268,12 @@ export default function About() {
           <p className="font-mono text-xs uppercase tracking-widest mb-4" style={{ color: "var(--muted)" }}>
             Skills
           </p>
-          <div className="space-y-2">
+          <div className="space-y-3 md:space-y-2">
             {skills.map((group) => (
               <div key={group.label} className="flex flex-col md:flex-row gap-0.5 md:gap-4">
                 <span
-                  className="font-mono text-xs uppercase tracking-widest md:w-24 flex-shrink-0 md:pt-0.5"
-                  style={{ color: "var(--accent)" }}
+                  className="font-mono text-xs uppercase tracking-widest md:w-40 flex-shrink-0 md:pt-0.5"
+                  style={{ color: "var(--accent-strong)" }}
                 >
                   {group.label}
                 </span>
@@ -295,7 +295,7 @@ export default function About() {
           {timeline.map((item, i) => (
             <div
               key={i}
-              className="py-2"
+              className="py-3"
               style={{ borderTop: "1px solid var(--border)" }}
             >
               <div className="flex flex-col md:grid md:grid-cols-6 gap-1 md:gap-6">
@@ -303,7 +303,7 @@ export default function About() {
                   <p className="font-semibold text-lg md:text-xl leading-snug">{item.role}</p>
                 </div>
                 <div className="md:col-span-1">
-                  <p className="font-mono text-sm mt-1 md:mt-0.5" style={{ color: "var(--accent)" }}>
+                  <p className="font-mono text-sm md:text-xs md:whitespace-nowrap mt-1 md:mt-1.5" style={{ color: "var(--accent-strong)" }}>
                     {item.period}
                   </p>
                 </div>
@@ -311,7 +311,7 @@ export default function About() {
                   <ul className="space-y-1">
                     {item.points.map((pt, j) => (
                       <li key={j} className="flex gap-2 text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                        <span style={{ color: "var(--accent)", flexShrink: 0 }}>—</span>
+                        <span style={{ color: "var(--accent-strong)", flexShrink: 0 }}>—</span>
                         <span>{pt}</span>
                       </li>
                     ))}
@@ -320,9 +320,9 @@ export default function About() {
                     <a
                       href={item.link.href}
                       className="inline-block mt-2 font-mono text-sm transition-colors"
-                      style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+                      style={{ color: "var(--accent-strong)", textDecoration: "underline", textUnderlineOffset: "4px" }}
                       onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-                      onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                      onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent-strong)")}
                     >
                       {item.link.label}
                     </a>
@@ -340,17 +340,17 @@ export default function About() {
             label + comma-separated-line shape as Skills above, not its own
             boxed treatment. */}
         <section className="py-5 md:py-6">
-          <div className="space-y-2">
+          <div className="space-y-3 md:space-y-2">
             {threeCol.map((col) => (
               <div key={col.label} className="flex flex-col md:flex-row gap-0.5 md:gap-4">
                 <span
                   className="font-mono text-xs uppercase tracking-widest md:w-40 flex-shrink-0 md:pt-0.5"
-                  style={{ color: "var(--accent)" }}
+                  style={{ color: "var(--accent-strong)" }}
                 >
                   {col.label}
                 </span>
                 <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>
-                  {col.items.join(", ")}
+                  {col.items.join(" · ")}
                 </p>
               </div>
             ))}
@@ -364,9 +364,9 @@ export default function About() {
             <a
               href="mailto:gauravpatwardhan7@gmail.com"
               className="font-mono text-sm transition-colors"
-              style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+              style={{ color: "var(--accent-strong)", textDecoration: "underline", textUnderlineOffset: "4px" }}
               onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent-strong)")}
               onClick={handleEmailClick}
             >
               {emailCopied ? "Copied!" : "gauravpatwardhan7@gmail.com"}

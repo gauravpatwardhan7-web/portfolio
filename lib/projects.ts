@@ -10,9 +10,9 @@ export type Project = {
   title: string;
   subtitle: string;
   users: string;              // WHO this is for
-  problem: string;            // WHY — the pain points, in the user's terms
+  problem: string;            // WHY — the pain points, in the user’s terms
   what: string;               // WHAT the product is, in one or two sentences
-  features: string[];         // WHAT — the product's key features
+  features: string[];         // WHAT — the product’s key features
   flow: FlowStage[];
   stack: { category: string; items: string }[];
   stats: { value: string; label: string }[];
@@ -31,19 +31,19 @@ export const projects: Project[] = [
     id: "whatsup-bangalore",
     tier: 1,
     label: "Consumer product · Newest",
-    title: "What's Trending Bangalore",
+    title: "What’s Trending Bangalore",
     subtitle:
-      "A living map of what's actually trending in Bengaluru — upvoted by the people who went",
+      "A living map of what’s actually trending in Bengaluru — upvoted by the people who went",
     users:
       "People in Bengaluru deciding where to go this weekend — locals bored of the same spots and newcomers with no local network to ask.",
     problem:
-      "Discovery in a big city is broken. What's worth going to right now is scattered across Instagram stories that vanish in 24 hours, Reddit threads, and group-chat word of mouth — none of it on a map, none of it with memory. You either default to the same three places or gamble on a spot that peaked six months ago. The job to be done: see what's genuinely trending near me, right now, and trust that the signal is fresh.",
+      "Discovery in a big city is broken. What’s worth going to right now is scattered across Instagram stories that vanish in 24 hours, Reddit threads, and group-chat word of mouth — none of it on a map, none of it with memory. You either default to the same three places or gamble on a spot that peaked six months ago. The job to be done: see what’s genuinely trending near me, right now, and trust that the signal is fresh.",
     what:
       "A map-first community platform where trending spots visually pulse and grow with real activity. People upvote places, drop tips, and add new spots — think Instagram discovery on a map, but with memory.",
     features: [
       "Map-first interface where popular spots pulse and grow based on live community activity",
       "Upvote and comment on spots; anyone can submit a new place, gated by review moderation",
-      "A recency-weighted trending score — spots earn 'Trending' and 'Hot' status, then fade as they cool",
+      "A recency-weighted trending score — spots earn ‘Trending’ and ‘Hot’ status, then fade as they cool",
       "Filter discovery by intent: food, drinks, nightlife, outdoors, art & culture, experiences, and this-weekend events",
       "Automated ingestion from Reddit and event feeds to seed the map beyond manual submissions",
     ],
@@ -68,8 +68,8 @@ export const projects: Project[] = [
     ],
     pmSignals: [
       "Reframed a crowded space (city discovery) around a sharp insight: the signal has to be fresh and social, not comprehensive",
-      "Designed the trending algorithm as the product — decay and thresholds decide what users trust, so they're tuned as product decisions",
-      "Cold-start thinking: seeded the map with automated Reddit/event ingestion so it isn't empty on day one",
+      "Designed the trending algorithm as the product — decay and thresholds decide what users trust, so they’re tuned as product decisions",
+      "Cold-start thinking: seeded the map with automated Reddit/event ingestion so it isn’t empty on day one",
       "Moderation built in from the start — community submissions are a growth lever and a trust risk at once",
     ],
     links: [
@@ -97,7 +97,7 @@ export const projects: Project[] = [
     title: "BLR Neighborhood Explorer",
     subtitle: "One place to decide where to live in Bengaluru — before signing a lease",
     users:
-      "People relocating to Bengaluru — new joiners, transferees, anyone choosing a neighborhood in a city they don't know yet.",
+      "People relocating to Bengaluru — new joiners, transferees, anyone choosing a neighborhood in a city they don’t know yet.",
     problem:
       "Choosing where to live in an unfamiliar city is a high-stakes decision made with terrible information. Renters juggle five browser tabs of outdated listings, paywalled livability reports, and word-of-mouth — then commit to a 12-month lease anyway. The job to be done: compare neighborhoods on what actually matters (rent, commute, amenities, weather) in one trustworthy view.",
     what:
@@ -130,9 +130,9 @@ export const projects: Project[] = [
     outcome:
       "Peaked at around 400 visitors in its launch week, and friends used it to shortlist neighborhoods when relocating to Bengaluru.",
     pmSignals: [
-      "Problem-first: started from my own relocation pain, validated it's shared, then scoped to the core decision",
+      "Problem-first: started from my own relocation pain, validated it’s shared, then scoped to the core decision",
       "Trust as the differentiator: freshness and transparent scoring, not more features",
-      "Shipped and live — a product in users' hands, not a prototype deck",
+      "Shipped and live — a product in users’ hands, not a prototype deck",
     ],
     links: [
       {
@@ -156,11 +156,11 @@ export const projects: Project[] = [
     subtitle:
       "Certification prep that adapts to how you learn — built for employees the standard training path leaves behind",
     users:
-      "Employees with accessibility needs (neurodivergent, cognitive, low-vision) preparing for certifications — plus their managers, who need progress visibility without violating the learner's privacy.",
+      "Employees with accessibility needs (neurodivergent, cognitive, low-vision) preparing for certifications — plus their managers, who need progress visibility without violating the learner’s privacy.",
     problem:
       "Enterprise certification training treats every learner identically. For employees with accessibility needs, that means plans that ignore cognitive load, calendars with no realistic study time, multiple-choice tests that measure recognition instead of understanding, and forgetting curves nobody accounts for. Certifications stall — and the learner gets blamed.",
     what:
-      "An 8-agent AI coach that builds accommodation-aware study plans around real calendars, grades understanding through teach-back instead of multiple choice, and shares progress with managers only on the learner's terms.",
+      "An 8-agent AI coach that builds accommodation-aware study plans around real calendars, grades understanding through teach-back instead of multiple choice, and shares progress with managers only on the learner’s terms.",
     features: [
       "Day-by-day study plans that respect your accommodations and real calendar gaps — with honest pushback when a deadline is infeasible",
       "Practice with cited questions, or explain concepts in your own words (teach-back)",
@@ -189,7 +189,7 @@ export const projects: Project[] = [
       { value: "MS Agents League", label: "reasoning track entry" },
     ],
     pmSignals: [
-      "Segment insight: found an underserved user group inside a 'solved' product category",
+      "Segment insight: found an underserved user group inside a ‘solved’ product category",
       "Multi-stakeholder design: learner, manager, and human coach each get what they need without compromising the others",
       "Ethical tradeoffs made explicit: consent boundaries and honest pushback are features, not disclaimers",
       "Quality as a product requirement: shipped with an evaluation harness, not just a demo",
@@ -230,7 +230,7 @@ export const projects: Project[] = [
       { items: ["Router"], sub: "webhook + switch" },
       { items: ["Template Sender", "Log & Coach"], sub: "keyword / workout" },
       { items: ["OpenAI parse", "Google Sheets"], sub: "extract + log" },
-      { items: ['"Marcus" Coach'], sub: "GPT-4o-mini" },
+      { items: ["“Marcus” Coach"], sub: "GPT-4o-mini" },
       { items: ["Telegram reply"], sub: "feedback" },
     ],
     stack: [

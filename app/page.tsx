@@ -12,7 +12,6 @@ const thumbFor = (p: Project) =>
   (p.videoId ? `https://i.ytimg.com/vi/${p.videoId}/hqdefault.jpg` : null);
 
 export default function Home() {
-  const revealRefs = useRef<HTMLElement[]>([]);
   const railRef = useRef<HTMLDivElement>(null);
   const railSectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -100,39 +99,6 @@ export default function Home() {
     });
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.05 }
-    );
-
-    revealRefs.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    // Fallback: make everything visible after 600ms regardless
-    const fallback = setTimeout(() => {
-      revealRefs.current.forEach((el) => el?.classList.add("visible"));
-    }, 600);
-
-    return () => {
-      observer.disconnect();
-      clearTimeout(fallback);
-    };
-  }, []);
-
-  const addRevealRef = (el: HTMLElement | null) => {
-    if (el && !revealRefs.current.includes(el)) {
-      revealRefs.current.push(el);
-    }
-  };
-
   // A plain function, not a component — inlining it keeps the buttons from
   // remounting (and losing focus) on every render.
   const navArrow = (dir: -1 | 1, className: string, size: number) => {
@@ -156,7 +122,7 @@ export default function Home() {
         onMouseOver={(e) => {
           if (disabled) return;
           e.currentTarget.style.borderColor = "var(--accent)";
-          e.currentTarget.style.color = "var(--accent)";
+          e.currentTarget.style.color = "var(--accent-strong)";
         }}
         onMouseOut={(e) => {
           e.currentTarget.style.borderColor = "var(--border)";
@@ -203,7 +169,7 @@ export default function Home() {
                 rel={item.external ? "noopener noreferrer" : undefined}
                 className="nav-link font-medium transition-colors"
                 style={{ color: "var(--foreground)" }}
-                onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent-strong)")}
                 onMouseOut={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               >
                 {item.label}
@@ -213,7 +179,7 @@ export default function Home() {
               href="mailto:gauravpatwardhan7@gmail.com"
               className="nav-link font-medium transition-colors"
               style={{ color: "var(--foreground)" }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent)")}
+              onMouseOver={(e) => (e.currentTarget.style.color = "var(--accent-strong)")}
               onMouseOut={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               onClick={handleEmailClick}
             >
@@ -227,39 +193,35 @@ export default function Home() {
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-4 md:px-6 pt-6 md:pt-8 pb-5 md:pb-7">
         <p
-          className="font-mono text-xs mb-3 reveal"
-          ref={addRevealRef}
-          style={{ color: "var(--accent)" }}
+          className="font-mono text-xs mb-3"
+          style={{ color: "var(--accent-strong)" }}
         >
           — Bengaluru, India
         </p>
         <h1
-          className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight mb-4 reveal"
-          ref={addRevealRef}
-          style={{ animationDelay: "0.1s" }}
+          className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight mb-4"
         >
           Gaurav Patwardhan
         </h1>
         <p
-          className="text-base md:text-lg max-w-2xl leading-relaxed reveal"
-          ref={addRevealRef}
-          style={{ color: "var(--muted)", animationDelay: "0.2s" }}
+          className="text-base md:text-lg max-w-2xl leading-relaxed"
+          style={{ color: "var(--muted)" }}
         >
           I find underserved user problems, make the product calls, and ship the
           solution myself. Four products below, each starting from a real one.
         </p>
 
-        <div className="mt-7 reveal" ref={addRevealRef} style={{ animationDelay: "0.3s" }}>
+        <div className="mt-7">
           <p
             className="font-mono text-xs uppercase tracking-widest mb-2.5 flex items-center gap-2"
             style={{ color: "var(--muted)" }}
           >
             Jump to a project
-            <span aria-hidden style={{ color: "var(--accent)" }}>↓</span>
+            <span aria-hidden style={{ color: "var(--accent-strong)" }}>↓</span>
           </p>
           <div className="flex flex-wrap gap-2">
             {[
-              { label: "What's Trending Bangalore", anchor: "whatsup-bangalore" },
+              { label: "What’s Trending Bangalore", anchor: "whatsup-bangalore" },
               { label: "Neighborhood Explorer", anchor: "blr-neighborhood" },
               { label: "Certification Coach", anchor: "certification-coach" },
               { label: "Fitness Coach", anchor: "gym-coach" },
@@ -281,8 +243,8 @@ export default function Home() {
                   textDecoration: "none",
                 }}
                 onMouseOver={(e) => {
-                  e.currentTarget.style.borderColor = "var(--accent)";
-                  e.currentTarget.style.background = "var(--accent)";
+                  e.currentTarget.style.borderColor = "var(--accent-strong)";
+                  e.currentTarget.style.background = "var(--accent-strong)";
                   e.currentTarget.style.color = "var(--background)";
                 }}
                 onMouseOut={(e) => {
@@ -302,10 +264,8 @@ export default function Home() {
             followed by two cards. */}
         <a
           href="/about"
-          className="reveal inline-flex w-fit items-center gap-2.5 mt-6 transition-colors"
-          ref={addRevealRef}
+          className="inline-flex w-fit items-center gap-2.5 mt-6 transition-colors"
           style={{
-            animationDelay: "0.4s",
             border: "1px solid var(--border)",
             borderLeft: "3px solid var(--accent)",
             background: "var(--surface)",
@@ -335,10 +295,8 @@ export default function Home() {
         {/* Featured case study */}
         <a
           href="/case-studies/evec-alert-grouping"
-          className="reveal w-full md:flex-1 md:min-w-0 flex flex-col md:flex-row md:items-center gap-1.5 md:gap-3 transition-colors"
-          ref={addRevealRef}
+          className="w-full md:w-auto md:flex-auto md:min-w-0 flex flex-col md:flex-row md:items-center gap-1.5 md:gap-3 transition-colors"
           style={{
-            animationDelay: "0.5s",
             border: "1px solid var(--border)",
             borderLeft: "3px solid var(--accent)",
             background: "var(--surface)",
@@ -353,14 +311,14 @@ export default function Home() {
         >
           <span
             className="font-mono text-[11px] uppercase tracking-widest flex-shrink-0"
-            style={{ color: "var(--accent)" }}
+            style={{ color: "var(--accent-strong)" }}
           >
             Case study — Shell
           </span>
           <span className="text-sm" style={{ color: "var(--foreground)" }}>
             How I cut alert noise by ~80% for EV charging operators
           </span>
-          <span className="font-mono text-xs flex-shrink-0" style={{ color: "var(--accent)" }}>
+          <span className="font-mono text-xs flex-shrink-0 md:ml-auto" style={{ color: "var(--accent-strong)" }}>
             Read →
           </span>
         </a>
@@ -370,10 +328,8 @@ export default function Home() {
           href="https://gauravpatwardhan1.substack.com/p/this-could-have-been-a-prompt"
           target="_blank"
           rel="noopener noreferrer"
-          className="reveal w-full md:flex-1 md:min-w-0 flex flex-col md:flex-row md:items-center gap-1.5 md:gap-3 transition-colors"
-          ref={addRevealRef}
+          className="w-full md:w-auto md:flex-auto md:min-w-0 flex flex-col md:flex-row md:items-center gap-1.5 md:gap-3 transition-colors"
           style={{
-            animationDelay: "0.6s",
             border: "1px solid var(--border)",
             borderLeft: "3px solid var(--accent)",
             background: "var(--surface)",
@@ -388,14 +344,14 @@ export default function Home() {
         >
           <span
             className="font-mono text-[11px] uppercase tracking-widest flex-shrink-0"
-            style={{ color: "var(--accent)" }}
+            style={{ color: "var(--accent-strong)" }}
           >
             Writing — Substack
           </span>
           <span className="text-sm" style={{ color: "var(--foreground)" }}>
             This could have been a prompt
           </span>
-          <span className="font-mono text-xs flex-shrink-0" style={{ color: "var(--accent)" }}>
+          <span className="font-mono text-xs flex-shrink-0 md:ml-auto" style={{ color: "var(--accent-strong)" }}>
             Read →
           </span>
         </a>
@@ -415,7 +371,7 @@ export default function Home() {
         <div className="flex items-baseline justify-between gap-4 mb-5">
           <p
             className="font-mono text-xs uppercase tracking-widest"
-            style={{ color: "var(--accent)" }}
+            style={{ color: "var(--accent-strong)" }}
           >
             Projects
             <span style={{ color: "var(--muted)" }}>
@@ -515,7 +471,7 @@ export default function Home() {
                   <div className="md:w-[38%] flex flex-col justify-center">
                     <span
                       className="font-mono text-[11px] uppercase tracking-widest mb-3"
-                      style={{ color: "var(--accent)" }}
+                      style={{ color: "var(--accent-strong)" }}
                     >
                       {project.label}
                     </span>
@@ -536,7 +492,7 @@ export default function Home() {
                           <span
                             className="text-xl md:text-2xl font-semibold tracking-tight"
                             style={{
-                              color: "var(--accent)",
+                              color: "var(--accent-strong)",
                               fontFamily: "var(--font-mono), monospace",
                             }}
                           >
@@ -554,12 +510,12 @@ export default function Home() {
                         href={`/projects/${project.id}`}
                         className="text-sm font-mono transition-colors"
                         style={{
-                          color: "var(--accent)",
+                          color: "var(--accent-strong)",
                           textDecoration: "underline",
                           textUnderlineOffset: "4px",
                         }}
                         onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-                        onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                        onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent-strong)")}
                       >
                         Full detail →
                       </a>
@@ -640,7 +596,7 @@ export default function Home() {
           them); that was most of the dead space at the tail of the page.
           One row, one set of padding — "Get in touch" is gone too, since the
           Email link two items to the right went to the same mailto. */}
-      <footer className="relative border-t" style={{ borderColor: "var(--border)" }}>
+      <footer className="relative">
         <div className="max-w-6xl mx-auto px-4 md:px-6 py-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <span className="font-mono text-xs" style={{ color: "var(--muted)" }}>
@@ -649,14 +605,14 @@ export default function Home() {
             <a
               href="/about"
               className="font-mono text-xs transition-colors"
-              style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+              style={{ color: "var(--accent-strong)", textDecoration: "underline", textUnderlineOffset: "4px" }}
               onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent)")}
+              onMouseOut={(e) => (e.currentTarget.style.color = "var(--accent-strong)")}
             >
               Full background →
             </a>
           </div>
-          <div className="flex flex-wrap gap-6">
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
             <a
               href="https://github.com/gauravpatwardhan7-web"
               target="_blank"

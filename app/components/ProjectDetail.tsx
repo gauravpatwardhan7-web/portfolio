@@ -6,7 +6,7 @@ import LiteYouTube from "@/app/components/LiteYouTube";
 
 export default function ProjectDetail({ project }: { project: Project }) {
   return (
-    <div className="detail-panel flex flex-col gap-12 md:gap-14">
+    <div className="flex flex-col gap-12 md:gap-14">
       {/* Left column */}
       <div>
         <div className="mb-5">
@@ -14,16 +14,16 @@ export default function ProjectDetail({ project }: { project: Project }) {
             className="font-mono text-xs uppercase tracking-widest px-2 py-0.5 border"
             style={{
               borderColor: project.tier === 1 ? "var(--accent)" : "var(--border)",
-              color: project.tier === 1 ? "var(--accent)" : "var(--muted)",
+              color: project.tier === 1 ? "var(--accent-strong)" : "var(--muted)",
             }}
           >
             {project.label}
           </span>
         </div>
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-3">
+        <h1 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight mb-3">
           {project.title}
-        </h2>
-        <p className="text-sm mb-8" style={{ color: "var(--muted)" }}>
+        </h1>
+        <p className="text-base md:text-lg leading-relaxed mb-8" style={{ color: "var(--muted)" }}>
           {project.subtitle}
         </p>
 
@@ -35,7 +35,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
           <div>
             <p
               className="font-mono text-xs uppercase tracking-widest mb-1.5"
-              style={{ color: "var(--accent)" }}
+              style={{ color: "var(--accent-strong)" }}
             >
               Who
             </p>
@@ -46,7 +46,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
           <div>
             <p
               className="font-mono text-xs uppercase tracking-widest mb-1.5"
-              style={{ color: "var(--accent)" }}
+              style={{ color: "var(--accent-strong)" }}
             >
               Why
             </p>
@@ -57,7 +57,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
           <div>
             <p
               className="font-mono text-xs uppercase tracking-widest mb-1.5"
-              style={{ color: "var(--accent)" }}
+              style={{ color: "var(--accent-strong)" }}
             >
               What
             </p>
@@ -67,7 +67,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
             <ul className="space-y-2">
               {project.features.map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm leading-relaxed">
-                  <span style={{ color: "var(--accent)" }} className="mt-0.5 flex-shrink-0">
+                  <span style={{ color: "var(--accent-strong)" }} className="mt-0.5 flex-shrink-0">
                     —
                   </span>
                   <span style={{ color: "var(--muted)" }}>{item}</span>
@@ -87,13 +87,13 @@ export default function ProjectDetail({ project }: { project: Project }) {
               rel="noopener noreferrer"
               className="text-sm font-mono transition-colors"
               style={{
-                color: link.primary ? "var(--accent)" : "var(--muted)",
+                color: link.primary ? "var(--accent-strong)" : "var(--muted)",
                 textDecoration: "underline",
                 textUnderlineOffset: "4px",
               }}
               onMouseOver={(e) => (e.currentTarget.style.color = "var(--foreground)")}
               onMouseOut={(e) =>
-                (e.currentTarget.style.color = link.primary ? "var(--accent)" : "var(--muted)")
+                (e.currentTarget.style.color = link.primary ? "var(--accent-strong)" : "var(--muted)")
               }
             >
               {link.label}
@@ -157,7 +157,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
               >
                 <span
                   className="text-lg font-semibold tracking-tight"
-                  style={{ color: "var(--accent)", fontFamily: "var(--font-mono), monospace" }}
+                  style={{ color: "var(--accent-strong)", fontFamily: "var(--font-mono), monospace" }}
                 >
                   {stat.value}
                 </span>
@@ -169,7 +169,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
           </div>
           {project.outcome && (
             <p className="text-sm leading-relaxed mt-3 flex gap-2" style={{ color: "var(--muted)" }}>
-              <span style={{ color: "var(--accent)" }} className="flex-shrink-0">
+              <span style={{ color: "var(--accent-strong)" }} className="flex-shrink-0">
                 →
               </span>
               <span>{project.outcome}</span>

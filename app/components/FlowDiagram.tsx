@@ -25,7 +25,7 @@ export default function FlowDiagram({ stages }: { stages: FlowStage[] }) {
               {stage.sub && (
                 <p
                   className="font-mono text-xs text-center"
-                  style={{ color: "var(--accent)", fontSize: "10px" }}
+                  style={{ color: "var(--accent-strong)", fontSize: "10px" }}
                 >
                   {stage.sub}
                 </p>
@@ -36,7 +36,7 @@ export default function FlowDiagram({ stages }: { stages: FlowStage[] }) {
             {i < stages.length - 1 && (
               <div
                 className="flex items-center self-start mt-2 px-1.5"
-                style={{ color: "var(--accent)", fontSize: "14px", lineHeight: 1 }}
+                style={{ color: "var(--accent-strong)", fontSize: "14px", lineHeight: 1 }}
               >
                 →
               </div>

@@ -6,7 +6,7 @@ export default function NotFound() {
       className="min-h-screen flex flex-col items-center justify-center px-6 text-center"
       style={{ background: "var(--background)", color: "var(--foreground)" }}
     >
-      <p className="font-mono text-sm uppercase tracking-widest mb-4" style={{ color: "var(--accent)" }}>
+      <p className="font-mono text-sm uppercase tracking-widest mb-4" style={{ color: "var(--accent-strong)" }}>
         404
       </p>
       <h1 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4">
@@ -20,7 +20,7 @@ export default function NotFound() {
         <Link
           href="/"
           className="font-mono text-sm hover-accent"
-          style={{ color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: "4px" }}
+          style={{ color: "var(--accent-strong)", textDecoration: "underline", textUnderlineOffset: "4px" }}
         >
           See my work →
         </Link>

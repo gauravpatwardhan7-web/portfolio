@@ -72,7 +72,7 @@ export default async function ProjectPage({
             href={`/?p=${project.id}#projects`}
             className="header-back hover-accent inline-flex items-center gap-2"
             style={{
-              color: "var(--accent)",
+              color: "var(--accent-strong)",
               fontFamily: "var(--font-mono)",
               border: "1px solid var(--border)",
               background: "var(--surface)",
@@ -120,7 +120,7 @@ export default async function ProjectPage({
               >
                 <span
                   className="font-mono text-xs uppercase tracking-widest"
-                  style={{ color: "var(--accent)" }}
+                  style={{ color: "var(--accent-strong)" }}
                 >
                   {entry.dir} {entry.side}
                 </span>
@@ -137,7 +137,7 @@ export default async function ProjectPage({
             href={`/?p=${project.id}#projects`}
             className="inline-flex items-center gap-2 text-sm hover-accent"
             style={{
-              color: "var(--accent)",
+              color: "var(--accent-strong)",
               fontFamily: "var(--font-mono)",
               border: "1px solid var(--border)",
               background: "var(--surface)",
