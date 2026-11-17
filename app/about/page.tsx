@@ -246,16 +246,23 @@ export default function About() {
             </a>
           </div>
 
-          {/* 2x2 photo collage */}
+          {/* 2x2 photo collage. about-photo-N.jpg are 330px centre crops (110px
+              tile at 3x) of the About-me-N.jpg originals, which total ~9MB. */}
           <div className="flex-shrink-0" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3px", width: "224px" }}>
             {[
-              { src: "/About-me-1.jpg", alt: "Gaurav Patwardhan smiling in a car" },
-              { src: "/About-me-2.jpg", alt: "Gaurav bouldering on an indoor climbing wall" },
-              { src: "/About-me-3.jpg", alt: "Gaurav watching a sunset at the beach" },
-              { src: "/About-me-4.jpg", alt: "Gaurav hiking on a misty trail" },
+              { src: "/about-photo-1.jpg", alt: "Gaurav Patwardhan smiling in a car" },
+              { src: "/about-photo-2.jpg", alt: "Gaurav bouldering on an indoor climbing wall" },
+              { src: "/about-photo-3.jpg", alt: "Gaurav watching a sunset at the beach" },
+              { src: "/about-photo-4.jpg", alt: "Gaurav hiking on a misty trail" },
             ].map((photo) => (
               <div key={photo.src} style={{ width: "110px", height: "110px", overflow: "hidden" }}>
-                <img src={photo.src} alt={photo.alt} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={110}
+                  height={110}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
               </div>
             ))}
           </div>
